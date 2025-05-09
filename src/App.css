@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@font-face {
+  font-family: "myvazir-regular";
+  src: url("./assets/fonts/woff2/Vazirmatn-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "myvazir-medium";
+  src: url("./assets/fonts/woff2/Vazirmatn-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "myvazir-semibold";
+  src: url("./assets/fonts/woff2/Vazirmatn-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "myvazirFaNum-regular";
+  src: url("./assets/fonts/fNum/Woff2/Vazirmatn-FD-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "myvazirFaNum-medium";
+  src: url("./assets/fonts/fNum/Woff2/Vazirmatn-FD-Medium.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "myvazirFaNum-semibold";
+  src: url("./assets/fonts/fNum/Woff2/Vazirmatn-FD-SemiBold.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/////////////////////////////////////
+
+@font-face {
+  font-family: "mypeyda-regular";
+  src: url("./assets/fonts/woff2/PeydaWeb-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "mypeyda-medium";
+  src: url("./assets/fonts/woff2/PeydaWeb-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "mypeyda-semibold";
+  src: url("./assets/fonts/woff2/PeydaWeb-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "mypeydaFaNum-regular";
+  src: url("./assets/fonts/fNum/Woff2/PeydaWebFaNum-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "mypeydaFaNum-medium";
+  src: url("./assets/fonts/fNum/Woff2/PeydaWebFaNum-Medium.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "mypeydaFaNum-semibold";
+  src: url("./assets/fonts/fNum/Woff2/PeydaWebFaNum-SemiBold.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+///////////////////////////////
+
+.toast {
+  font-family: "myvazir-semibold";
+}
+
+input::placeholder {
+  color: #e2e2e2;
+  font-family: "myvazir-regular";
+  font-size: 14px;
+}

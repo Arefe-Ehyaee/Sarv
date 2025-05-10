@@ -16,59 +16,59 @@ function Footer() {
         <footer className="w-full bg-success-50 text-primary-700">
             {/* Mobile & Tablet Footer (Merged) */}
             <div className="block desktop:hidden text-primary-700">
-            <div className="flex flex-col tablet:flex-row gap-8 items-start container tablet:px-6 px-4 pt-[30px] tablet:pb-8 pb-[47px]">
-    {/* Left section: Logo + Contact + Socials */}
-    <div className=" w-full tablet:w-1/2 max-w-[348px]">
-        <img src={sarv} alt="Sarv Logo" className="h-10" />
-        <p className="font-myVazirRegular text-base text-right mt-[30px] leading-relaxed">
-            زیستن نیک را با مشاور هوشمند برای همه‌ی ایرانیان سرتاسر جهان فراهم کرده‌ایم.
-        </p>
+                <div className="flex flex-col tablet:flex-row gap-8 items-start container tablet:px-6 px-4 pt-[30px] tablet:pb-8 pb-[47px]">
+                    {/* Left section: Logo + Contact + Socials */}
+                    <div className=" w-full tablet:w-1/2 max-w-[348px]">
+                        <img src={sarv} alt="Sarv Logo" className="h-10" />
+                        <p className="font-myVazirRegular text-base text-right mt-[30px] leading-relaxed">
+                            زیستن نیک را با مشاور هوشمند برای همه‌ی ایرانیان سرتاسر جهان فراهم کرده‌ایم.
+                        </p>
 
-        <div className="mt-[30px] tablet:text-sm text-xs">
-            <div className="flex items-center gap-2 mb-3">
-                <img src={phone} alt="phone" />
-                <span className="font-myVazirRegular">۰۲۱-۱۲۳۴۵۶۷۸</span>
+                        <div className="mt-[30px] tablet:text-sm text-xs">
+                            <div className="flex items-center gap-2 mb-3">
+                                <img src={phone} alt="phone" />
+                                <span className="font-myVazirRegular">۰۲۱-۱۲۳۴۵۶۷۸</span>
+                            </div>
+                            <div className="flex items-center gap-2 mb-3">
+                                <img src={mail} alt="mail" />
+                                <span className="font-myVazirRegular">Sarv@onlinetherapy.com</span>
+                            </div>
+                            <div className="flex items-center gap-2 mb-3">
+                                <img src={map} alt="map" />
+                                <span className="font-myVazirRegular">آدرس: تهران، خیابان تهران، کوچه تهران، پلاک اول</span>
+                            </div>
+                        </div>
+
+                        <div className="flex justify-center gap-4 tablet:justify-start">
+                            <img src={facebook} alt="facebook" />
+                            <img src={instagram} alt="instagram" />
+                            <img src={twitter} alt="twitter" />
+                            <img src={linkedin} alt="linkedin" />
+                        </div>
+                    </div>
+
+                    {/* Right section: Grid of links */}
+                    <div className="w-full tablet:w-1/2 grid grid-cols-2 gap-[30px] text-right  tablet:mt-[83px] ">
+                        <div>
+                            <h3 className="text-base tablet:text-lg font-myPeydaMedium mb-3">مقالات و تست‌ها</h3>
+                            <ul className="space-y-2 font-myVazirRegular text-base">
+                                <li>مقاله اول</li>
+                                <li>مقاله دوم</li>
+                                <li>تست MBTI</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 className="text-base tablet:text-lg font-myPeydaMedium mb-3">لینک‌های مهم</h3>
+                            <ul className="space-y-2 font-myVazirRegular text-base">
+                                <li>تماس با ما</li>
+                                <li>درباره ما</li>
+                                <li>موقعیت‌های شغلی</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-            <div className="flex items-center gap-2 mb-3">
-                <img src={mail} alt="mail" />
-                <span className="font-myVazirRegular">Sarv@onlinetherapy.com</span>
-            </div>
-            <div className="flex items-center gap-2 mb-3">
-                <img src={map} alt="map" />
-                <span className="font-myVazirRegular">آدرس: تهران، خیابان تهران، کوچه تهران، پلاک اول</span>
-            </div>
-        </div>
-
-        <div className="flex justify-center gap-4 tablet:justify-start">
-            <img src={facebook} alt="facebook" />
-            <img src={instagram} alt="instagram" />
-            <img src={twitter} alt="twitter" />
-            <img src={linkedin} alt="linkedin" />
-        </div>
-    </div>
-
-    {/* Right section: Grid of links */}
-    <div className="w-full tablet:w-1/2 grid grid-cols-2 gap-[30px] text-right  tablet:mt-[83px] ">
-        <div>
-            <h3 className="text-base tablet:text-lg font-myPeydaMedium mb-3">مقالات و تست‌ها</h3>
-            <ul className="space-y-2 font-myVazirRegular text-base">
-                <li>مقاله اول</li>
-                <li>مقاله دوم</li>
-                <li>تست MBTI</li>
-            </ul>
-        </div>
-        <div>
-            <h3 className="text-base tablet:text-lg font-myPeydaMedium mb-3">لینک‌های مهم</h3>
-            <ul className="space-y-2 font-myVazirRegular text-base">
-                <li>تماس با ما</li>
-                <li>درباره ما</li>
-                <li>موقعیت‌های شغلی</li>
-            </ul>
-        </div>
-    </div>
-</div>
-
-</div>
 
 
             {/* Desktop Footer: 364px height */}
@@ -109,9 +109,8 @@ function Footer() {
 
                         <div className="flex flex-row gap-[30px] pt-[103.5px]">
 
-
                             <div className=''>
-                                <h3 className="text-[20px] font-myVazirMedium mb-4">مقالات و تست ها</h3>
+                                <h3 className="text-[20px] font-myPeydaMedium mb-4">مقالات و تست ها</h3>
                                 <ul className="space-y-3  font-myVazirRegular text-lg">
                                     <li>مقاله اول</li>
                                     <li>مقاله دوم</li>
@@ -120,23 +119,19 @@ function Footer() {
                             </div>
 
                             <div className=''>
-                                <h3 className="text-[20px] font-myVazirMedium mb-4">لینکهای مهم</h3>
+                                <h3 className="text-[20px] font-myPeydaMedium mb-4">لینکهای مهم</h3>
                                 <ul className="space-y-3 font-myVazirRegular text-lg">
                                     <li>تماس با ما</li>
                                     <li>درباره  ما</li>
                                     <li>موقعیت های شغلی</li>
                                 </ul>
                             </div>
-
-
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </footer>
-    );
+    )
 }
 
 export default Footer;

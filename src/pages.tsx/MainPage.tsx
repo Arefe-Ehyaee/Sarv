@@ -13,7 +13,11 @@ import Comments from '../components/Comments';
 import Footer from '../components/Footer';
 import ArticleCard from '../components/ArticleCard';
 import Articles from '../components/Articles';
+import { NavLink, useNavigate } from "react-router-dom";
+
 function MainPage() {
+
+      const navigate = useNavigate();
     return (
         <div className="min-h-screen text-gray-950">
             <Navbar />
@@ -37,7 +41,7 @@ function MainPage() {
                     className="w-full h-auto"
                 />
 
-                <CustomButton iconsrc={left} text={'امروز سفر خود را آغاز کنید'} className={'absolute top-[74px] desktop:mr-24 tablet:mr-6 mr-3 xs:mt-2 text-white bg-primary-400 desktop:h-[47px] tablet:h-[44px] mobile:h-[42px] desktop:w-[241px] tablet:w-[222px] mobile:w-[218px] px-[18px] py-[10px] desktop:text-[18px] tablet:text-[16px] mobile:text-[14px]'}></CustomButton>
+                <CustomButton handleOnClick={()=>navigate('/sarvBot')} iconsrc={left} text={'امروز سفر خود را آغاز کنید'} className={'absolute top-[74px] desktop:mr-24 tablet:mr-6 mr-3 xs:mt-2 text-white bg-primary-400 desktop:h-[47px] tablet:h-[44px] mobile:h-[42px] desktop:w-[241px] tablet:w-[222px] mobile:w-[218px] px-[18px] py-[10px] desktop:text-[18px] tablet:text-[16px] mobile:text-[14px]'}></CustomButton>
             </div>
 
             {/* Main content goes here */}
@@ -50,7 +54,7 @@ function MainPage() {
             <CTA></CTA>
             <Footer></Footer>
         </div>
-    );
+    )
 }
 
 export default MainPage;

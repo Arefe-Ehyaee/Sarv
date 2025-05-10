@@ -22,7 +22,7 @@ function ServiceCard({ title, description, icon }: ServiceCardProps) {
         <img src={arrow} alt="arrow" />
       </button>
     </div>
-  );
+  )
 }
 
 export default ServiceCard;

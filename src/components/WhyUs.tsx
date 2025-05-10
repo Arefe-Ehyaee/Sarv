@@ -27,7 +27,7 @@ function WhyUs() {
                 />
             </div>
         </div>
-    );
+    )
 }
 
 export default WhyUs;

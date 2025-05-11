@@ -1,7 +1,7 @@
 import FeatureCard from "./FeatureCard";
 import ServiceCard from "./ServiceCard";
 import love from "../assets/icons/heart.svg";
-import user from "../assets/icons/user.svg";
+import {ReactComponent as User} from "../assets/icons/user.svg";
 import users from "../assets/icons/users.svg";
 import send from "../assets/icons/send.svg"
 
@@ -18,7 +18,7 @@ function Services() {
                     <ServiceCard title="مشاوره زوجین و خانواده" description="تقویت روابط و حل تعارضات با راهنمایی متخصصان" icon={love} />
                 </div>
                 <div className="desktop:col-span-2 tablet:col-span-3">
-                    <ServiceCard title="مشاوره فردی" description="جلسات خصوصی برای رسیدگی به چالش‌های شخصی شما" icon={user} />
+                    <ServiceCard title="مشاوره فردی" description="جلسات خصوصی برای رسیدگی به چالش‌های شخصی شما" icon={<User className="text-primary-50" />} />
                 </div>
                 <div className="desktop:col-span-2 tablet:col-span-3">
                     <ServiceCard title="مشاوره کودک و نوجوانان" description="همراهی در مسیر تحصیلی و پرورشی فرزندان شما" icon={send} />

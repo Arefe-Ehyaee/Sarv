@@ -1,5 +1,5 @@
 import CustomButton from "./CustomeButton";
-import user from "../assets/icons/user-green.svg";
+import {ReactComponent as User} from "../assets/icons/user.svg";
 import down from "../assets/icons/chevron-down.svg"
 
 export default function TopBar() {
@@ -10,7 +10,7 @@ export default function TopBar() {
     <div className="h-[72px] w-full flex items-center bg-primary-100 border-primary-200 border-b-[1px] px-4" >
       <div className="flex w-full items-center justify-between">
         <button className="flex items-center gap-2 mr-[340px] text-xl font-myVazirMedium text-primary-600">
-          <img src={user} alt="user" className="w-6 h-6" />
+          <User className="w-6 h-6"></User>
           نام کاربر
           <img src={down} alt="arrow" />
         </button>

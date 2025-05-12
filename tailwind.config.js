@@ -126,6 +126,7 @@ module.exports = {
         mobile: '390px',   // Mobile: 390px and up
         tablet: '744px',   // Tablet: 744px and up
         desktop: '1440px', // Desktop: 1440px and up
+        doublexl : '1920px'
       },
     },
   },

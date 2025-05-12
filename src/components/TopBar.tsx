@@ -9,7 +9,7 @@ export default function TopBar() {
   return (
     <div className="h-[72px] w-full flex items-center bg-primary-100 border-primary-200 border-b-[1px] px-4" >
       <div className="flex w-full items-center justify-between">
-        <div className="flex flex-row gap-[26px]">
+        <div className="flex flex-row items-center gap-[26px]">
 
                     <button className='block tablet:hidden'>
             <img src={menu} alt="menu" />

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Send, Mic, Calendar, Music, MessageSquare, FileText, BrainCircuit, ChevronDown, LogOut, User } from 'lucide-react';
 import TopBar from './TopBar';
 import SideNavbar from './SideNavbar';
+import ChatSection from './ChatSection';
 
 // TypeScript interface for suggested questions
 interface SuggestedQuestion {
@@ -17,22 +18,21 @@ interface MenuItem {
 }
 
 const AIChat: React.FC = () => {
-
-
-
   return (
-    <div className="min-h-screen flex flex-col overflow-hidden">
-      <TopBar></TopBar>
+    <div className="min-h-screen flex flex-col overflow-hidden bg-secondary-50">
+      <TopBar />
+
       <div className="flex flex-1">
-        <SideNavbar></SideNavbar>
-        <div className="flex flex-1 flex-col mr-[272px] bg-background-550 px-8 calc(100vh - 4rem) ">
-          {/* top Section */}
-          <div className="flex-1">
+        {/* Side Navbar */}
+        <div className="hidden tablet:block">
+          <SideNavbar />
+        </div>
 
+        {/* Main content area */}
+        <div className="flex-1 tablet:pr-[340px]">
+          <div className="h-full w-full flex justify-center">
+            <ChatSection />
           </div>
-
-
-
         </div>
       </div>
     </div>

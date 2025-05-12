@@ -1,7 +1,7 @@
 import CustomButton from "./CustomeButton";
 import {ReactComponent as User} from "../assets/icons/user.svg";
 import down from "../assets/icons/chevron-down.svg"
-
+import menu from "../assets/icons/menu.svg"
 export default function TopBar() {
 
 
@@ -9,11 +9,21 @@ export default function TopBar() {
   return (
     <div className="h-[72px] w-full flex items-center bg-primary-100 border-primary-200 border-b-[1px] px-4" >
       <div className="flex w-full items-center justify-between">
-        <button className="flex items-center gap-2 mr-[340px] text-xl font-myVazirMedium text-primary-600">
+        <div className="flex flex-row gap-[26px]">
+
+                    <button className='block tablet:hidden'>
+            <img src={menu} alt="menu" />
+          </button>
+
+        <button className="flex items-center gap-2 desktop:mr-[340px] tablet:mr-[340px] text-xl font-myVazirMedium text-primary-600">
           <User className="w-6 h-6"></User>
-          نام کاربر
+          <p className="desktop:block tablet:block hidden">نام کاربر</p>
           <img src={down} alt="arrow" />
         </button>
+        </div>
+
+
+        
 
         <CustomButton
           text={"خرید اشتراک پریمیوم"}

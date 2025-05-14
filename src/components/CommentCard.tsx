@@ -26,13 +26,19 @@ function CommentCard({ date, text, bot }: FeatureCardProps) {
             {bot ? (
                 <div className="flex flex-row items-end mt-auto">
                     <img src={tree} alt="Sarv Bot Icon" className="w-[35px] h-[46px]" />
-                    <p className="mr-2 text-primary-300 desktop:text-sm tablet:text-sm text-xs font-myVazirRegular">دیدگاه نوشته شده برای سروبات</p>
+                    <div className="mr-2 font-myVazirRegular">
+                        <p className="text-primary-300  text-sm">نظر اعضا درباره‌ی</p>
+                        <p className="text-primary-400 text-base text-right">سروبات</p>
+                    </div>
                 </div>
             ) : (
-                <div className="flex flex-row items-end gap-0 mt-auto">
+                <div className="flex flex-row items-start gap-0 mt-auto">
                     <img src={smile} alt="Smile Icon" />
-                    <p className="mr-2 text-primary-300 desktop:text-sm tablet:text-sm text-xs font-myVazirRegular text-right">دیدگاه نوشته شده برای درمانگر سرو، خانم دکتر یاوری</p>
-                </div>
+
+                    <div className="mr-2 font-myVazirRegular">
+                        <p className="text-primary-300  text-sm">نظر اعضا درباره‌ی</p>
+                        <p className="text-primary-400 text-base text-right">خانم دکتر یاوری</p>
+                    </div>                </div>
             )}
         </div>
     );

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Send, Mic, Calendar, Music, MessageSquare, FileText, BrainCircuit, ChevronDown, LogOut, User } from 'lucide-react';
-import TopBar from './TopBar';
-import SideNavbar from './SideNavbar';
-import ChatSection from './ChatSection';
+import TopBar from '../components/TopBar';
+import SideNavbar from '../components/SideNavbar';
+import ChatSection from '../components/ChatSection';
 
 // TypeScript interface for suggested questions
 interface SuggestedQuestion {

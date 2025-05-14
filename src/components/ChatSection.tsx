@@ -31,23 +31,23 @@ const ChatSection = () => {
 
             {/* Chat input */}
             <div className="relative mb-5">
-                <div className="flex items-center rounded-full border bg-white h-[47px]  border-primary-400 pl-4 pr-2">
+                <div className="flex items-center rounded-full border bg-white h-[47px]  border-primary-400 pl-4 pr-1">
                     <input
                         type="text"
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
                         placeholder="خب شروع کن..."
-                        className="flex-1 text-right px-3 pb-1"
+                        className="flex-1 text-right px-3 py-2 rounded-full outline-none focus:outline-none focus:ring-0 focus:border-none"
                         dir="rtl"
                     />
                     <button className="ml-1 text-slate-400 hover:text-slate-600 p-2 rounded-full">
-                         <Send size={20} />
+                        <Send size={20} />
                     </button>
                 </div>
             </div>
 
 
-             <div className="desktop:mb-[197px] tablet:mb-[237px] mb-[118px]">
+            <div className="desktop:mb-[197px] tablet:mb-[237px] mb-[118px]">
                 <p className="text-center font-myVazirRegular text-base text-Gray-600 mb-[6px]" dir='ltr'>:افراد معمولا در این باره میپرسند</p>
                 <div className="flex flex-wrap justify-center gap-2">
                     {suggestedQuestions.map((question) => (
@@ -62,9 +62,9 @@ const ChatSection = () => {
             </div>
 
 
-         <div className="text-center text-sm text-Gray-600 mb-4">
+            <div className="text-center text-sm text-Gray-600 mb-4">
                 سروبات جایگزین تراپیست نیست. در شرایط حاد با تراپیست صحبت کنید.
-            </div> 
+            </div>
         </div>
     );
 };

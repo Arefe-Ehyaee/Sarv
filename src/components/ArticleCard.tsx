@@ -6,16 +6,17 @@ import bookmark from "../assets/icons/bookmark.svg"
 interface ArticleCardProps {
     title: string;
     subtitle: string;
+    bgColor :string;
 }
 
-function ArticleCard({ title, subtitle }: ArticleCardProps) {
+function ArticleCard({ title, subtitle, bgColor }: ArticleCardProps) {
     return (
-        <div className="bg-secondary-50 rounded-[26px] border border-secondary-100 p-6 
+        <div className={`${bgColor} rounded-[26px] border border-secondary-100 p-6 
             desktop:w-[608px] desktop:h-[700px] 
             doublexl:w-[848px] doublexl:h-[700px]
             tablet:w-[696px] tablet:h-[700px] 
             w-[358px] h-[660px] 
-            flex flex-col justify-between">
+            flex flex-col justify-between`}>
             <div>
                 <img src={image} alt="image" className="rounded-[20px] 
                     desktop:w-[560px] desktop:h-[373px]

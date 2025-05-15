@@ -5,6 +5,9 @@ import ArticleCard from "../components/ArticleCard";
 import Footer from "../components/Footer";
 import arrow from "../assets/icons/arrow-left-green.svg";
 import { ReactComponent as Arrow } from "../assets/icons/arrow-left-green.svg";
+import ArticlesBox from "../components/CategoryBox";
+
+
 function ArticlesPage() {
 
     const navigate = useNavigate();
@@ -22,15 +25,12 @@ function ArticlesPage() {
                     <img src={tree} alt="sarv" />
 
                 </div>
-                <div className="h-[70px] bg-primary-800 rounded-[20px] mb-[100px]">
-
-                </div>
-
-                <div className="grid grid-cols-1 desktop:grid-cols-2 gap-[32px] place-items-center">
-                    <ArticleCard title={"۵ راه ساده برای محافظت از سلامت روان"} subtitle={"با عاداتی کوچک و روزمره، حال دلتان را بهتر کنید."} bgColor={"bg-primary-100"} />
-                    <ArticleCard title={"چگونه خواب بهتر داشته باشیم؟"} subtitle={"نکاتی کاربردی برای بهبود کیفیت خواب شما."} bgColor={"bg-primary-100"} />
-                    <ArticleCard title={"تغذیه سالم در زندگی روزمره"} subtitle={"راهنمایی برای یک رژیم غذایی متعادل و سالم."} bgColor={"bg-primary-100"} />
-                    <ArticleCard title={"مدیریت استرس در محیط کار"} subtitle={"راهکارهایی برای آرامش بیشتر در فضای کاری."} bgColor={"bg-primary-100"} />
+                <ArticlesBox></ArticlesBox>
+                <div className="grid grid-cols-1 desktop:grid-cols-2 gap-[32px] place-items-center mt-[100px]">
+                    <ArticleCard title={"۵ راه ساده برای محافظت از سلامت روان"} subtitle={"با عاداتی کوچک و روزمره، حال دلتان را بهتر کنید."} className={"bg-primary-50 border-primary-100"} />
+                    <ArticleCard title={"چگونه خواب بهتر داشته باشیم؟"} subtitle={"نکاتی کاربردی برای بهبود کیفیت خواب شما."} className={"bg-primary-50 border-primary-100"} />
+                    <ArticleCard title={"تغذیه سالم در زندگی روزمره"} subtitle={"راهنمایی برای یک رژیم غذایی متعادل و سالم."} className={"bg-primary-50 border-primary-100"} />
+                    <ArticleCard title={"مدیریت استرس در محیط کار"} subtitle={"راهکارهایی برای آرامش بیشتر در فضای کاری."} className={"bg-primary-50 border-primary-100"} />
                 </div>
             </div>
 

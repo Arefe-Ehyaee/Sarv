@@ -98,10 +98,10 @@ function Footer() {
                             </div>
 
                             <div className='flex flex-row gap-3'>
-                                <img src={facebook} alt="" />
-                                <img src={instagram} alt="" />
-                                <img src={twitter} alt="" />
-                                <img src={linkedin} alt="" />
+                                <img src={facebook} alt="facebook" className='bg-primary-300 rounded-full p-[6px]' />
+                                <img src={instagram} alt="instagram" className='bg-primary-300 rounded-full p-[6px]'/>
+                                <img src={twitter} alt="twitter" className='bg-primary-300 rounded-full p-[6px]'/>
+                                <img src={linkedin} alt="linkedin" className='bg-primary-300 rounded-full p-[6px]'/>
 
                             </div>
 

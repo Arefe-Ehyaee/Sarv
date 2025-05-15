@@ -1,29 +1,39 @@
 import image from "../assets/images/159.jpg";
 import DocumentStateBadge from "./ArticleBadge";
-import heart from "../assets/icons/heart-cream.svg"
+import heart from "../assets/icons/heart.svg"
 import bookmark from "../assets/icons/bookmark.svg"
+import { ReactComponent as Arrow } from "../assets/icons/arrow-left-green.svg";
+import { useNavigate } from "react-router-dom";
 
 interface ArticleCardProps {
     title: string;
     subtitle: string;
-    bgColor :string;
+    className: string;
 }
 
-function ArticleCard({ title, subtitle, bgColor }: ArticleCardProps) {
+function ArticleCard({ title, subtitle, className }: ArticleCardProps) {
+    const navigate = useNavigate();
     return (
-        <div className={`${bgColor} rounded-[26px] border border-secondary-100 p-6 
+        <div className={`rounded-[26px] border p-6 
             desktop:w-[608px] desktop:h-[700px] 
             doublexl:w-[848px] doublexl:h-[700px]
             tablet:w-[696px] tablet:h-[700px] 
             w-[358px] h-[660px] 
-            flex flex-col justify-between`}>
+            flex flex-col justify-between ${className}`}>
             <div>
-                <img src={image} alt="image" className="rounded-[20px] 
-                    desktop:w-[560px] desktop:h-[373px]
-                    doublexl:w-[800px] doublexl:h-[373px] 
-                    tablet:w-[648px] tablet:h-[373px] 
-                    w-[310px] h-[373px] 
-                    object-cover" />
+                <div className="relative">
+                    <img src={image} alt="image" className="rounded-[20px] 
+                        desktop:w-[560px] desktop:h-[373px]
+                        doublexl:w-[800px] doublexl:h-[373px] 
+                        tablet:w-[648px] tablet:h-[373px] 
+                        w-[310px] h-[373px] 
+                        object-cover" />
+                    
+                    {/* Badge positioned at the right bottom of the image */}
+                    <div className="absolute bottom-3 right-3">
+                        <DocumentStateBadge category={"اضطراب"}></DocumentStateBadge>
+                    </div>
+                </div>
 
                 <div className="desktop:mt-[32px] tablet:mt-[34px] mt-[46px]">
                     <div className="flex flex-row items-center justify-between desktop:text-sm font-myVazirFaNumRegular">
@@ -41,22 +51,28 @@ function ArticleCard({ title, subtitle, bgColor }: ArticleCardProps) {
                 </div>
             </div>
 
-            <div className="flex flex-row items-center justify-between bg-background-BG 
+            <div className="flex flex-row items-center justify-between 
                 desktop:w-[560px] 
                 doublexl:w-[800px] 
                 tablet:w-[648px] 
                 w-[310px] 
                 h-12 rounded-xl px-[6px]">
-                <DocumentStateBadge category={"اضطراب"}></DocumentStateBadge>
 
                 <div className="flex flex-row gap-[6px] items-center">
-                    <div className="bg-secondary-50 w-9 h-9 rounded-[9px] flex flex-row justify-center p-[6px]">
+                    <div className="bg-background-BG w-9 h-9 rounded-[9px] flex flex-row justify-center p-[6px]">
                         <img src={bookmark} alt="bookmark" />
                     </div>
-                    <div className="bg-secondary-50 w-9 h-9 rounded-[9px] flex flex-row justify-center p-[6px]">
+                    <div className="bg-background-BG w-9 h-9 rounded-[9px] flex flex-row justify-center p-[6px]">
                         <img src={heart} alt="heart" />
                     </div>
                 </div>
+
+                <button className="flex flex-row items-center gap-[10px] text-primary-400" onClick={() => navigate('/articles')}>
+                    <p className="whitespace-nowrap font-myVazirMedium desktop:text-xl tablet:text-xl text-base">
+             بیشتر بخوانید
+                    </p>
+                    <Arrow></Arrow>
+                </button>
             </div>
         </div>
     );

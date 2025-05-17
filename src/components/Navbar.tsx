@@ -27,8 +27,16 @@ function Navbar() {
             خانه
           </button>
         </li>
-        <li className="cursor-pointer">درمانگران</li>
-        <li className="cursor-pointer">تست روانشناسی</li>
+        <li className="cursor-pointer">
+          <button onClick={() => navigate('/therapists')}>
+            درمانگران
+          </button>
+        </li>
+        <li className="cursor-pointer">
+          <button onClick={() => navigate('/therapists')}>
+            تست روانشناسی
+          </button>
+        </li>
         <li className="cursor-pointer">
           <button onClick={() => navigate('/articles')}>
             مقالات

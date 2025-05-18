@@ -23,11 +23,11 @@ function ArticlesPage() {
                 alt="Background Left"
                 className="absolute left-0 top-[4%] z-0 pointer-events-none"
             />
-            <img
+            {/* <img
                 src={svg2}
                 alt="Background Right"
                 className="absolute right-0 bottom-[20%] z-0 pointer-events-none"
-            />
+            /> */}
             </div>
 
             {/* Content */}

@@ -14,7 +14,7 @@ const FAQSection = () => {
   };
 
   return (
-    <div className="w-full mx-auto mt-[150px] px-24">
+    <div className="w-full mx-auto mt-[150px] desktop:px-24 tablet:px-6 px-4">
       <h2 className="text-3xl font-myPeydaSemibold  text-right mb-10">سوالات متداول</h2>
       <div className="space-y-2">
         {faqs.map((faq, idx) => (

@@ -27,10 +27,10 @@ function Articles() {
 
 
             <div className="grid grid-cols-1 desktop:grid-cols-2 gap-[32px] place-items-center">
-                <ArticleCard title={"۵ راه ساده برای محافظت از سلامت روان"} subtitle={"با عاداتی کوچک و روزمره، حال دلتان را بهتر کنید."} className={"bg-secondary-50"} />
-                <ArticleCard title={"چگونه خواب بهتر داشته باشیم؟"} subtitle={"نکاتی کاربردی برای بهبود کیفیت خواب شما."} className={"bg-secondary-50"} />
-                <ArticleCard title={"تغذیه سالم در زندگی روزمره"} subtitle={"راهنمایی برای یک رژیم غذایی متعادل و سالم."} className={"bg-secondary-50"} />
-                <ArticleCard title={"مدیریت استرس در محیط کار"} subtitle={"راهکارهایی برای آرامش بیشتر در فضای کاری."} className={"bg-secondary-50"} />
+              <ArticleCard title={"۵ راه ساده برای محافظت از سلامت روان"} subtitle={"با عاداتی کوچک و روزمره، حال دلتان را بهتر کنید."} className={"bg-primary-50 border-primary-100"} />
+                        <ArticleCard title={"چگونه خواب بهتر داشته باشیم؟"} subtitle={"نکاتی کاربردی برای بهبود کیفیت خواب شما."} className={"bg-primary-50 border-primary-100"} />
+                        <ArticleCard title={"تغذیه سالم در زندگی روزمره"} subtitle={"راهنمایی برای یک رژیم غذایی متعادل و سالم."} className={"bg-primary-50 border-primary-100"} />
+                        <ArticleCard title={"مدیریت استرس در محیط کار"} subtitle={"راهکارهایی برای آرامش بیشتر در فضای کاری."} className={"bg-primary-50 border-primary-100"} />
             </div>
         </div>
     );

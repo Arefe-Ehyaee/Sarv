@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
 import heroBanner from '../assets/icons/banersarv2-editebirds.svg';
+import heroMobile from '../assets/icons/banner_mobile.svg';
 import CustomButton from '../components/CustomeButton';
 import left from "../assets/icons/arrow-left.svg"
 import MainContent from '../components/WhyUs';
@@ -38,7 +39,12 @@ function MainPage() {
                 <img
                     src={heroBanner}
                     alt="سرو hero banner"
-                    className="w-full h-auto"
+                    className="w-full h-auto hidden tablet:block"
+                />
+                                <img
+                    src={heroMobile}
+                    alt="سرو hero banner"
+                    className="w-full h-auto desktop:hidden tablet:hidden"
                 />
 
                 <CustomButton handleOnClick={()=>navigate('/sarvBot')} iconsrc={left} text={'امروز سفر خود را آغاز کنید'} className={'absolute top-[74px] desktop:mr-24 tablet:mr-6 mr-3 xs:mt-2 text-white bg-primary-400 desktop:h-[47px] tablet:h-[44px] mobile:h-[42px] desktop:w-[241px] tablet:w-[222px] mobile:w-[218px] px-[18px] py-[10px] desktop:text-[18px] tablet:text-[16px] mobile:text-[14px]'}></CustomButton>

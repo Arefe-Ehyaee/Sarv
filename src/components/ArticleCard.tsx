@@ -4,6 +4,8 @@ import heart from "../assets/icons/heart.svg"
 import bookmark from "../assets/icons/bookmark.svg"
 import { ReactComponent as Arrow } from "../assets/icons/arrow-left-green.svg";
 import { useNavigate } from "react-router-dom";
+import { ReactComponent as Heart } from "../assets/icons/heart.svg"
+import { ReactComponent as Bookmark } from "../assets/icons/bookmark.svg"
 
 interface ArticleCardProps {
     title: string;
@@ -60,10 +62,10 @@ function ArticleCard({ title, subtitle, className }: ArticleCardProps) {
 
                 <div className="flex flex-row gap-[6px] items-center">
                     <div className="bg-background-BG w-9 h-9 rounded-[9px] flex flex-row justify-center p-[6px]">
-                        <img src={bookmark} alt="bookmark" />
+                        <Bookmark className="text-primary-200"></Bookmark>
                     </div>
                     <div className="bg-background-BG w-9 h-9 rounded-[9px] flex flex-row justify-center p-[6px]">
-                        <img src={heart} alt="heart" />
+                        <Heart className="text-primary-200"></Heart>
                     </div>
                 </div>
 

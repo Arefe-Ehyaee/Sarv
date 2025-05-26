@@ -12,6 +12,7 @@ import { ReactComponent as Calendar } from "../assets/icons/calendar.svg";
 import { ReactComponent as Clock } from "../assets/icons/clock.svg";
 import { ReactComponent as Heart } from "../assets/icons/heart.svg"
 import { ReactComponent as Bookmark } from "../assets/icons/bookmark.svg"
+import CustomButton from "../components/CustomeButton";
 
 interface TestProps {
     articleImage: string;
@@ -76,16 +77,26 @@ function Test({ articleImage, heading, subHeading, questionsNumber, category, ti
                     </div>
 
                     <img src={articleImage} alt="articleImage" className="object-cover rounded-[20px] mx-auto w-full desktop:h-[565px] tablet:h-[565px] h-[366px]" />
-                    <div className="flex flex-row gap-[20px] items-center desktop:justify-end tablet:justify-end justify-between mt-[10px]">
-                        <div className=" bg-background-BG  rounded-[9px] flex flex-row justify-center gap-2 p-[6px]">
-                            <Bookmark className="text-primary-700"></Bookmark>
-                            <span className="font-myVazirRegular desktop:text-base tablet:text-base text-sm text-Gray-500">ذخیره کردن مقاله</span>
+                    <div className="flex flex-row justify-between mt-[10px]">
+
+                                                <CustomButton
+                            text={"شروع آزمون"}
+                            className={"bg-primary-400 text-white w-24 h-10"}
+                        />
+                        <div className="flex flex-row gap-[20px] items-center desktop:justify-end tablet:justify-end justify-between mt-[10px]">
+                            <div className=" bg-background-BG  rounded-[9px] flex flex-row justify-center gap-2 p-[6px]">
+                                <Bookmark className="text-primary-700"></Bookmark>
+                                <span className="desktop:block tablet:block hidden font-myVazirRegular desktop:text-base tablet:text-base text-sm text-Gray-500">ذخیره کردن مقاله</span>
+                            </div>
+                            <div className="bg-background-BG rounded-[9px] flex flex-row justify-center gap-2 p-[6px]">
+                                <Heart className="text-primary-800"></Heart>
+                                <div className="desktop:block tablet:block hidden font-myVazirRegular desktop:text-base tablet:text-base text-sm text-Gray-500">افزودن به علاقمندی‌ها</div>
+                            </div>
                         </div>
-                        <div className="bg-background-BG rounded-[9px] flex flex-row justify-center gap-2 p-[6px]">
-                            <Heart className="text-primary-800"></Heart>
-                            <div className="font-myVazirRegular desktop:text-base tablet:text-base text-sm text-Gray-500">افزودن به علاقمندی‌ها</div>
-                        </div>
+
+
                     </div>
+
 
                 </div>
 

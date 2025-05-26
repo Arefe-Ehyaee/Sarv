@@ -57,7 +57,7 @@ function TestCard({ testName, description, image }: TestCardProps) {
             </div>
 
             {/* Start button */}
-            <button className="w-full bg-primary-400 hover:bg-primary-300 text-white desktop:text-base tablet:text-base text-sm font-myVazirSemibold h-[44px] rounded-full transition-colors duration-200">
+            <button onClick={()=>navigate('/test')} className="w-full bg-primary-400 hover:bg-primary-300 text-white desktop:text-base tablet:text-base text-sm font-myVazirSemibold h-[44px] rounded-full transition-colors duration-200">
                 شروع آزمون
             </button>
         </div>

@@ -14,16 +14,16 @@ function ArticlesPage() {
     const navigate = useNavigate();
 
     return (
-        <div className="relative min-h-screen text-gray-950 bg-gray-50 overflow-hidden">
+        <div className="relative min-h-screen text-Gray-950 bg-Gray-50 overflow-hidden">
 
-<div className="hidden desktop:block">
-            {/* Background SVGs */}
-            <img
-                src={svg1}
-                alt="Background Left"
-                className="absolute left-0 top-[4%] z-0 pointer-events-none"
-            />
-            {/* <img
+            <div className="hidden desktop:block">
+                {/* Background SVGs */}
+                <img
+                    src={svg1}
+                    alt="Background Left"
+                    className="absolute left-0 top-[4%] z-0 pointer-events-none"
+                />
+                {/* <img
                 src={svg2}
                 alt="Background Right"
                 className="absolute right-0 bottom-[20%] z-0 pointer-events-none"
@@ -37,13 +37,13 @@ function ArticlesPage() {
                 <div className="desktop:px-[96px] tablet:px-6 px-4">
                     <div className='flex flex-row justify-between mt-[120px]'>
                         <div>
-                            <h4 className='font-myPeydaSemibold text-4xl text-gray-950 mb-1'>مقالات سرو</h4>
-                            <h5 className='font-myVazirRegular text-lg text-gray-950'>به روزترین مقالات معتبر را اینجا بخوانید. </h5>
+                            <h4 className='font-myPeydaSemibold text-4xl text-Gray-950 mb-1'>مقالات سرو</h4>
+                            <h5 className='font-myVazirRegular text-lg text-Gray-950'>به روزترین مقالات معتبر را اینجا بخوانید. </h5>
                         </div>
                         <img src={tree} alt="sarv" />
                     </div>
 
-                    <ArticlesCategory/>
+                    <ArticlesCategory />
 
                     <div className="grid grid-cols-1 desktop:grid-cols-2 gap-[32px] place-items-center mt-[100px]">
                         <ArticleCard title={"۵ راه ساده برای محافظت از سلامت روان"} subtitle={"با عاداتی کوچک و روزمره، حال دلتان را بهتر کنید."} className={"bg-primary-50 border-primary-100"} />

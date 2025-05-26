@@ -6,12 +6,12 @@ import commingSoon from "../assets/images/20250515_0108_Watering Young Arborvita
 
 const ComingSoon: React.FC = () => {
     return (
-        <div className="min-h-screen text-gray-950">
+        <div className="min-h-screen text-Gray-950">
             <Navbar />
 
             <div className="relative w-full">
 
-                <div className="desktop:hidden tablet:hidden bg-[#FFFEF4]  top-0 right-0 w-full h-full flex flex-col items-start text-gray-950 px-3 tablet:px-6 desktop:px-24">
+                <div className="desktop:hidden tablet:hidden bg-[#FFFEF4]  top-0 right-0 w-full h-full flex flex-col items-start text-Gray-950 px-3 tablet:px-6 desktop:px-24">
                     <p className="desktop:text-[56px] tablet:text-[40px] text-[36px] font-myPeydaSemibold tracking-tight190">
                         به زودی ...
                     </p>
@@ -27,7 +27,7 @@ const ComingSoon: React.FC = () => {
                 />
 
                 {/* Overlay Text */}
-                <div className="absolute top-0 right-0 w-full h-full flex flex-col items-start text-gray-950 px-3 tablet:px-6 desktop:px-24">
+                <div className="absolute top-0 right-0 w-full h-full flex flex-col items-start text-Gray-950 px-3 tablet:px-6 desktop:px-24">
                     <p className="desktop:text-[56px] tablet:text-[40px] text-[36px] font-myPeydaSemibold tracking-tight190">
                         به زودی ...
                     </p>

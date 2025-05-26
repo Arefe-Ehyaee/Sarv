@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 function Navbar() {
   const navigate = useNavigate();
   return (
-    <nav className="w-full h-[79px] flex items-center justify-between text-gray-950 border-b border-gray-200 bg-white desktop:px-24 tablet:px-6 px-4 shadow-md py-4">
+    <nav className="w-full h-[79px] flex items-center justify-between text-Gray-950 border-b border-Gray-200 bg-white desktop:px-24 tablet:px-6 px-4 shadow-md py-4">
       <div className="flex items-center gap-2">
         <div className='flex flex-row justify-between items-center gap-3'>
           <button className='block tablet:hidden'>
@@ -33,7 +33,7 @@ function Navbar() {
           </button>
         </li>
         <li className="cursor-pointer">
-          <button onClick={() => navigate('/therapists')}>
+          <button onClick={() => navigate('/tests')}>
             تست روانشناسی
           </button>
         </li>
@@ -47,7 +47,7 @@ function Navbar() {
         ورود
       </button> */}
 
-      <CustomButton text={'ورود'} className={'border-2 text-gray-950 border-primary-600 h-[47px] w-[71px] px-[20px] py-[10px]'}></CustomButton>
+      <CustomButton text={'ورود'} className={'border-2 text-Gray-950 border-primary-600 h-[47px] w-[71px] px-[20px] py-[10px]'}></CustomButton>
     </nav>
   );
 }

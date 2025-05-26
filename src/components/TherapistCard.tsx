@@ -21,10 +21,10 @@ function TherapistCard({ therapistName, therapistSubHead, therapistImg, professi
 
 
             <div className="flex flex-col mt-5">
-                <h4 className="font-myPeydaMedium desktop:text-[20px] tablet:text-[18px] text-[16px] text-gray-950">{therapistName}</h4>
-                <h5 className="font-myVazirRegular desktop:text-base mt-[6px] text-gray-950">{therapistSubHead}</h5>
+                <h4 className="font-myPeydaMedium desktop:text-[20px] tablet:text-[18px] text-[16px] text-Gray-950">{therapistName}</h4>
+                <h5 className="font-myVazirRegular desktop:text-base mt-[6px] text-Gray-950">{therapistSubHead}</h5>
 
-                <h4 className="font-myVazirRegular desktop:text-[14px] tablet:text-[14px] mobile:text-[12px] text-gray-400 mt-[10px] mb-[4px]">تخصص</h4>
+                <h4 className="font-myVazirRegular desktop:text-[14px] tablet:text-[14px] mobile:text-[12px] text-Gray-400 mt-[10px] mb-[4px]">تخصص</h4>
 <div className="flex flex-wrap gap-2 mb-[20px]">
     {profession.map((item, index) => (
         <span
@@ -38,7 +38,7 @@ function TherapistCard({ therapistName, therapistSubHead, therapistImg, professi
 
                 <h4 className="font-myVazirRegular desktop:text-[14px] tablet:text-[14px] mobile:text-[12px]">چند زبانه</h4>
 
-                <div className=" flex flex-row items-center justify-between font-myVazirFaNumRegular desktop:text-[14px] tablet:text-[14px] mobile:text-[12px] text-gray-600 mt-[12px] mb-[14px]">
+                <div className=" flex flex-row items-center justify-between font-myVazirFaNumRegular desktop:text-[14px] tablet:text-[14px] mobile:text-[12px] text-Gray-600 mt-[12px] mb-[14px]">
                     102 نظر
 
                     <div className="flex flex-row-reverse items-center">
@@ -71,7 +71,7 @@ function TherapistCard({ therapistName, therapistSubHead, therapistImg, professi
                                         <defs>
                                             <linearGradient id={`halfGrad-${i}`}>
                                                 <stop offset="50%" stopColor="currentColor" />
-                                                <stop offset="50%" stopColor="lightgray" />
+                                                <stop offset="50%" stopColor="lightGray" />
                                             </linearGradient>
                                         </defs>
                                         <path
@@ -87,7 +87,7 @@ function TherapistCard({ therapistName, therapistSubHead, therapistImg, professi
                                     <svg
                                         key={i}
                                         xmlns="http://www.w3.org/2000/svg"
-                                        className="h-4 w-4 text-gray-300 mr-1"
+                                        className="h-4 w-4 text-Gray-300 mr-1"
                                         fill="currentColor"
                                         viewBox="0 0 20 20"
                                     >

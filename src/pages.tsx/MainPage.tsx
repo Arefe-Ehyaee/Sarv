@@ -20,7 +20,7 @@ function MainPage() {
 
       const navigate = useNavigate();
     return (
-        <div className="min-h-screen text-gray-950">
+        <div className="min-h-screen text-Gray-950">
             <Navbar />
             {/* Hero Section */}
             <div className='desktop:h-24 tablet:h-[72px] h-[160px] desktop:mt-[49px] tablet:mt-[51px] mt-[41px] flex items-center'>

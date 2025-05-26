@@ -5,7 +5,7 @@ import { ReactComponent as Arrow } from "../assets/icons/arrow-left-green.svg";
 function Articles() {
     const navigate = useNavigate();
     return (
-        <div className="mt-[150px] desktop:px-[96px] tablet:px-6 xs:px-4 text-gray-950">
+        <div className="mt-[150px] desktop:px-[96px] tablet:px-6 xs:px-4 text-Gray-950">
             <div className="mb-10 flex flex-col items-start justify-between">
 
                 <div className="w-full flex flex-row items-center justify-between">

@@ -11,7 +11,7 @@ function TherapistsPage() {
 
     const navigate = useNavigate();
     return (
-        <div className="min-h-screen text-gray-950">
+        <div className="min-h-screen text-Gray-950">
             <Navbar />
             {/* Top Section */}
 
@@ -27,8 +27,8 @@ function TherapistsPage() {
             <div className="desktop:px-[96px] tablet:px-6 px-4 pb-[150px]">
                 <div className='flex flex-row justify-between mt-[120px]'>
                     <div>
-                        <h4 className='font-myPeydaSemibold text-4xl text-gray-950 mb-1'>درمانگران سرو</h4>
-                        <h5 className='font-myVazirRegular text-lg text-gray-950 mb-[28px]'>درمانگران سرو از بین بهترین مشاوران و پزشکان این حوزه انتخاب شده‌اند و با رویکرد‌های ویژه و تجارب خود به صدها نفر یاری رسانده‌اند.</h5>
+                        <h4 className='font-myPeydaSemibold text-4xl text-Gray-950 mb-1'>درمانگران سرو</h4>
+                        <h5 className='font-myVazirRegular text-lg text-Gray-950 mb-[28px]'>درمانگران سرو از بین بهترین مشاوران و پزشکان این حوزه انتخاب شده‌اند و با رویکرد‌های ویژه و تجارب خود به صدها نفر یاری رسانده‌اند.</h5>
                     </div>
                     <img src={tree} alt="sarv" />
                 </div>

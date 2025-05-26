@@ -19,17 +19,20 @@ interface MenuItem {
 
 const AIChat: React.FC = () => {
   return (
-    <div className="min-h-screen flex flex-col overflow-hidden bg-secondary-50">
-      <TopBar />
+    <div className="min-h-screen flex flex-col bg-secondary-50 overflow-hidden">
+      {/* Fixed TopBar */}
+      <div className="fixed top-0 left-0 right-0 z-50 bg-secondary-50">
+        <TopBar />
+      </div>
 
-      <div className="flex flex-1">
+      <div className="flex flex-1 pt-[80px]"> {/* Add padding to avoid TopBar overlap */}
         {/* Side Navbar */}
         <div className="hidden tablet:block">
           <SideNavbar />
         </div>
 
-        {/* Main content area */}
-        <div className="flex-1 tablet:pr-[340px]">
+        {/* Main Content */}
+        <div className="flex-1 tablet:pr-[340px] overflow-y-auto">
           <div className="h-full w-full flex justify-center">
             <ChatSection />
           </div>

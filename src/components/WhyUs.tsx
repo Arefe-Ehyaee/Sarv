@@ -3,7 +3,7 @@ import FeatureCard from "./FeatureCard";
 function WhyUs() {
     return (
 
-        <div className="mt-[100px] desktop:px-[96px] tablet:px-6 px-4 text-gray-950">
+        <div className="mt-[100px] desktop:px-[96px] tablet:px-6 px-4 text-Gray-950">
             <h2 className='desktop:text-4xl tablet:text-3xl text-[28px] font-myPeydaSemibold desktop:h-[54px] tablet:h-[48px] h-[42px]'>چرا سرو را انتخاب کنید؟</h2>
             <h3 className='desktop:text-lg tablet:text-lg text-base font-myVazirRegular mt-1'>ویژگی‌های متمایز‌کننده سرو </h3>
 

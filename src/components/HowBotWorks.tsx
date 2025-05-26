@@ -6,7 +6,7 @@ import vector from "../assets/icons/Vector.svg";
 function HowBotWorks() {
     return (
 
-        <div className="mt-[150px] desktop:px-[96px] tablet:px-6 px-4 text-gray-950">
+        <div className="mt-[150px] desktop:px-[96px] tablet:px-6 px-4 text-Gray-950">
             <h2 className='desktop:text-4xl tablet:text-3xl text-[28px] font-myPeydaSemibold  desktop:h-[54px] tablet:h-[48px] h-[42px]'>سروبات چطور کار میکند؟</h2>
 
             <div className="flex desktop:flex-row desktop:items-center desktop:justify-between flex-col">

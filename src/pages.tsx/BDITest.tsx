@@ -124,7 +124,7 @@ const BDITest: React.FC = () => {
                 <button
                   key={option}
                   onClick={() => handleChange(option)}
-                  className={`border border-gray-300 rounded p-2 mb-2 ${responses[currentQuestionIndex] === option ? 'bg-blue-500 text-white' : 'bg-white'}`}
+                  className={`border border-Gray-300 rounded p-2 mb-2 ${responses[currentQuestionIndex] === option ? 'bg-blue-500 text-white' : 'bg-white'}`}
                 >
                   {option}
                 </button>

@@ -13,16 +13,16 @@ import { ReactComponent as Clock } from "../assets/icons/clock.svg";
 import { ReactComponent as Heart } from "../assets/icons/heart.svg"
 import { ReactComponent as Bookmark } from "../assets/icons/bookmark.svg"
 
-interface ArticleProps {
+interface TestProps {
     articleImage: string;
     heading: string;
     subHeading: string;
-    date: string;
+    questionsNumber: string;
     category: string;
     time: string;
 }
 
-function Article({ articleImage, heading, subHeading, date, category, time }: ArticleProps) {
+function Test({ articleImage, heading, subHeading, questionsNumber, category, time }: TestProps) {
 
     const navigate = useNavigate();
 
@@ -47,7 +47,7 @@ function Article({ articleImage, heading, subHeading, date, category, time }: Ar
 
                     <button className="flex flex-row gap-[10px] items-center mt-[50px]" onClick={() => navigate('/articles')}>
                         <img src={right} alt="" />
-                        <span className="font-myVazirRegular text-Gray-600 desktop:text-[18px] tablet:text-[18px] text-[14px]">بازگشت به مقالات</span>
+                        <span className="font-myVazirRegular text-Gray-600 desktop:text-[18px] tablet:text-[18px] text-[14px]">بازگشت به تست‌های روانشناسی</span>
                     </button>
                     <div className='my-[30px]'>
                         <p className="font-myPeydaSemibold desktop:text-[36px] tablet:text-[32px] text-[28px]">{heading}</p>
@@ -63,7 +63,7 @@ function Article({ articleImage, heading, subHeading, date, category, time }: Ar
 
                         <div className="flex flex-row  desktop:gap-[20px] tablet:gap-[20px] gap-[10px]">
                             <p className="flex flex-row gap-[6px]"> <Clock className="text-primary-700 w-6 h-6"></Clock> <span className="text-Gray-500">{time}</span> </p>
-                            <p className="flex flex-row gap-[6px]"> <Calendar className="text-primary-700 w-6 h-6"></Calendar> <span className="text-Gray-500">{date}</span></p>
+                            <p className="flex flex-row gap-[6px]"> <Calendar className="text-primary-700 w-6 h-6"></Calendar> <span className="text-Gray-500">{questionsNumber}</span></p>
                         </div>
 
                         <div className="desktop:flex tablet:flex flex-row items-center gap-[6px] hidden">دسته بندی:
@@ -87,19 +87,6 @@ function Article({ articleImage, heading, subHeading, date, category, time }: Ar
                         </div>
                     </div>
 
-                    <div className="mb-[100px] mt-[30px] text-justify font-myVazirRegular desktop:text-[18px] tablet:text-[18px] text-[16px]">
-                        انسان‌ها موجوداتی اجتماعی هستند؛ صحبت کردن، شنیده شدن و درک شدن از نیازهای اساسی ماست.انسان‌ها موجوداتی اجتماعی هستند؛ صحبت کردن، شنیده شدن و درک شدن از نیازهای اساسی ماست.انسان‌ها موجوداتی اجتماعی هستند؛ صحبت کردن، شنیده شدن و درک شدن از نیازهای اساسی ماست.انسان‌ها موجوداتی اجتماعی هستند؛ صحبت کردن، شنیده شدن و درک شدن از نیازهای اساسی ماست.انسان‌ها موجوداتی اجتماعی هستند؛ صحبت کردن، شنیده شدن و درک شدن از نیازهای اساسی ماست.انسان‌ها موجوداتی اجتماعی هستند؛ صحبت کردن، شنیده شدن و درک شدن از نیازهای اساسی ماست.
-
-                        <p>
-                            انسان‌ها موجوداتی اجتماعی هستند؛ صحبت کردن، شنیده شدن و درک شدن از نیازهای اساسی ماست.انسان‌ها موجوداتی اجتماعی هستند؛ صحبت کردن، شنیده شدن و درک شدن از نیازهای اساسی ماست.انسان‌ها موجوداتی اجتماعی هستند؛ صحبت کردن، شنیده شدن و درک شدن از نیازهای اساسی ماست.انسان‌ها موجوداتی اجتماعی هستند؛ صحبت کردن، شنیده شدن و درک شدن از نیازهای اساسی ماست.انسان‌ها موجوداتی اجتماعی هستند؛ صحبت کردن، شنیده شدن و درک شدن از نیازهای اساسی ماست.انسان‌ها موجوداتی اجتماعی هستند؛ صحبت کردن، شنیده شدن و درک شدن از نیازهای اساسی ماست.
-
-                        </p>
-
-                        <p>
-                            انسان‌ها موجوداتی اجتماعی هستند؛ صحبت کردن، شنیده شدن و درک شدن از نیازهای اساسی ماست.انسان‌ها موجوداتی اجتماعی هستند؛ صحبت کردن، شنیده شدن و درک شدن از نیازهای اساسی ماست.انسان‌ها موجوداتی اجتماعی هستند؛ صحبت کردن، شنیده شدن و درک شدن از نیازهای اساسی ماست.انسان‌ها موجوداتی اجتماعی هستند؛ صحبت کردن، شنیده شدن و درک شدن از نیازهای اساسی ماست.انسان‌ها موجوداتی اجتماعی هستند؛ صحبت کردن، شنیده شدن و درک شدن از نیازهای اساسی ماست.انسان‌ها موجوداتی اجتماعی هستند؛ صحبت کردن، شنیده شدن و درک شدن از نیازهای اساسی ماست.
-
-                        </p>
-                    </div>
                 </div>
 
                 <div className="relative h-[269px] bg-primary-800 mt-[120px] flex flex-col items-center justify-center text-center">
@@ -121,4 +108,4 @@ function Article({ articleImage, heading, subHeading, date, category, time }: Ar
     );
 }
 
-export default Article;
+export default Test;

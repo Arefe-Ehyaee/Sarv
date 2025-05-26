@@ -40,10 +40,10 @@ function ArticleCard({ title, subtitle, className }: ArticleCardProps) {
                 <div className="desktop:mt-[32px] tablet:mt-[34px] mt-[46px]">
                     <div className="flex flex-row items-center justify-between desktop:text-sm font-myVazirFaNumRegular">
                         <p className="flex flex-row items-center gap-1">
-                            <span className="text-gray-800">زمان مطالعه:</span>
-                            <span className="text-gray-500">4 دقیقه</span>
+                            <span className="text-Gray-800">زمان مطالعه:</span>
+                            <span className="text-Gray-500">4 دقیقه</span>
                         </p>
-                        <p className="text-gray-400">19 آوریل 2025</p>
+                        <p className="text-Gray-400">19 آوریل 2025</p>
                     </div>
 
                     <div className="flex flex-col mt-5">

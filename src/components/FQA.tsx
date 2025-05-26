@@ -27,7 +27,7 @@ const FAQSection = () => {
               <span>{openIndex === idx ? "▲" : <img src={Down}></img>}</span>
             </button>
             {openIndex === idx && (
-              <div className="px-4 pb-4 text-right text-gray-700">
+              <div className="px-4 pb-4 text-right text-Gray-700">
                 {faq.answer}
               </div>
             )}

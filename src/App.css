@@ -112,3 +112,13 @@ input::placeholder {
     display: none;  /* Chrome, Safari and Opera */
   }
 }
+
+/* Hide scrollbar for all browsers */
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}

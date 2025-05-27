@@ -21,11 +21,11 @@ const AIChat: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col bg-secondary-50 overflow-hidden">
       {/* Fixed TopBar */}
-      <div className="fixed top-0 left-0 right-0 z-50 bg-secondary-50">
+      <div className="fixed top-0 left-0 right-0 z-0 bg-secondary-50">
         <TopBar />
       </div>
 
-      <div className="flex flex-1 pt-[80px]"> {/* Add padding to avoid TopBar overlap */}
+      <div className="flex flex-1"> {/* Add padding to avoid TopBar overlap */}
         {/* Side Navbar */}
         <div className="hidden tablet:block">
           <SideNavbar />

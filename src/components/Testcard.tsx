@@ -12,7 +12,7 @@ interface TestCardProps {
 function TestCard({ testName, description, image }: TestCardProps) {
     const navigate = useNavigate();
     return (
-        <div className="desktop:w-[608px] h-[340px] mx-auto bg-background-BG rounded-[20px] border border-primary-100 py-[20px] px-6 relative overflow-hidden">
+        <div className="flex flex-col justify-between desktop:w-[608px] h-[340px] mx-auto bg-background-BG rounded-[20px] border border-primary-100 py-[20px] px-6 relative overflow-hidden">
             {/* Tilted Badge */}
             <div className="absolute flex flex-row justify-center -top-2 -left-8 w-[160px] h-8 text-primary-600 py-1 bg-primary-50 transform -rotate-45 text-center">
                 <span className="font-myVazirRegular text-end flex flex-row justify-center pr-14 desktop:text-base tablet:text-base text-sm">رایگان</span>
@@ -49,7 +49,7 @@ function TestCard({ testName, description, image }: TestCardProps) {
 
             {/* Description */}
             <div className="text-right mb-8">
-                <p className="text-Gray-700 leading-relaxed font-myVazirRegular desktop:text-sm tablet:text-sm text-xs text-justify">
+                <p className="text-Gray-700 leading-relaxed font-myVazirRegular desktop:text-sm tablet:text-sm text-xs text-justify line-clamp-4">
                     پرسشنامه سلامت عمومی (GHQ) ابزاری معتبر برای غربالگری سلامت روان است که به شناسایی ناراحتی‌های
                     احساسی و نشانه‌های اولیه مشکلات روانی کمک می‌کند. این آزمون آگاهی فرد را نسبت به وضعیت روانی‌اش
                     افزایش داده و در صورت نیاز، مسیر دریافت حمایت را هموار می‌سازد.
@@ -57,7 +57,7 @@ function TestCard({ testName, description, image }: TestCardProps) {
             </div>
 
             {/* Start button */}
-            <button onClick={()=>navigate('/test')} className="w-full bg-primary-400 hover:bg-primary-300 text-white desktop:text-base tablet:text-base text-sm font-myVazirSemibold h-[44px] rounded-full transition-colors duration-200">
+            <button onClick={()=>navigate('/test')} className="w-full bg-primary-400 hover:bg-primary-300 text-white desktop:text-base tablet:text-base text-sm font-myVazirSemibold desktop:h-[44px] tablet:h-[44px] h-[41px] rounded-full transition-colors duration-200">
                 شروع آزمون
             </button>
         </div>

@@ -79,7 +79,7 @@ function Test({ articleImage, heading, subHeading, questionsNumber, category, ti
                     <img src={articleImage} alt="articleImage" className="object-cover rounded-[20px] mx-auto w-full desktop:h-[565px] tablet:h-[565px] h-[366px]" />
                     <div className="flex flex-row justify-between mt-[10px]">
 
-                                                <CustomButton
+                        <CustomButton
                             text={"شروع آزمون"}
                             className={"bg-primary-400 text-white w-24 h-10"}
                         />

@@ -45,10 +45,14 @@ const ChatSection = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     }, [messages]);
 
+    // Check if user has sent any message
+    const userHasSentMessage = messages.some(msg => msg.sender === 'user');
+
     return (
-        <div className="flex flex-col max-w-3xl w-full mx-auto px-4 h-full">
-            {/* Chat content and message list */}
-            <div className="flex flex-col flex-1 overflow-y-auto pt-[150px]">
+        <div className="flex flex-col h-screen max-w-4xl w-full mx-auto px-4">
+            {/* Scrollable chat section */}
+            <div className="flex-1 overflow-y-auto pt-[150px] hide-scrollbar">
+
                 {/* Logo and intro */}
                 <div className="flex flex-col items-center justify-center mb-[20px]">
                     <img src={tree} alt="sarv" className="w-[160px] h-[206px] mb-4" />
@@ -73,10 +77,12 @@ const ChatSection = () => {
                                 <User className="w-6 h-6 rounded-full ml-2 text-primary-400" />
                             )}
                             <div
-                                className={`max-w-[80%] px-4 py-2 whitespace-pre-line rounded-2xl text-Gray-950 ${msg.sender === 'user'
+                                className={`max-w-[80%] px-4 py-2 whitespace-pre-line rounded-b-xl ${msg.sender === 'user' ? 'rounded-tl-xl' : 'rounded-tr-xl'
+                                    } text-Gray-950 ${msg.sender === 'user'
                                         ? 'bg-primary-50 border border-primary-200'
                                         : 'bg-secondary-100 border border-secondary-200'
                                     }`}
+
                                 dir="rtl"
                             >
                                 {msg.text}
@@ -91,49 +97,55 @@ const ChatSection = () => {
                 </div>
             </div>
 
-            {/* Input box */}
-            <div className="relative mb-5">
-                <div className="flex items-center rounded-full border bg-white h-[47px] border-primary-400 pl-4 pr-1">
-                    <input
-                        type="text"
-                        value={message}
-                        onChange={(e) => setMessage(e.target.value)}
-                        placeholder="خب شروع کن..."
-                        className="flex-1 text-right px-3 py-2 rounded-full outline-none"
-                        dir="rtl"
-                        onKeyDown={(e) => {
-                            if (e.key === 'Enter') handleSend(message);
-                        }}
-                    />
-                    <button
-                        className="ml-1 text-slate-400 hover:text-slate-600 p-2 rounded-full"
-                        onClick={() => handleSend(message)}
-                    >
-                        <Send size={20} />
-                    </button>
-                </div>
-            </div>
-
-            {/* Suggested questions */}
-            <div className="mb-6">
-                <p className="text-center font-myVazirRegular text-base text-Gray-600 mb-[6px]" dir="ltr">
-                    :افراد معمولا در این باره میپرسند
-                </p>
-                <div className="flex flex-wrap justify-center gap-2">
-                    {suggestedQuestions.map((question) => (
+            {/* Sticky input and suggested questions */}
+            <div className="sticky bottom-0  pt-2 pb-4">
+                {/* Input box */}
+                <div className="relative mb-5">
+                    <div className="flex items-center rounded-full border bg-white h-[47px] border-primary-400 pl-4 pr-1">
+                        <input
+                            type="text"
+                            value={message}
+                            onChange={(e) => setMessage(e.target.value)}
+                            placeholder="خب شروع کن..."
+                            className="flex-1 text-right px-3 py-2 rounded-full outline-none"
+                            dir="rtl"
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter') handleSend(message);
+                            }}
+                        />
                         <button
-                            key={question.id}
-                            onClick={() => handleSend(question.text)}
-                            className="py-2 h-10 px-[14px] font-myVazirRegular text-base text-Gray-600 bg-white rounded-full border border-Gray-400 hover:bg-slate-50 transition-colors"
+                            className="ml-1 text-slate-400 hover:text-slate-600 p-2 rounded-full"
+                            onClick={() => handleSend(message)}
                         >
-                            {question.text}
+                            <Send size={20} />
                         </button>
-                    ))}
+                    </div>
                 </div>
-            </div>
 
-            <div className="text-center text-sm text-Gray-600 mb-4">
-                سروبات جایگزین تراپیست نیست. در شرایط حاد با تراپیست صحبت کنید.
+                {/* Suggested questions - only show if user has NOT sent any message */}
+                {!userHasSentMessage && (
+                    <div className="mb-6">
+                        <p className="text-center font-myVazirRegular text-base text-Gray-600 mb-[6px]" dir="ltr">
+                            :افراد معمولا در این باره میپرسند
+                        </p>
+                        <div className="flex flex-wrap justify-center gap-2">
+                            {suggestedQuestions.map((question) => (
+                                <button
+                                    key={question.id}
+                                    onClick={() => handleSend(question.text)}
+                                    className="py-2 h-10 px-[14px] font-myVazirRegular text-base text-Gray-600 bg-white rounded-full border border-Gray-400 hover:bg-slate-50 transition-colors"
+                                >
+                                    {question.text}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                )}
+
+                {/* Footer note */}
+                <div className="text-center text-sm text-Gray-600 mb-4">
+                    سروبات جایگزین تراپیست نیست. در شرایط حاد با تراپیست صحبت کنید.
+                </div>
             </div>
         </div>
     );

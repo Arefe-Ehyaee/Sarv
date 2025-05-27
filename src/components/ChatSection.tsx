@@ -51,7 +51,7 @@ const ChatSection = () => {
     return (
         <div className="flex flex-col h-screen max-w-4xl w-full mx-auto px-4">
             {/* Scrollable chat section */}
-            <div className="flex-1 overflow-y-auto pt-[150px] hide-scrollbar">
+            <div className=" overflow-y-auto pt-[150px] hide-scrollbar">
 
                 {/* Logo and intro */}
                 <div className="flex flex-col items-center justify-center mb-[20px]">

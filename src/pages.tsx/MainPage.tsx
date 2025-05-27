@@ -47,7 +47,7 @@ function MainPage() {
                     className="w-full h-auto desktop:hidden tablet:hidden"
                 />
 
-                <CustomButton handleOnClick={()=>navigate('/sarvBot')} iconsrc={left} text={'امروز سفر خود را آغاز کنید'} className={'absolute top-[74px] desktop:mr-24 tablet:mr-6 mr-3 xs:mt-2 text-white bg-primary-400 desktop:h-[47px] tablet:h-[44px] mobile:h-[42px] desktop:w-[241px] tablet:w-[222px] mobile:w-[218px] px-[18px] py-[10px] desktop:text-[18px] tablet:text-[16px] mobile:text-[14px]'}></CustomButton>
+                <CustomButton handleOnClick={()=>navigate('/sarvBot')} iconsrc={left} text={'امروز سفر خود را آغاز کنید'} className={'absolute top-[74px] desktop:mr-24 tablet:mr-6 mr-3 xs:mt-2 text-primary-50 bg-primary-700 desktop:h-[47px] tablet:h-[44px] mobile:h-[42px] desktop:w-[241px] tablet:w-[222px] mobile:w-[218px] px-[18px] py-[10px] desktop:text-[18px] tablet:text-[16px] mobile:text-[14px]'}></CustomButton>
             </div>
 
             {/* Main content goes here */}

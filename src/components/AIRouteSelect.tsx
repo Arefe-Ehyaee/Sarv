@@ -6,7 +6,7 @@ import { ReactComponent as Message } from "../assets/icons/message-circle.svg";
 import { NavLink } from "react-router-dom";
 
 // Accept collapsed as prop
-export default function RouteSelect({ collapsed }: { collapsed: boolean }) {
+export default function AIRouteSelect({ collapsed }: { collapsed: boolean }) {
   return (
     <div className="flex flex-col justify-between font-myVazirMedium text-lg bg-primary-100">
       <ul className="space-y-[20px] text-primary-600">

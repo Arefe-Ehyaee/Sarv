@@ -3,7 +3,7 @@ import backgroundImage from '../assets/icons/banersarv2-editebirds.svg';
 import sarv from "../assets/icons/Sarv.svg";
 import VerificationCode from '../components/VerificationCode';
 
-export default function LandscapeLogin() {
+export default function LoginOTP() {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [showVerification, setShowVerification] = useState(false);
 

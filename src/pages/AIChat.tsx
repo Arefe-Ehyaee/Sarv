@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Send, Mic, Calendar, Music, MessageSquare, FileText, BrainCircuit, ChevronDown, LogOut, User } from 'lucide-react';
-import TopBar from '../components/TopBar';
-import SideNavbar from '../components/SideNavbar';
+import AITopBar from '../components/AITopBar';
+import AISideNavbar from '../components/AISideNavbar';
 import ChatSection from '../components/ChatSection';
 
 // TypeScript interface for suggested questions
@@ -20,15 +20,15 @@ interface MenuItem {
 const AIChat: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col bg-secondary-50 overflow-hidden">
-      {/* Fixed TopBar */}
+      {/* Fixed AITopBar */}
       <div className="fixed top-0 left-0 right-0 z-0 bg-secondary-50">
-        <TopBar />
+        <AITopBar />
       </div>
 
-      <div className="flex flex-1"> {/* Add padding to avoid TopBar overlap */}
+      <div className="flex flex-1"> {/* Add padding to avoid AITopBar overlap */}
         {/* Side Navbar */}
         <div className="hidden tablet:block">
-          <SideNavbar />
+          <AISideNavbar />
         </div>
 
         {/* Main Content */}

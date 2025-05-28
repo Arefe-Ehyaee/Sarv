@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import RouteSelect from "./RouteSelect";
+import AIRouteSelect from "./AIRouteSelect";
 import CustomButton from "./CustomeButton";
 import login from "../assets/icons/log-in.svg";
 import sarv from "../assets/icons/tree.svg";
 import { ReactComponent as Right } from "../assets/icons/chevron-right.svg";
 import { ReactComponent as Left } from "../assets/icons/chevron-left.svg"; // Optional for expanding again
 
-export default function SideNavbar() {
+export default function AISideNavbar() {
   const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
 
@@ -17,15 +17,15 @@ export default function SideNavbar() {
       <div className="flex flex-col items-end">
         {/* Logo & title */}
         {/* Logo: Show icon always, text only if not collapsed */}
-<button
-  onClick={() => navigate('/')}
-  className="desktop:flex tablet:flex hidden self-start mb-4"
->
-  <span className="flex flex-row items-center text-primary-600 font-myPeydaRegular text-[30px]">
-    <img src={sarv} alt="" className="w-[35px] h-[46px]" />
-    {!collapsed && <span className="ml-2">سرو بات</span>}
-  </span>
-</button>
+        <button
+          onClick={() => navigate('/')}
+          className="desktop:flex tablet:flex hidden self-start mb-4"
+        >
+          <span className="flex flex-row items-center text-primary-600 font-myPeydaRegular text-[30px]">
+            <img src={sarv} alt="" className="w-[35px] h-[46px]" />
+            {!collapsed && <span className="ml-2">سرو بات</span>}
+          </span>
+        </button>
 
 
 
@@ -36,7 +36,7 @@ export default function SideNavbar() {
 
         {/* Routes or Icons */}
         <div className="mt-6 w-full">
-          <RouteSelect collapsed={collapsed} />
+          <AIRouteSelect collapsed={collapsed} />
         </div>
       </div>
 

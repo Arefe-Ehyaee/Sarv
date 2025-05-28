@@ -5,7 +5,7 @@ import menu from "../assets/icons/menu.svg";
 import sarv from "../assets/icons/tree.svg"
 import { useNavigate } from "react-router-dom";
 
-export default function TopBar() {
+export default function AITopBar() {
   const navigate = useNavigate();
   return (
     <div className="h-[72px] w-full flex items-center bg-primary-100 border-primary-200 border-b-[1px] px-4" >

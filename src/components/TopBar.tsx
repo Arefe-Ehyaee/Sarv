@@ -12,18 +12,12 @@ export default function TopBar() {
       <div className="flex w-full items-center justify-between">
         <div className="flex flex-row items-center">
 
-        <button onClick={() => navigate('/')} className="desktop:block tablet:block hidden">
-          <span className="flex flex-row text-primary-600 font-myPeydaRegular text-[30px] mr-[30px]">
-            <img src={sarv} alt="" className="w-[35px] h-[46px]" />
-            سرو بات
-          </span>
-        </button>
 
           <button className='block tablet:hidden'>
             <img src={menu} alt="menu" />
           </button>
 
-          <button className="flex items-center gap-2 text-xl font-myVazirMedium text-primary-600 desktop:mr-[180px] tablet:mr-[180px] mr-2">
+          <button className="flex items-center gap-2 text-xl font-myVazirMedium text-primary-600 desktop:mr-[340px] tablet:mr-[340px] mr-2">
             <User className="w-6 h-6"></User>
             <p className="desktop:block tablet:block hidden">نام کاربر</p>
             <Down className="w-6 h-6 text-primary-600" />

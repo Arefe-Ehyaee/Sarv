@@ -15,6 +15,7 @@ import GHQPage from './pages/GHQPage';
 import Login from './pages/Login';
 import ProfilePage from './pages/ProfilePage';
 import SignUp from './pages/SignUp';
+import TestLanding from './pages/TestLanding';
 
 function App() {
   return (
@@ -24,12 +25,14 @@ function App() {
         <Route path="/sarvBot" element={<AIChat />} />
         <Route path="/articles" element={<ArticlesPage />} />
         <Route path="/bdiTest" element={<TestTemplate />} />
+        <Route path="/test/:id" element={<TestTemplate />} />
         <Route path="/ghqTest" element={<GHQPage />} />
         <Route path="/therapists" element={<TherapistsPage />} />
         <Route path="/tests" element={<TestsPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/testLanding" element={<TestLanding />} />
         <Route path="/test" element={<Test articleImage={testCover} heading={'عنوان تست'} subHeading={'پرسشنامه سلامت عمومی اولـین بـار توسـط گلـدبرگ تنظــیم گردیــد. در اين مجموعه  فرم ۲۸ سوالي آن ارائه گرديده است. سئوالات ۱-۷  مربوط به مقياس علائم جسماني و وضعيت سلامت عمومي مي باشد. از سوال ۸-۱۴ مربوط به مقياس اضطراب، از سئوال ۱۵-۲۱ مربوط به مقياس اختلال عملكرد اجتماعي، و سئوالات ۲۲-۲۸ نيز مربوط به مقياس افسردگي مي باشند'} questionsNumber={'28 سوال'} category={'سلامت روان'} time={'15 دقیقه'} />} />
         <Route path="/article" element={<Article articleImage={test} heading={'عنوان مقاله'} subHeading={'راهکارهای ساده اما مؤثر برای داشتن ذهنی آرام‌تر در دنیای پرمشغله امروز'} date={'1 خرداد 1404'} category={'سلامت روان'} time={'10 دقیقه'} />} />
       </Routes>

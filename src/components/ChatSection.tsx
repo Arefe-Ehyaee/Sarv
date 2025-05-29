@@ -12,6 +12,7 @@ const ChatSection = () => {
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState<Message[]>([]);
     const messagesEndRef = useRef<HTMLDivElement | null>(null);
+    const userId = '1234';
 
     const suggestedQuestions = [
         { id: 1, text: 'کدوم تراپیست برام مناسبه' },
@@ -22,38 +23,55 @@ const ChatSection = () => {
         { id: 6, text: 'افسردگی اجازه نمیده زندگی کنم' },
     ];
 
-    const handleSend = (text: string) => {
-        if (!text.trim()) return;
+const handleSend = async (text: string) => {
+    if (!text.trim()) return;
 
-        setMessages(prev => {
-            const newMessages: Message[] = [...prev, { sender: 'user', text }];
+    const newUserMessage: Message = { sender: 'user', text };
+    setMessages(prev => [...prev, newUserMessage]);
+    setMessage('');
 
-            const userMessagesCount = prev.filter(msg => msg.sender === 'user').length;
-            if (userMessagesCount === 0) {
-                newMessages.push({ sender: 'ai', text: 'سلام\nسروبات اینجاست' });
-            } else {
-                newMessages.push({ sender: 'ai', text: 'دریافت شد' });
-            }
-
-            return newMessages;
+    try {
+        const response = await fetch('http://89.251.9.19:3000/message', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                user_id: userId,
+                text: text,
+            }),
         });
 
-        setMessage('');
-    };
+        if (!response.ok) throw new Error('Server error');
+
+        const data = await response.json();
+        let aiReply = data.response || 'پاسخی دریافت نشد';
+
+        // حذف "پاسخ:" اگر در ابتدای متن بود
+        if (aiReply.trim().startsWith("پاسخ:")) {
+            aiReply = aiReply.trim().substring(6).trim(); // حذف "پاسخ:" و فاصله‌ها
+        }
+
+        setMessages(prev => [...prev, { sender: 'ai', text: aiReply }]);
+    } catch (error) {
+        console.error('Error sending message:', error);
+        setMessages(prev => [
+            ...prev,
+            { sender: 'ai', text: 'خطا در ارتباط با سرور. لطفاً دوباره تلاش کنید.' },
+        ]);
+    }
+};
+
 
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     }, [messages]);
 
-    // Check if user has sent any message
     const userHasSentMessage = messages.some(msg => msg.sender === 'user');
 
     return (
         <div className="flex flex-col h-screen max-w-4xl w-full mx-auto px-4">
-            {/* Scrollable chat section */}
-            <div className=" overflow-y-auto pt-[150px] hide-scrollbar">
-
-                {/* Logo and intro */}
+            <div className="overflow-y-auto pt-[150px] hide-scrollbar">
                 <div className="flex flex-col items-center justify-center mb-[20px]">
                     <img src={tree} alt="sarv" className="w-[160px] h-[206px] mb-4" />
                     <div className="text-center px-4">
@@ -66,7 +84,6 @@ const ChatSection = () => {
                     </div>
                 </div>
 
-                {/* Message bubbles */}
                 <div className="flex flex-col gap-4 px-2">
                     {messages.map((msg, index) => (
                         <div
@@ -82,7 +99,6 @@ const ChatSection = () => {
                                         ? 'bg-primary-50 border border-primary-200'
                                         : 'bg-secondary-100 border border-secondary-200'
                                     }`}
-
                                 dir="rtl"
                             >
                                 {msg.text}
@@ -92,14 +108,11 @@ const ChatSection = () => {
                             )}
                         </div>
                     ))}
-
                     <div ref={messagesEndRef} />
                 </div>
             </div>
 
-            {/* Sticky input and suggested questions */}
-            <div className="sticky bottom-0  pt-2 pb-4">
-                {/* Input box */}
+            <div className="sticky bottom-0 pt-2 pb-4 bg-secondary-50">
                 <div className="relative mb-5">
                     <div className="flex items-center rounded-full border bg-white h-[47px] border-primary-400 pl-4 pr-1">
                         <input
@@ -122,7 +135,6 @@ const ChatSection = () => {
                     </div>
                 </div>
 
-                {/* Suggested questions - only show if user has NOT sent any message */}
                 {!userHasSentMessage && (
                     <div className="mb-6">
                         <p className="text-center font-myVazirRegular text-base text-Gray-600 mb-[6px]" dir="ltr">
@@ -142,7 +154,6 @@ const ChatSection = () => {
                     </div>
                 )}
 
-                {/* Footer note */}
                 <div className="text-center text-sm text-Gray-600 mb-4">
                     سروبات جایگزین تراپیست نیست. در شرایط حاد با تراپیست صحبت کنید.
                 </div>

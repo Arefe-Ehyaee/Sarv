@@ -31,7 +31,7 @@ const handleSend = async (text: string) => {
     setMessage('');
 
     try {
-        const response = await fetch('http://89.251.9.19:3000/message', {
+        const response = await fetch('http://89.251.9.219:3000/message', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

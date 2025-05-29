@@ -9,15 +9,9 @@ function HowBotWorks() {
         <div className="mt-[150px] desktop:px-[96px] tablet:px-6 px-4 text-Gray-950">
             <h2 className='desktop:text-4xl tablet:text-3xl text-[28px] font-myPeydaSemibold  desktop:h-[54px] tablet:h-[48px] h-[42px]'>سروبات چطور کار میکند؟</h2>
 
-            <div className="flex desktop:flex-row desktop:items-center desktop:justify-between flex-col">
+            <div className="flex desktop:flex-row desktop:items-center desktop:justify-center flex-col">
                 <img src={tree} alt="" className="desktop:hidden block w-[106px] h-[206px] mx-auto" />
-                <h3 className='desktop:text-lg tablet:text-lg text-base font-myVazirRegular desktop:max-w-[1056px] desktop:h-[108px] text-justify'>سروبات، تراپیست هوشمند سرو هست که ۲۴ ساعته هر روز هفته در دسترس تمام سنین افراد هست. سروبات یک گوش شنواست برای وقت‌هایی که نیاز دارید که یکی به حرفاتون گوش بده.
-                    <p>حالا در کنار گوش شنوا بودنش، میتونه توصیه‌های اصولی و معتبر براتون فراهم کنه.
-                    </p>
-                    <p>همچنین یک سری ویژگی‌های جذاب سروبات اونو از بقیه متمایز میکنه:</p>
-                </h3>
-
-
+ 
 
                 <img src={tree} alt="" className="hidden desktop:block w-[106px] h-[206px]" />
             </div>
@@ -26,18 +20,18 @@ function HowBotWorks() {
 
             <div className="flex flex-col desktop:flex-row gap-6 mt-8">
                 <HowWorksCard
-                    title="موسیقی آرامش بخش"
-                    description="پخش موسیقی برای هر حال شما که در زمان کار و درس و رانندگی و ... همراه شماست."
+                    title="مکالمه با سروبات"
+                    description="پس از ورود و یا ثبت نام در سرو، مراجع شروع به مکالمه با سروبات کرده و مسائل مد نظر خود را مطرح میکند."
                     icon={vector}
                 />
                 <HowWorksCard
-                    title="کارت انگیزه روزانه"
-                    description="هر روز برای حفظ انگیزه خود، کارت ویژه‌ای دریافت میکنید. "
+                    title="ایجاد پرونده اولیه"
+                    description="سروبات طبق موارد مطرح شده در مکالمه، آزمون پیشنهاد میدهد. پس از تکمیل آزمون توسط مراجع، پرونده اولیه تشکیل میشود."
                     icon={vector}
                 />
                 <HowWorksCard
-                    title="تمرین و بازی"
-                    description="بازی و پازل و تمرینهایی برای کمک به خود آگاهی و بهبود حال روحی"
+                    title="ادامه روند درمان"
+                    description="مراجع بر حسب نیاز خود، روند درمان را با سروبات ادامه میدهد و از سایر خدمات سرو نیز استفاده  میکند."
                     icon={vector}
                 />
             </div>

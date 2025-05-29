@@ -40,13 +40,10 @@ function MainPage() {
                 <img
                     src={heroBanner}
                     alt="سرو hero banner"
-                    className="w-full h-auto hidden tablet:hidden desktop:block tablet:mt-[0px]"
+                    className="w-full h-auto hidden tablet:block desktop:block tablet:mt-[0px]"
                 />
-                <img
-                    src={heroTablet}
-                    alt="سرو hero banner"
-                    className="w-full h-auto hidden tablet:block desktop:hidden "
-                />
+ 
+
                 <img
                     src={heroMobile}
                     alt="سرو hero banner"

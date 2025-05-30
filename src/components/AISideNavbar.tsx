@@ -11,14 +11,13 @@ import useUserStore from "../store/UserStore";
 
 export default function AISideNavbar() {
   const navigate = useNavigate();
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
   const user = useUserStore((state) => state.user);
 
   return (
     <div
-      className={`fixed top-0 right-0 z-10 bg-primary-100 ${
-        collapsed ? "w-[80px]" : "w-[340px]"
-      } min-h-screen flex flex-col justify-between px-[20px] py-[20px] border-l border-primary-200 transition-all duration-300`}
+      className={`fixed top-0 right-0 z-10 bg-primary-200 ${collapsed ? "w-[80px]" : "w-[340px]"
+        } min-h-screen flex flex-col justify-between px-[20px] py-[20px] border-l border-primary-300 transition-all duration-300`}
     >
       <div className="flex flex-col items-end">
         <button onClick={() => navigate('/')} className="desktop:flex tablet:flex hidden self-start mb-4">
@@ -28,7 +27,9 @@ export default function AISideNavbar() {
           </span>
         </button>
 
-        <button onClick={() => setCollapsed(!collapsed)} className="mt-[20px] text-primary-600">
+        {/* <button onClick={() => setCollapsed(!collapsed)} className="mt-[20px] text-primary-600"> */}
+        <button className="mt-[20px] text-primary-600">
+
           {collapsed ? <Left className="w-4 h-4 pl-2" /> : <Right className="w-6 h-6" />}
         </button>
 
@@ -38,7 +39,7 @@ export default function AISideNavbar() {
       </div>
 
       {/* Show logout if user exists, otherwise show login */}
-      {user ? (
+      {/* {user ? (
         <LogoutButton collapsed={collapsed} />
       ) : (
         <CustomButton
@@ -49,7 +50,7 @@ export default function AISideNavbar() {
             collapsed ? "w-[44px]" : "w-[94px]"
           } text-background-BG text-base font-myVazirSemibold flex justify-center items-center`}
         />
-      )}
+      )} */}
     </div>
   );
 }

@@ -8,7 +8,7 @@ import { NavLink } from "react-router-dom";
 // Accept collapsed as prop
 export default function AIRouteSelect({ collapsed }: { collapsed: boolean }) {
   return (
-    <div className="flex flex-col justify-between font-myVazirMedium text-lg bg-primary-100">
+    <div className="flex flex-col justify-between font-myVazirMedium text-lg bg-primary-200">
       <ul className="space-y-[20px] text-primary-600">
         {[
           { to: "/dashboard", icon: <Message />, label: "چت جدید" },

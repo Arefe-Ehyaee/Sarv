@@ -44,7 +44,7 @@ const ChatSection: React.FC<ChatSectionProps> = ({ setBgColor }) => {
         setMessage('');
 
         try {
-            const response = await fetch('http://89.251.9.219:3000/message', {
+            const response = await fetch('http://192.168.253.238:3010/message', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ user_id: userId, text }),

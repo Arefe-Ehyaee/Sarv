@@ -1,8 +1,4 @@
-import CustomButton from "./CustomeButton";
-import { ReactComponent as User } from "../assets/icons/user.svg";
-import { ReactComponent as Down } from "../assets/icons/chevron-down.svg";
 import menu from "../assets/icons/menu.svg";
-import sarv from "../assets/icons/tree.svg"
 import { useNavigate } from "react-router-dom";
 
 export default function AITopBar() {

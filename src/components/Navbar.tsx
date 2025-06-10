@@ -40,16 +40,16 @@ function Navbar() {
             <Down className={`w-6 h-6 transition-transform ${dropdownOpen ? 'rotate-180' : ''}`} />
           </button>
           {dropdownOpen && (
-            <ul className="absolute top-full left-4 mt-[28px] bg-white border border-gray-200 rounded-lg shadow-lg py-2 min-w-[180px] z-50">
-              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer" onClick={() => { setDropdownOpen(false); navigate('/tests/personality'); }}>
-                تست شخصیت
-              </li>
-              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer" onClick={() => { setDropdownOpen(false); navigate('/tests/stress'); }}>
-                تست استرس
-              </li>
-              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer" onClick={() => { setDropdownOpen(false); navigate('/tests/anxiety'); }}>
-                تست اضطراب
-              </li>
+            <ul className="absolute top-full text-center left-1/2 transform -translate-x-1/2 mt-8 bg-white border border-gray-200 rounded-lg shadow-lg py-2 w-max z-50">
+              <li className="px-4 py-2 whitespace-nowrap hover:bg-gray-100 cursor-pointer" onClick={() => { setDropdownOpen(false); navigate('/tests/personality'); }}>
+                تست سلامت عمومی (GHQ)              </li>
+              <li className="px-4 py-2 whitespace-nowrap hover:bg-gray-100 cursor-pointer" onClick={() => { setDropdownOpen(false); navigate('/tests/stress'); }}>
+                تست افسردگی بک (BDI)              </li>
+              <li className="px-4 py-2 whitespace-nowrap hover:bg-gray-100 cursor-pointer" onClick={() => { setDropdownOpen(false); navigate('/tests/anxiety'); }}>
+                تست اضطراب بک (BAI)              </li>
+              <hr className='mx-[27px] text-Gray-400'></hr>
+              <li className="px-4 py-2 text-primary-400 whitespace-nowrap hover:bg-gray-100 cursor-pointer" onClick={() => { setDropdownOpen(false); navigate('/tests'); }}>
+                همه تست‌ها          </li>
             </ul>
           )}
         </li>
@@ -58,7 +58,7 @@ function Navbar() {
 
       <CustomButton
         handleOnClick={() => navigate('/login')}
-        text={'ورود و ثبت نام'}
+        text={'ورود یا ثبت نام'}
         className={'text-primary-50 bg-primary-700 h-[44px] px-[18px] py-[10px]'}
       />
 

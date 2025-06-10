@@ -18,7 +18,7 @@ function MainPage() {
 
     const navigate = useNavigate();
     return (
-        <div className="min-h-screen text-Gray-950">
+        <div className="min-h-screen text-Gray-950 overflow-x-hidden">
             <Navbar />
             {/* Hero Section */}
 

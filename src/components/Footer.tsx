@@ -16,9 +16,9 @@ function Footer() {
         <footer className="w-full bg-success-50 text-primary-700">
             {/* Mobile & Tablet Footer (Merged) */}
             <div className="block desktop:hidden text-primary-700">
-                <div className="flex flex-col tablet:flex-row gap-8 items-start container tablet:px-6 px-4 pt-[30px] tablet:pb-8 pb-[47px]">
+                <div className="flex flex-col tablet:flex-row gap-8 items-start tablet:justify-between container tablet:px-6 px-4 pt-[30px] tablet:pb-8 pb-[47px]">
                     {/* Left section: Logo + Contact + Socials */}
-                    <div className=" w-full tablet:w-1/2 max-w-[348px]">
+                    <div className="w-full tablet:w-1/2">
                         <img src={sarv} alt="Sarv Logo" className="h-10" />
                         <p className="font-myVazirRegular text-base text-right mt-[30px] leading-relaxed">
                             زیستن نیک را با مشاور هوشمند برای همه‌ی ایرانیان سرتاسر جهان فراهم کرده‌ایم.
@@ -39,18 +39,27 @@ function Footer() {
                             </div>
                         </div>
 
-                        <div className="flex justify-center gap-4 tablet:justify-start">
-                            <img src={facebook} alt="facebook" />
-                            <img src={instagram} alt="instagram" />
-                            <img src={twitter} alt="twitter" />
-                            <img src={linkedin} alt="linkedin" />
-                        </div>
+<div className='flex flex-row gap-3'>
+  <div className='bg-primary-300 rounded-full p-2 w-10 h-10 flex items-center justify-center'>
+    <img src={facebook} alt="facebook" className='w-5 h-5 object-contain' />
+  </div>
+  <div className='bg-primary-300 rounded-full p-2 w-10 h-10 flex items-center justify-center'>
+    <img src={instagram} alt="instagram" className='w-5 h-5 object-contain' />
+  </div>
+  <div className='bg-primary-300 rounded-full p-2 w-10 h-10 flex items-center justify-center'>
+    <img src={twitter} alt="twitter" className='w-5 h-5 object-contain' />
+  </div>
+  <div className='bg-primary-300 rounded-full p-2 w-10 h-10 flex items-center justify-center'>
+    <img src={linkedin} alt="linkedin" className='w-5 h-5 object-contain' />
+  </div>
+</div>
+
                     </div>
 
                     {/* Right section: Grid of links */}
                     <div className="w-full tablet:w-1/2 grid grid-cols-2 gap-[30px] text-right  tablet:mt-[83px] ">
                         <div>
-                            <h3 className="text-base tablet:text-lg font-myPeydaMedium mb-3">مقالات و تست‌ها</h3>
+                            <h3 className="text-base tablet:text-lg font-myPeydaMedium mb-3">مقالات و آزمون ها</h3>
                             <ul className="space-y-2 font-myVazirRegular text-base">
                                 <li>مقاله اول</li>
                                 <li>مقاله دوم</li>
@@ -97,24 +106,32 @@ function Footer() {
                                 <span className='font-myVazirRegular text-sm'>آدرس: تهران، خیابان تهران، کوچه تهران، پلاک اول </span>
                             </div>
 
-                            <div className='flex flex-row gap-3'>
-                                <img src={facebook} alt="facebook" className='bg-primary-300 rounded-full p-[6px]' />
-                                <img src={instagram} alt="instagram" className='bg-primary-300 rounded-full p-[6px]'/>
-                                <img src={twitter} alt="twitter" className='bg-primary-300 rounded-full p-[6px]'/>
-                                <img src={linkedin} alt="linkedin" className='bg-primary-300 rounded-full p-[6px]'/>
+<div className='flex flex-row gap-3'>
+  <div className='bg-primary-300 rounded-full p-2 w-10 h-10 flex items-center justify-center'>
+    <img src={facebook} alt="facebook" className='w-5 h-5 object-contain' />
+  </div>
+  <div className='bg-primary-300 rounded-full p-2 w-10 h-10 flex items-center justify-center'>
+    <img src={instagram} alt="instagram" className='w-5 h-5 object-contain' />
+  </div>
+  <div className='bg-primary-300 rounded-full p-2 w-10 h-10 flex items-center justify-center'>
+    <img src={twitter} alt="twitter" className='w-5 h-5 object-contain' />
+  </div>
+  <div className='bg-primary-300 rounded-full p-2 w-10 h-10 flex items-center justify-center'>
+    <img src={linkedin} alt="linkedin" className='w-5 h-5 object-contain' />
+  </div>
+</div>
 
-                            </div>
 
                         </div>
 
                         <div className="flex flex-row gap-[30px] pt-[103.5px]">
 
                             <div className=''>
-                                <h3 className="text-[20px] font-myPeydaMedium mb-4">مقالات و تست ها</h3>
+                                <h3 className="text-[20px] font-myPeydaMedium mb-4">مقالات و آزمون ها</h3>
                                 <ul className="space-y-3  font-myVazirRegular text-lg">
+                                    <li>آزمون BDI</li>
+                                    <li>آزمون BAI</li>
                                     <li>مقاله اول</li>
-                                    <li>مقاله دوم</li>
-                                    <li>تست MBTI</li>
                                 </ul>
                             </div>
 

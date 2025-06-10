@@ -9,9 +9,13 @@ import { ReactComponent as Left } from "../assets/icons/chevron-left.svg";
 import LogoutButton from "./LogOutButton";
 import useUserStore from "../store/UserStore";
 
-export default function AISideNavbar() {
+type AISideNavbarProps = {
+  collapsed: boolean;
+  setCollapsed: (value: boolean) => void;
+};
+
+export default function AISideNavbar({ collapsed, setCollapsed }: AISideNavbarProps) {
   const navigate = useNavigate();
-  const [collapsed, setCollapsed] = useState(true);
   const user = useUserStore((state) => state.user);
 
   return (
@@ -27,9 +31,7 @@ export default function AISideNavbar() {
           </span>
         </button>
 
-        {/* <button onClick={() => setCollapsed(!collapsed)} className="mt-[20px] text-primary-600"> */}
-        <button className="mt-[20px] text-primary-600">
-
+        <button onClick={() => setCollapsed(!collapsed)} className="mt-[20px] text-primary-600">
           {collapsed ? <Left className="w-4 h-4 pl-2" /> : <Right className="w-6 h-6" />}
         </button>
 
@@ -39,7 +41,7 @@ export default function AISideNavbar() {
       </div>
 
       {/* Show logout if user exists, otherwise show login */}
-      {/* {user ? (
+       {user ? (
         <LogoutButton collapsed={collapsed} />
       ) : (
         <CustomButton
@@ -50,7 +52,7 @@ export default function AISideNavbar() {
             collapsed ? "w-[44px]" : "w-[94px]"
           } text-background-BG text-base font-myVazirSemibold flex justify-center items-center`}
         />
-      )} */}
+      )} 
     </div>
   );
 }

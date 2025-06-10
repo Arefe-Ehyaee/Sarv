@@ -10,10 +10,12 @@ type Message = {
 };
 
 type ChatSectionProps = {
-    setBgColor: (color: string) => void;
+  setBgColor: (color: string) => void;
+  collapsed: boolean;
 };
 
-const ChatSection: React.FC<ChatSectionProps> = ({ setBgColor }) => {
+
+const ChatSection: React.FC<ChatSectionProps> = ({ setBgColor, collapsed }) => {
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState<Message[]>([]);
     const messagesEndRef = useRef<HTMLDivElement | null>(null);
@@ -78,7 +80,12 @@ const ChatSection: React.FC<ChatSectionProps> = ({ setBgColor }) => {
     const userHasSentMessage = messages.some(msg => msg.sender === 'user');
 
     return (
-        <div className="flex flex-col h-screen max-w-4xl w-full mx-auto px-4">
+<div
+  className={`flex flex-col h-screen max-w-4xl w-full mx-auto px-4 transition-all duration-300 ${
+    collapsed ? 'mx-auto' : ' ml-[80px]'
+  }`}
+>
+
             <div className="overflow-y-auto pt-[150px] hide-scrollbar">
                 <div className="flex flex-col items-center justify-center mb-[20px]">
                     <img src={tree} alt="sarv" className="w-[160px] h-[206px] mb-4" />

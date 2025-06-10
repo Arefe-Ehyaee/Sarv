@@ -5,6 +5,7 @@ import ChatSection from '../components/ChatSection';
 
 const AIChat: React.FC = () => {
   const [bgColor, setBgColor] = useState('green');
+  const [collapsed, setCollapsed] = useState(true); // New state
 
   const bgColorMap: Record<string, string> = {
     blue: 'bg-[#DBECEA]',
@@ -23,17 +24,18 @@ const AIChat: React.FC = () => {
 
       <div className="flex flex-1">
         <div className="hidden tablet:block">
-          <AISideNavbar />
+          <AISideNavbar collapsed={collapsed} setCollapsed={setCollapsed} />
         </div>
 
-        <div className="flex-1 overflow-y-auto">
+        <div className="flex-1 overflow-y-auto transition-all duration-300">
           <div className="h-full w-full flex justify-center">
-            <ChatSection setBgColor={setBgColor} />
+            <ChatSection setBgColor={setBgColor} collapsed={collapsed} />
           </div>
         </div>
       </div>
     </div>
   );
 };
+
 
 export default AIChat;

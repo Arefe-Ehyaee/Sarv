@@ -4,32 +4,62 @@ import { ReactComponent as Clipboard } from "../assets/icons/clipboard.svg";
 import { ReactComponent as Calendar } from "../assets/icons/calendar.svg";
 import { ReactComponent as Message } from "../assets/icons/message-circle.svg";
 import { ReactComponent as Home } from "../assets/icons/home.svg";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import sarv from "../assets/icons/tree.svg";
+import { ReactComponent as Right } from "../assets/icons/chevron-right.svg";
+import { ReactComponent as Left } from "../assets/icons/chevron-left.svg";
+
+type ProfileSideNavbarProps = {
+  collapsed: boolean;
+  setCollapsed: (value: boolean) => void;
+  closeSidebar?: () => void; // Add this prop
+};
 
 // Accept collapsed as prop
-export default function ProfileRouteSelect({ collapsed }: { collapsed: boolean }) {
+export default function ProfileRouteSelect({ collapsed, setCollapsed, closeSidebar }: ProfileSideNavbarProps) {
+  const navigate = useNavigate();
+
   return (
-    <div className="flex flex-col justify-between font-myVazirMedium text-lg bg-primary-100">
-      <ul className="space-y-[20px] text-primary-600">
-        {[
-          { to: "/dashboard", icon: <Home />, label: "صفحه اصلی" },
-          { to: "/searchEngine", icon: <Clipboard />, label: "تست ها" },
-        ].map((item, idx) => (
-          <li key={idx}>
-            <NavLink
-              to={item.to}
-              className={({ isActive }) =>
-                `flex items-center gap-2 py-[9px] h-10 rounded-[4px] transition-colors duration-200
-                ${collapsed ? "justify-center w-[44px]" : "pr-[6px] w-[290px]"}
-                ${isActive ? "border-primary-500 bg-primary-50" : " hover:bg-primary-50"}`
-              }
-            >
-              {item.icon}
-              {!collapsed && <span>{item.label}</span>}
-            </NavLink>
-          </li>
-        ))}
-      </ul>
+    <div className="flex flex-col h-full font-myVazirMedium text-lg bg-background-BG">
+
+      {/* Top section with bg-primary-100 */}
+      <div className="h-[72px] bg-primary-200 flex items-center ">
+        <div className="w-full">
+          <span className="flex flex-row items-center justify-between text-primary-600 font-myPeydaRegular text-[30px] px-6 py-[14px]">
+            <button className="flex flex-row items-center" onClick={() => navigate('/')}>
+              <img src={sarv} alt="لوگو" className="w-[35px] h-[46px]" />
+              <span className="pl-2">سرو</span>
+            </button>
+
+            <button onClick={closeSidebar} className=" text-primary-600 block desktop:hidden">
+              {collapsed ? <Right className="w-6 h-6"/> : ""}
+            </button>
+          </span>
+        </div>
+      </div>
+
+      {/* Main sidebar content */}
+      <div className="flex-1 pt-4 px-[30px]">
+        <ul className="space-y-[20px] text-primary-600">
+          {[
+            { to: "/dashboard", icon: <Home />, label: "صفحه اصلی" },
+            { to: "/searchEngine", icon: <Clipboard />, label: "تست ها" },
+          ].map((item, idx) => (
+            <li key={idx}>
+              <NavLink
+                to={item.to}
+                className={({ isActive }) =>
+                  `flex items-center gap-2 py-[9px] h-10 rounded-[4px] transition-colors duration-200 w-[240px]
+                  ${isActive ? "border-primary-500 bg-primary-50" : "hover:bg-primary-50"}`
+                }
+              >
+                {item.icon}
+                <span>{item.label}</span>
+              </NavLink>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

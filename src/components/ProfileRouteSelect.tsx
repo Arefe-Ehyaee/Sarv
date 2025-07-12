@@ -40,7 +40,7 @@ export default function ProfileRouteSelect({ collapsed, setCollapsed, closeSideb
 
       {/* Main sidebar content */}
       <div className="flex-1 pt-4 px-[30px]">
-        <ul className="space-y-[20px] text-primary-600">
+        <ul className="space-y-[20px] text-Gray-900">
           {[
             { to: "/dashboard", icon: <Home />, label: "صفحه اصلی" },
             { to: "/searchEngine", icon: <Clipboard />, label: "تست ها" },
@@ -50,7 +50,7 @@ export default function ProfileRouteSelect({ collapsed, setCollapsed, closeSideb
                 to={item.to}
                 className={({ isActive }) =>
                   `flex items-center gap-2 py-[9px] h-10 rounded-[4px] transition-colors duration-200 w-[240px]
-                  ${isActive ? "border-primary-500 bg-primary-50" : "hover:bg-primary-50"}`
+                  ${isActive ? "border-primary-500 bg-primary-50" : "hover:bg-primary-50 px-2"}`
                 }
               >
                 {item.icon}

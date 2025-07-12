@@ -19,7 +19,7 @@ export default function SignUp() {
 
   const onSubmit = async (data: SignUpData) => {
     try {
-      const response = await fetch('http://89.251.9.219:4000/auth/register', {
+      const response = await fetch('http://localhost:3000/api/v1/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -28,21 +28,20 @@ export default function SignUp() {
           username: data.username,
           email: data.email,
           password: data.password,
-          confirmPassword: data.repeatPassword, // API expects this name
+          confirmPassword: data.repeatPassword, // Only if your backend expects it
         }),
       });
 
       const result = await response.json();
 
-      if (!response.ok) {
+      if (!response.ok || !result.ok) {
         throw new Error(result.message || "خطایی رخ داده است.");
       }
 
       console.log("ثبت موفق:", result);
 
-      // Optional: Save token or redirect
-      localStorage.setItem("accessToken", result.accessToken);
-      navigate("/dashboard"); // Redirect after success
+      // Navigate after successful registration
+      navigate("/dashboard");
 
     } catch (error: any) {
       alert(error.message || "ثبت‌نام با شکست مواجه شد.");
@@ -132,7 +131,7 @@ export default function SignUp() {
           <span>حساب کاربری دارید؟</span>
           <button
             type="button"
-            className={"text-primary-600"}
+            className="text-primary-600"
             onClick={() => navigate("/login")}
           >
             ورود

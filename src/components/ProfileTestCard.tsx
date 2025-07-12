@@ -20,7 +20,7 @@ function ProfileTestCard({ testName, description, image }: ProfileTestCardProps)
             <div className="font-myVazirRegular w-fit desktop:text-base tablet:text-base text-sm text-center rounded-full px-[10px] py-[4px] bg-primary-50 border border-primary-100 text-primary-600">
                 اضطراب و افسردگی  </div>
 
-            <p className="font-myPeydaMedium desktop:text-[20px] tablet:text-[32px] text-[28px] desktop:mt-[10px]">آزمون اضطراب بک (BAI)</p>
+            <p className="font-myPeydaMedium desktop:text-[20px] tablet:text-lg text-base mt-[10px]">آزمون اضطراب بک (BAI)</p>
 
             {/* Description */}
             <div className="text-right mt-1">
@@ -39,7 +39,7 @@ function ProfileTestCard({ testName, description, image }: ProfileTestCardProps)
 
             {/* Start button */}
             <div className="flex flex-row gap-4">
-                <button onClick={() => navigate('/test')} className="w-2/3 bg-[#2C5031] hover:bg-primary-300 text-white desktop:text-base tablet:text-sm text-xs font-myVazirRegular desktop:h-[44px] tablet:h-[44px] h-[41px] rounded-full transition-colors duration-200">
+                <button onClick={() => navigate('/test')} className="w-2/3 bg-Gray-700 hover:bg-primary-300 text-white desktop:text-base tablet:text-sm text-xs font-myVazirRegular desktop:h-[44px] tablet:h-[44px] h-[41px] rounded-full transition-colors duration-200">
                     تکرار آزمون
                 </button>
                 <button onClick={() => navigate('/test')} className="w-1/3 bg-white hover:bg-primary-300 text-[#2C5031] border-[0.6px] border-[#2C5031] desktop:text-base tablet:text-sm text-xs font-myVazirRegular desktop:h-[44px] tablet:h-[44px] h-[41px] rounded-full transition-colors duration-200">

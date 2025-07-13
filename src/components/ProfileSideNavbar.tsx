@@ -12,7 +12,7 @@ export default function ProfileSideNavbar({ closeSidebar }: { closeSidebar?: () 
   const [collapsed, setCollapsed] = useState(true);
 
   return (
-    <div className={`fixed top-0 right-0 pb-[30px] حق-ج z-30 bg-background-BG w-[300px] min-h-screen flex flex-col justify-between transition-all duration-300`}>
+    <div className={`fixed top-0 right-0 pb-[30px] z-30 bg-background-BG w-[300px] min-h-screen flex flex-col justify-between transition-all duration-300`}>
         {/* Routes or Icons */}
         <div className=" w-full ">
           <ProfileRouteSelect 
@@ -22,13 +22,14 @@ export default function ProfileSideNavbar({ closeSidebar }: { closeSidebar?: () 
           />
         </div>
 
-      {/* Login button - hide text when collapsed */}
-      <CustomButton
+<div className="flex justify-start desktop:px-[30px] tablet:px-[24px] mobile:px-[16px]">
+  <CustomButton
+    text={"خروج از حساب"}
+    handleOnClick={closeSidebar}
+    className="text-error-500 text-lg font-myVazirRegular"
+  />
+</div>
 
-        text={"خروج از حساب"}
-        handleOnClick={closeSidebar}
-        className={`bg-primary-400 mr-[30px] h-[44px] w-[144px] text-background-BG text-base font-myVazirSemibold flex justify-center items-center`}
-      />
     </div>
   );
 }

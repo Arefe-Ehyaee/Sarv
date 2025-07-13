@@ -19,16 +19,17 @@ export default function SignUp() {
 
   const onSubmit = async (data: SignUpData) => {
     try {
-      const response = await fetch('http://localhost:3000/api/v1/auth/register', {
+      const { username, email, password } = data;
+
+      const response = await fetch('https://171.22.25.191/api/v1/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          username: data.username,
-          email: data.email,
-          password: data.password,
-          confirmPassword: data.repeatPassword, // Only if your backend expects it
+          username,
+          email,
+          password,
         }),
       });
 
@@ -39,10 +40,7 @@ export default function SignUp() {
       }
 
       console.log("ثبت موفق:", result);
-
-      // Navigate after successful registration
       navigate("/dashboard");
-
     } catch (error: any) {
       alert(error.message || "ثبت‌نام با شکست مواجه شد.");
     }
@@ -72,7 +70,9 @@ export default function SignUp() {
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-4 text-right">
-            <label htmlFor="username" className="block text-sm text-gray-700 font-myVazirRegular mb-1">نام کاربری</label>
+            <label htmlFor="username" className="block text-sm text-gray-700 font-myVazirRegular mb-1">
+              نام کاربری
+            </label>
             <input
               id="username"
               type="text"
@@ -84,7 +84,9 @@ export default function SignUp() {
           </div>
 
           <div className="mb-4 text-right">
-            <label htmlFor="email" className="block text-sm text-gray-700 font-myVazirRegular mb-1">ایمیل</label>
+            <label htmlFor="email" className="block text-sm text-gray-700 font-myVazirRegular mb-1">
+              ایمیل
+            </label>
             <input
               id="email"
               type="email"
@@ -96,7 +98,9 @@ export default function SignUp() {
           </div>
 
           <div className="mb-4 text-right">
-            <label htmlFor="password" className="block text-sm text-gray-700 font-myVazirRegular mb-1">رمز عبور</label>
+            <label htmlFor="password" className="block text-sm text-gray-700 font-myVazirRegular mb-1">
+              رمز عبور
+            </label>
             <input
               id="password"
               type="password"
@@ -108,7 +112,9 @@ export default function SignUp() {
           </div>
 
           <div className="mb-6 text-right">
-            <label htmlFor="repeatPassword" className="block text-sm text-gray-700 font-myVazirRegular mb-1">تکرار رمز عبور</label>
+            <label htmlFor="repeatPassword" className="block text-sm text-gray-700 font-myVazirRegular mb-1">
+              تکرار رمز عبور
+            </label>
             <input
               id="repeatPassword"
               type="password"

@@ -20,7 +20,7 @@ export default function ProfileRouteSelect({ collapsed, setCollapsed, closeSideb
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col h-full font-myVazirMedium text-lg bg-background-BG">
+    <div className="flex flex-col h-full font-myVazirRegular text-lg bg-background-BG">
 
       {/* Top section with bg-primary-100 */}
       <div className="h-[72px] bg-primary-200 flex items-center ">
@@ -39,7 +39,7 @@ export default function ProfileRouteSelect({ collapsed, setCollapsed, closeSideb
       </div>
 
       {/* Main sidebar content */}
-      <div className="flex-1 pt-4 px-[30px]">
+      <div className="flex-1 pt-4 px-[30px] text-lg">
         <ul className="space-y-[20px] text-Gray-900">
           {[
             { to: "/dashboard", icon: <Home />, label: "صفحه اصلی" },
@@ -50,7 +50,7 @@ export default function ProfileRouteSelect({ collapsed, setCollapsed, closeSideb
                 to={item.to}
                 className={({ isActive }) =>
                   `flex items-center gap-2 py-[9px] h-10 rounded-[4px] transition-colors duration-200 w-[240px]
-                  ${isActive ? "border-primary-500 bg-primary-50" : "hover:bg-primary-50 px-2"}`
+                  ${isActive ? "border-primary-500 bg-primary-50" : "hover:text-primary-600 px-2"}`
                 }
               >
                 {item.icon}

@@ -1,5 +1,5 @@
 interface CategoryBadgeProps{
-    category: "اضطراب" | "مدیتیشن" | "سلامت روان" | "افسردگی";
+    category: string;
   }
   
 

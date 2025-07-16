@@ -1,26 +1,31 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-type User = {
-  email: string;
-  // Add more fields if needed: name, token, etc.
+// Define the shape of the user object
+export type User = {
+  userId: number;
+  username: string;
 };
 
+// Define the Zustand store state and actions
 type UserStore = {
   user: User | null;
-  setUser: (user: User) => void;
+  token: string | null;
+  setUser: (user: User, token: string) => void;
   clearUser: () => void;
 };
 
+// Create the Zustand store with persistence
 const useUserStore = create<UserStore>()(
   persist(
     (set) => ({
       user: null,
-      setUser: (user) => set({ user }),
-      clearUser: () => set({ user: null }),
+      token: null,
+      setUser: (user, token) => set({ user, token }),
+      clearUser: () => set({ user: null, token: null }),
     }),
     {
-      name: 'user-storage', // for localStorage key
+      name: 'user-storage', // key used in localStorage
     }
   )
 );

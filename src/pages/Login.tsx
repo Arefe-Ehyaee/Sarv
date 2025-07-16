@@ -4,16 +4,44 @@ import sarv from "../assets/icons/Sarv.svg";
 import { useNavigate } from 'react-router-dom';
 import useUserStore from '../store/UserStore';
 
+const BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
   const navigate = useNavigate();
   const setUser = useUserStore((state) => state.setUser);
 
-  const handleContinue = () => {
-    if (email.trim() !== '' && password !== '') {
-      setUser({ email });
-      navigate('/profile');
+  const handleContinue = async () => {
+    if (email.trim() === '' || password.trim() === '') {
+      setMessage('لطفاً ایمیل و رمز عبور را وارد کنید');
+      return;
+    }
+
+    try {
+      const response = await fetch(`${BASE_URL}/api/v1/auth/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        
+        body: JSON.stringify({ email, password }),
+      });
+
+      const result = await response.json();
+
+      if (response.status === 200) {
+        setUser(result.data, result.token);
+        navigate('/profile');
+      } else if (response.status === 401) {
+        setMessage(result.message || 'ایمیل یا رمز اشتباه است');
+      } else {
+        setMessage('خطا در ورود، لطفاً دوباره تلاش کنید');
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      setMessage('اتصال به سرور برقرار نشد');
     }
   };
 
@@ -66,6 +94,12 @@ export default function Login() {
             dir="rtl"
           />
         </div>
+
+        {message && (
+          <div className="text-red-600 text-sm mb-4 text-center font-myVazirRegular">
+            {message}
+          </div>
+        )}
 
         <button
           onClick={handleContinue}

@@ -6,6 +6,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SignUpSchema, SignUpData } from "../schemas/SignUpSchema";
 
+const BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 export default function SignUp() {
   const navigate = useNavigate();
 
@@ -17,34 +19,38 @@ export default function SignUp() {
     resolver: zodResolver(SignUpSchema),
   });
 
-  const onSubmit = async (data: SignUpData) => {
-    try {
-      const { username, email, password } = data;
+const onSubmit = async (data: SignUpData) => {
+  try {
+    const { username, email, password } = data;
 
-      const response = await fetch('https://171.22.25.191/api/v1/auth/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          username,
-          email,
-          password,
-        }),
-      });
+    const response = await fetch(`${BASE_URL}/api/v1/auth/register`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username, email, password }),
+    });
 
-      const result = await response.json();
+    const result = await response.json();
 
-      if (!response.ok || !result.ok) {
-        throw new Error(result.message || "خطایی رخ داده است.");
-      }
-
+    if (response.ok && result.ok) {
       console.log("ثبت موفق:", result);
-      navigate("/dashboard");
-    } catch (error: any) {
-      alert(error.message || "ثبت‌نام با شکست مواجه شد.");
+      navigate("/login"); // رفتن به صفحه لاگین بعد از ثبت موفق
+      return;
     }
-  };
+
+    if (response.status === 400 && Array.isArray(result.message)) {
+      alert(result.message.join("، "));
+    } else if (response.status === 409) {
+      alert(result.message || "ایمیل یا نام کاربری قبلاً استفاده شده است.");
+    } else {
+      throw new Error(result.message || "خطایی رخ داده است.");
+    }
+  } catch (error: any) {
+    alert(error.message || "ثبت‌نام با شکست مواجه شد.");
+  }
+};
+
 
   return (
     <div className="min-h-screen flex items-center desktop:justify-start justify-center desktop:pr-40 p-4 relative overflow-hidden">
@@ -80,7 +86,7 @@ export default function SignUp() {
               className="w-full h-[44px] px-4 text-right border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 text-base"
               dir="rtl"
             />
-            {errors.username && <p className="text-red-600 text-sm mt-1">{errors.username.message}</p>}
+            {errors.username && <p className="font-myVazirRegular text-red-600 text-sm mt-1">{errors.username.message}</p>}
           </div>
 
           <div className="mb-4 text-right">
@@ -94,7 +100,7 @@ export default function SignUp() {
               className="w-full h-[44px] px-4 text-right border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 text-base"
               dir="rtl"
             />
-            {errors.email && <p className="text-red-600 text-sm mt-1">{errors.email.message}</p>}
+            {errors.email && <p className="font-myVazirRegular text-red-600 text-sm mt-1">{errors.email.message}</p>}
           </div>
 
           <div className="mb-4 text-right">
@@ -108,7 +114,7 @@ export default function SignUp() {
               className="w-full h-[44px] px-4 text-right border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 text-base"
               dir="rtl"
             />
-            {errors.password && <p className="text-red-600 text-sm mt-1">{errors.password.message}</p>}
+            {errors.password && <p className="font-myVazirRegular text-red-600 text-sm mt-1">{errors.password.message}</p>}
           </div>
 
           <div className="mb-6 text-right">
@@ -122,7 +128,7 @@ export default function SignUp() {
               className="w-full h-[44px] px-4 text-right border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 text-base"
               dir="rtl"
             />
-            {errors.repeatPassword && <p className="text-red-600 text-sm mt-1">{errors.repeatPassword.message}</p>}
+            {errors.repeatPassword && <p className="font-myVazirRegular text-red-600 text-sm mt-1">{errors.repeatPassword.message}</p>}
           </div>
 
           <button

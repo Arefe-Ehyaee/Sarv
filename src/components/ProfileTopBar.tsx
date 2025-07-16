@@ -30,7 +30,7 @@ export default function ProfileTopBar({ toggleSidebar }: Props) {
 
           <button className="flex items-center gap-2 text-lg font-bold text-primary-600">
             <UserIcon className="w-6 h-6" />
-            <span>{user?.email ?? "نام کاربر"}</span>
+            <span>{user?.username ?? "نام کاربر"}</span>
           </button>
         </div>
       </div>

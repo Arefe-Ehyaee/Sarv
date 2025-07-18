@@ -17,6 +17,7 @@ import testCover from "./assets/images/GHQ.png";
 import testImage from "./assets/images/159.jpg";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import ProtectedRoute from './components/ProtectedRoute';
+import TestResult from './pages/TestResult';
 
 function App() {
   const queryClient = new QueryClient();
@@ -30,14 +31,14 @@ function App() {
             <Route path="/sarvBot" element={<AIChat />} />
             <Route path="/articles" element={<ArticlesPage />} />
             <Route path="/bdiTest" element={<TestTemplate />} />
-            <Route path="/test/:id" element={<TestTemplate />} />
+            {/* <Route path="/test/:testId" element={<TestLanding />} /> */}
             <Route path="/ghqTest" element={<GHQPage />} />
             <Route path="/therapists" element={<TherapistsPage />} />
             <Route path="/tests" element={<TestsPage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signUp" element={<SignUp />} />
             <Route path="/testLanding" element={<TestLanding />} />
-            <Route path="/test" element={
+            {/* <Route path="/test" element={
               <Test
                 articleImage={testCover}
                 heading={'عنوان تست'}
@@ -46,10 +47,13 @@ function App() {
                 category={'سلامت روان'}
                 time={'15 دقیقه'}
               />
-            } />
-<Route path="/articles/:slug" element={<Article />} />
+            } /> */}
+            <Route path="/articles/:slug" element={<Article />} />
 
-
+            <Route path="/tests" element={<TestsPage />} />
+<Route path="/test/:testName" element={<TestLanding />} />
+            <Route path="/test/:testName/result" element={<TestResult />} />
+            <Route path="/test/:testName/info" element={<Test />} />
 
             <Route element={<ProtectedRoute />}>
               <Route path="/profile" element={<ProfilePage />} />

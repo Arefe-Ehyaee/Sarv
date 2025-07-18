@@ -5,11 +5,12 @@ import { ReactComponent as Clock } from "../assets/icons/clock.svg";
 
 interface TestCardProps {
     testName: string;
+    testTitle: string;
     description: string;
     image?: string;
 }
 
-function TestCard({ testName, description, image }: TestCardProps) {
+function TestCard({ testName, testTitle, description, image }: TestCardProps) {
     const navigate = useNavigate();
     return (
         <div className="flex flex-col justify-between desktop:w-[608px] h-[340px] mx-auto bg-background-BG rounded-[20px] border border-primary-100 py-[20px] px-6 relative overflow-hidden">
@@ -25,7 +26,7 @@ function TestCard({ testName, description, image }: TestCardProps) {
                 <div className="flex-1">
                     {/* Main title */}
                     <h1 className="desktop:text-[20px] font-myPeydaMedium text-Gray-800 mb-[20px] text-right">
-                        آزمون سلامت عمومی (GHQ)
+                        {testTitle}
                     </h1>
 
                     {/* Stats */}
@@ -57,9 +58,13 @@ function TestCard({ testName, description, image }: TestCardProps) {
             </div>
 
             {/* Start button */}
-            <button onClick={()=>navigate('/test')} className="w-full bg-primary-400 hover:bg-primary-300 text-white desktop:text-base tablet:text-base text-sm font-myVazirSemibold desktop:h-[44px] tablet:h-[44px] h-[41px] rounded-full transition-colors duration-200">
+            <button
+                onClick={() => navigate(`/test/${encodeURIComponent(testName)}`)}
+                className="w-full bg-primary-400 hover:bg-primary-300 text-white desktop:text-base tablet:text-base text-sm font-myVazirSemibold desktop:h-[44px] tablet:h-[44px] h-[41px] rounded-full transition-colors duration-200"
+            >
                 شروع آزمون
             </button>
+
         </div>
     );
 };

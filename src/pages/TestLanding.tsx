@@ -1,71 +1,121 @@
-
-import { NavLink, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import svgSmall from "../assets/icons/smalltreeBg.svg";
-import right from "../assets/icons/chevron-right.svg"
-import { ReactComponent as Left } from "../assets/icons/chevron-left.svg";
-import { tests } from "./tests";
+import right from "../assets/icons/chevron-right.svg";
+import CustomButton from "../components/CustomeButton";
+import { defaultOptions } from "../constants/testOptions";
 
-function TestLanding() {
-    const navigate = useNavigate();
-
-    return (
-        <div className="relative min-h-screen bg-Gray-100 text-Gray-950">
-            <div className="hidden desktop:flex desktop:justify-center desktop:items-center desktop:min-h-screen">
-                {/* Background SVGs */}
-                <img
-                    src={svgSmall}
-                    alt="Background Left"
-                    className="absolute left-[4%] bottom-0 pointer-events-none h-[876px] z-0"
-                />
-
-                <div className='flex flex-col'>
-                    <button className="flex flex-row gap-[10px] items-center mb-[30px]" onClick={() => navigate('/')}>
-                        <img src={right} alt="" />
-                        <span className="font-myVazirRegular text-Gray-600 desktop:text-[18px] tablet:text-[18px] text-[14px]">خروج از آزمون</span>
-                    </button>
-
-
-                    <div className='flex flex-col justify-center items-center'>
-
-
-                        <div className='relative z-10 bg-background-BG w-full px-[22px] py-[28px] rounded-[20px] mx-[96px]'>
-
-                            <div>
-                                {tests.map((test) => (
-                                    <div
-                                        key={test.id}
-                                        className="p-6 flex flex-col gap-2"
-                                    >
-                                        <h5 className='flex flex-row font-myPeydaSemibold desktop:text- tablet:text-[32px] text-[28px] justify-start'>
-                                            {test.title}
-                                        </h5>
-
-                                        <p>{test.description}</p>
-
-                                    </div>
-                                ))}
-                            </div>
-
-                        </div>
-
-
-
-                    </div>
-
-                    <div className='flex flex-row items-center justify-end mt-[30px]'>
-                        <span className='font-myVazirRegular desktop:text-lg tablet:text-lg text-base text-Gray-600'>ادامه</span>
-                        <button onClick={() => navigate('/test/:id')} className='flex flex-row justify-center items-center mr-[6px] text-primary-600 rounded-[4px] bg-primary-200 border border-primary-300 w-[42px] h-[42px] z-10'>
-                            <Left></Left>
-                        </button>
-                    </div>
-                </div>
-
-
-
-            </div>
-        </div>
-    )
+interface Question {
+  id: number;
+  title: string;
 }
 
+const BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
+function TestLanding() {
+  const navigate = useNavigate();
+  const { testName } = useParams<{ testName: string }>();
+
+  const [questions, setQuestions] = useState<Question[]>([]);
+  const [answers, setAnswers] = useState<Record<number, number>>({});
+  const [loading, setLoading] = useState(true);
+
+  // Fetch questions on page load
+  useEffect(() => {
+    const fetchQuestions = async () => {
+      try {
+        const response = await fetch(`${BASE_URL}/api/v1/tests/${testName}/questions`);
+        if (!response.ok) throw new Error("Failed to fetch");
+        const data = await response.json();
+        setQuestions(data);
+      } catch (error) {
+        console.error("Error fetching questions:", error);
+        alert("خطا در دریافت سوالات آزمون.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchQuestions();
+  }, [testName]);
+
+  const handleChange = (qid: number, value: number) => {
+    setAnswers((prev) => ({ ...prev, [qid]: value }));
+  };
+
+  const handleSubmit = async () => {
+    if (Object.keys(answers).length !== questions.length) {
+      alert("لطفاً به تمام سوالات پاسخ دهید.");
+      return;
+    }
+
+    try {
+      const response = await fetch(`${BASE_URL}/api/v1/tests/${testName}/submit`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ answers }),
+      });
+
+      if (!response.ok) throw new Error("Failed to submit");
+      const result = await response.json();
+      navigate(`/test/${testName}/result`, { state: result });
+    } catch (error) {
+      console.error("Submission failed:", error);
+      alert("خطایی در ارسال پاسخ‌ها رخ داد.");
+    }
+  };
+
+  if (loading) return <p className="text-center mt-20">در حال بارگذاری سوالات...</p>;
+
+  return (
+    <div className="relative min-h-screen bg-Gray-100 text-Gray-950 px-4 desktop:px-[96px] pb-16">
+      <img
+        src={svgSmall}
+        alt="Background Left"
+        className="absolute left-[4%] bottom-0 pointer-events-none h-[876px] z-0 hidden desktop:block"
+      />
+
+      <button
+        className="flex flex-row gap-[10px] items-center mb-[30px] pt-10"
+        onClick={() => navigate("/tests")}
+      >
+        <img src={right} alt="exit" />
+        <span className="font-myVazirRegular text-Gray-600 desktop:text-[18px]">
+          خروج از آزمون
+        </span>
+      </button>
+
+      <div className="bg-background-BG p-6 rounded-[20px] shadow-md z-10 relative">
+        {questions.map((q) => (
+          <div key={q.id} className="mb-6 border-b border-primary-100 pb-4">
+            <h4 className="font-myPeydaSemibold text-[18px] mb-3">{q.title}</h4>
+            <div className="flex flex-wrap gap-6">
+              {defaultOptions.map((opt) => (
+                <label key={opt.id} className="flex items-center gap-2">
+                  <input
+                    type="radio"
+                    name={`q-${q.id}`}
+                    value={opt.id}
+                    onChange={() => handleChange(q.id, opt.id)}
+                    checked={answers[q.id] === opt.id}
+                  />
+                  <span>{opt.text}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="flex justify-end mt-8">
+        <CustomButton
+          text="ارسال پاسخ‌ها"
+          className="bg-primary-400 text-white w-[164px] h-[48px]"
+          handleOnClick={handleSubmit}
+        />
+      </div>
+    </div>
+  );
+}
 
 export default TestLanding;

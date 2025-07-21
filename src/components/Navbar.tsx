@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
 import sarv from "../assets/icons/Sarv.svg";
 import CustomButton from './CustomeButton';
 import menu from "../assets/icons/menu.svg";
 import { useNavigate } from 'react-router-dom';
 import { ReactComponent as Right } from "../assets/icons/chevron-right.svg";
 import { ReactComponent as Down } from "../assets/icons/chevron-down.svg";
+import useUserStore from '../store/UserStore';
+import { useState } from "react";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ function Navbar() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggleDropdown = () => setDropdownOpen((prev) => !prev);
-
+  const user = useUserStore((state) => state.user);
   return (
     <nav className="relative w-full h-[79px] flex items-center justify-between text-Gray-950 border-b border-Gray-200 bg-white desktop:px-24 tablet:px-6 px-4 shadow-md py-4 z-50">
       <div className="flex items-center gap-2">
@@ -56,11 +57,21 @@ function Navbar() {
         <li className="cursor-pointer"><button onClick={() => navigate('/articles')}>مقالات</button></li>
       </ul>
 
-      <CustomButton
-        handleOnClick={() => navigate('/login')}
-        text={'ورود یا ثبت نام'}
-        className={'text-primary-50 bg-primary-700 h-[44px] px-[18px] py-[10px]'}
-      />
+      {user ? (
+        <CustomButton
+          handleOnClick={() => navigate('/profile')}
+          text={user.username}
+          className="text-primary-50 bg-primary-700 h-[44px] px-[18px] py-[10px]"
+        >
+        </CustomButton>
+      ) : (
+        <CustomButton
+          handleOnClick={() => navigate('/login')}
+          text={'ورود یا ثبت نام'}
+          className={'text-primary-50 bg-primary-700 h-[44px] px-[18px] py-[10px]'}
+        />
+      )}
+
 
       {/* Mobile Menu */}
       <div

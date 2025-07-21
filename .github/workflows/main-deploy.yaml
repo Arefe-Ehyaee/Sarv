@@ -20,7 +20,7 @@ jobs:
             export NVM_DIR="$HOME/.nvm"
             [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
             nvm use node
-            cd /${{secrets.SERVER_USER}}/Sarv-frontend || exit 1
+            cd /${{secrets.SERVER_USER}}/Sarv-frontend
             git pull origin main
             yarn install
             yarn build

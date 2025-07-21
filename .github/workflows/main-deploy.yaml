@@ -17,7 +17,7 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
-            cd /home/${{secrets.SERVER_USER}}/Sarv-frontend
+            cd /${{secrets.SERVER_USER}}/Sarv-frontend
             git pull origin main
             yarn install
             yarn build

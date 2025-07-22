@@ -52,14 +52,10 @@ function TestsPage() {
                     <TestsCategory />
 
                     <div className="grid grid-cols-1 desktop:grid-cols-2 gap-[32px] place-items-center mt-[100px]">
-                        <TestCard testName={'ghq'} testTitle='آزمون سلامت عمومی ' description={' پرسشنامه سلامت عمومی (GHQ) ابزاری معتبر برای غربالگری سلامت روان است که به شناسایی ناراحتی‌های احساسی و نشانه‌های اولیه مشکلات روانی کمک می‌کند. این آزمون آگاهی فرد را نسبت به وضعیت روانی‌اش افزایش داده و در صورت نیاز، مسیر دریافت حمایت را هموار می‌سازد.'} image={''}></TestCard>
-                        <TestCard testName={'bdi'} testTitle='آزمون سلامت عمومی ' description={' پرسشنامه سلامت عمومی (GHQ) ابزاری معتبر برای غربالگری سلامت روان است که به شناسایی ناراحتی‌های احساسی و نشانه‌های اولیه مشکلات روانی کمک می‌کند. این آزمون آگاهی فرد را نسبت به وضعیت روانی‌اش افزایش داده و در صورت نیاز، مسیر دریافت حمایت را هموار می‌سازد.'} image={''}></TestCard>
-<TestCard
-  testName="bai"
-  testTitle="آزمون اضطراب بک (BAI)"
-  description="این آزمون به سنجش سطح اضطراب شما می‌پردازد و برای ارزیابی نشانه‌های فیزیولوژیکی اضطراب طراحی شده است."
-  image=""
-/>
+                        <TestCard testName={'ghq'} testTitle='آزمون سلامت عمومی (GHQ)' testType='سلامت روان' questionCounts={28} description={' پرسشنامه سلامت عمومی (GHQ) ابزاری معتبر برای غربالگری سلامت روان است که به شناسایی ناراحتی‌های احساسی و نشانه‌های اولیه مشکلات روانی کمک می‌کند. این آزمون آگاهی فرد را نسبت به وضعیت روانی‌اش افزایش داده و در صورت نیاز، مسیر دریافت حمایت را هموار می‌سازد.'} image={''}></TestCard>
+                        <TestCard testName={'bdi'} testTitle="آزمون افسردگی بک (BDI)" testType='اضطراب و افسردگی' questionCounts={21} description={' پرسشنامه سلامت عمومی (GHQ) ابزاری معتبر برای غربالگری سلامت روان است که به شناسایی ناراحتی‌های احساسی و نشانه‌های اولیه مشکلات روانی کمک می‌کند. این آزمون آگاهی فرد را نسبت به وضعیت روانی‌اش افزایش داده و در صورت نیاز، مسیر دریافت حمایت را هموار می‌سازد.'} image={''}></TestCard>
+                        <TestCard testName="bai" testTitle="آزمون اضطراب بک (BAI)" testType='اضطراب و افسردگی' questionCounts={21} description="این آزمون به سنجش سطح اضطراب شما می‌پردازد و برای ارزیابی نشانه‌های فیزیولوژیکی اضطراب طراحی شده است." image=""
+                        />
                     </div>
                 </div>
 
@@ -67,7 +63,7 @@ function TestsPage() {
                 <div className="relative h-[269px] bg-primary-800 mt-[120px] flex flex-col items-center justify-center text-center">
                     <img src={patternleft} alt="" className='absolute  desktop:left-0 tablet:left-0 -left-24 h-full' />
                     <img src={patternright} alt="" className='absolute desktop:right-0 tablet:right-0 -right-24 h-full' />
-                    
+
                     <h5 className="absolute top-[54px] text-primary-200 font-myPeydaSemibold desktop:text-[32px] tablet:text-[32px] text-[22px]">
                         فرصت یک جلسه مشاوره را از خودت نگیر!                    </h5>
 

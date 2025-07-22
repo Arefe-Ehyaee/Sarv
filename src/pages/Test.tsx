@@ -10,6 +10,9 @@ import { ReactComponent as Heart } from "../assets/icons/heart.svg";
 import { ReactComponent as Bookmark } from "../assets/icons/bookmark.svg";
 import CustomButton from "../components/CustomeButton";
 import { useEffect, useState } from "react";
+import useUserStore from "../store/UserStore";
+import { toast } from "react-toastify";
+
 
 interface TestInfo {
   title: string;
@@ -19,18 +22,41 @@ interface TestInfo {
   time: string;
   questionsCount: number;
 }
+const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 function Test() {
   const { testName } = useParams();
   const navigate = useNavigate();
   const [testInfo, setTestInfo] = useState<TestInfo | null>(null);
+  const token = useUserStore((state) => state.token);
+
+  // useEffect(() => {
+  //   console.log("TOKEN:", useUserStore.getState().token);
+  // }, []);
+
 
   useEffect(() => {
-    fetch(`{{BASE_URL}}/api/v1/tests/name/${testName}/info`)
-      .then((res) => res.json())
+    // console.log("Auth token:", token);
+    if (!token) return;
+
+    fetch(`${BASE_URL}/api/v1/tests/${testName}/questions`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => {
+        if (res.status === 401) {
+          toast.error("باید لاگین کنید");
+          throw new Error("Unauthorized");
+        }
+        if (!res.ok) throw new Error("Failed to fetch test info");
+        return res.json();
+      })
       .then((data) => setTestInfo(data))
-      .catch((err) => console.error("Failed to fetch test info", err));
-  }, [testName]);
+      .catch((err) => console.error("Fetch error:", err));
+
+  }, [testName, token]);
+
 
   if (!testInfo) return <div className="text-center p-8">در حال بارگذاری...</div>;
 

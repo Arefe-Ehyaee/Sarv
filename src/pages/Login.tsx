@@ -12,7 +12,7 @@ export default function Login() {
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
   const setUser = useUserStore((state) => state.setUser);
-
+  const { token } = useUserStore();
   const handleContinue = async () => {
     if (email.trim() === '' || password.trim() === '') {
       setMessage('لطفاً ایمیل و رمز عبور را وارد کنید');
@@ -34,6 +34,8 @@ export default function Login() {
       if (response.status === 200) {
         setUser(result.data, result.token);
         navigate('/profile');
+        console.log("Auth token:", token);
+
       } else if (response.status === 401) {
         setMessage(result.message || 'ایمیل یا رمز اشتباه است');
       } else {

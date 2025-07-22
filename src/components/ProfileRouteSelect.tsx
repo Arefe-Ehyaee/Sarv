@@ -43,7 +43,7 @@ export default function ProfileRouteSelect({ collapsed, setCollapsed, closeSideb
         <ul className="space-y-[20px] text-Gray-900">
           {[
             { to: "/dashboard", icon: <Home />, label: "صفحه اصلی" },
-            { to: "/searchEngine", icon: <Clipboard />, label: "تست ها" },
+            { to: "/tests", icon: <Clipboard />, label: "تست ها" },
           ].map((item, idx) => (
             <li key={idx}>
               <NavLink

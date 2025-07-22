@@ -8,9 +8,11 @@ interface TestCardProps {
     testTitle: string;
     description: string;
     image?: string;
+    testType: string;
+    questionCounts: number;
 }
 
-function TestCard({ testName, testTitle, description, image }: TestCardProps) {
+function TestCard({ testName, testTitle, description, image, testType, questionCounts }: TestCardProps) {
     const navigate = useNavigate();
     return (
         <div className="flex flex-col justify-between desktop:w-[608px] h-[340px] mx-auto bg-background-BG rounded-[20px] border border-primary-100 py-[20px] px-6 relative overflow-hidden">
@@ -35,15 +37,15 @@ function TestCard({ testName, testTitle, description, image }: TestCardProps) {
                             <Clock className="text-primary-700"></Clock>
                             <span>۱۵ دقیقه</span>
                         </div>
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-2 font-myVazirFaNumRegular">
                             <Calendar className="text-primary-700"></Calendar>
-                            <span>۲۸ سوال</span>
+                            <span>{questionCounts} سوال</span>
                         </div>
                     </div>
 
                     {/* Subtitle */}
                     <div className="bg-primary-50 text-primary-600 px-[10px] py-1 h-8 rounded-2xl inline-block font-myVazirRegular desktop:text-base tablet:text-base text-sm">
-                        سلامت روان
+                        {testType}
                     </div>
                 </div>
             </div>
@@ -59,7 +61,7 @@ function TestCard({ testName, testTitle, description, image }: TestCardProps) {
 
             {/* Start button */}
             <button
-                onClick={() => navigate(`/test/${encodeURIComponent(testName)}`)}
+                onClick={() => navigate(`/tests/${testName}`)}
                 className="w-full bg-primary-400 hover:bg-primary-300 text-white desktop:text-base tablet:text-base text-sm font-myVazirSemibold desktop:h-[44px] tablet:h-[44px] h-[41px] rounded-full transition-colors duration-200"
             >
                 شروع آزمون

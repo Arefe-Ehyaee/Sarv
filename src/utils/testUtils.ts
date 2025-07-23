@@ -1,18 +1,3 @@
-export const tests = [
-  {
-    id: 1,
-    title: "آزمون سلامت",
-    description: "توضیح کوتاه درباره آزمون سلامت",
-    questions: [
-      "سلامت عمومی شما در هفته گذشته چگونه بوده است؟",
-      "آیا در این ماه احساس خستگی بیش از حد داشته‌اید؟",
-    ],
-  },
-  // ... more tests
-];
-
-// src/data/testData.ts
-
 export type TestKey = "bai" | "bdi" | "ghq";
 
 export interface TestInfo {

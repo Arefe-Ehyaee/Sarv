@@ -10,8 +10,7 @@ import { ReactComponent as Heart } from "../assets/icons/heart.svg";
 import { ReactComponent as Bookmark } from "../assets/icons/bookmark.svg";
 import CustomButton from "../components/CustomeButton";
 import testCover from "../assets/images/GHQ.png";
-import { testData, TestKey } from "./tests";
-
+import { testData, TestKey } from "../utils/testUtils";
 
 
 function Test() {

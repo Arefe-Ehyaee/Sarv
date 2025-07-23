@@ -4,7 +4,7 @@ import svgSmall from "../assets/icons/smalltreeBg.svg";
 import right from "../assets/icons/chevron-right.svg";
 import useUserStore from "../store/UserStore";
 import { toast } from "react-toastify";
-import { STATIC_OPTIONS, StaticOption } from "../utils/testUtils";
+import { STATIC_OPTIONS, StaticOption } from "../utils/utils_tests";
 
 
 // Types

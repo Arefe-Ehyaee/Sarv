@@ -9,56 +9,24 @@ import { ReactComponent as Clock } from "../assets/icons/clock.svg";
 import { ReactComponent as Heart } from "../assets/icons/heart.svg";
 import { ReactComponent as Bookmark } from "../assets/icons/bookmark.svg";
 import CustomButton from "../components/CustomeButton";
-import { useEffect, useState } from "react";
-import useUserStore from "../store/UserStore";
-import { toast } from "react-toastify";
+import testCover from "../assets/images/GHQ.png";
+import { testData, TestKey } from "./tests";
 
 
-interface TestInfo {
-  title: string;
-  description: string;
-  image: string;
-  category: string;
-  time: string;
-  questionsCount: number;
-}
-const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 function Test() {
-  const { testName } = useParams();
+  const { testName } = useParams<{ testName: string }>();
   const navigate = useNavigate();
-  const [testInfo, setTestInfo] = useState<TestInfo | null>(null);
-  const token = useUserStore((state) => state.token);
 
-  // useEffect(() => {
-  //   console.log("TOKEN:", useUserStore.getState().token);
-  // }, []);
+  if (!testName || !(testName in testData)) {
+    return (
+      <div className="min-h-screen flex items-center justify-center text-xl">
+        آزمون پیدا نشد
+      </div>
+    );
+  }
 
-
-  useEffect(() => {
-    // console.log("Auth token:", token);
-    if (!token) return;
-
-    fetch(`${BASE_URL}/api/v1/tests/${testName}/questions`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((res) => {
-        if (res.status === 401) {
-          toast.error("باید لاگین کنید");
-          throw new Error("Unauthorized");
-        }
-        if (!res.ok) throw new Error("Failed to fetch test info");
-        return res.json();
-      })
-      .then((data) => setTestInfo(data))
-      .catch((err) => console.error("Fetch error:", err));
-
-  }, [testName, token]);
-
-
-  if (!testInfo) return <div className="text-center p-8">در حال بارگذاری...</div>;
+  const testInfo = testData[testName as TestKey];
 
   return (
     <div className="relative min-h-screen text-Gray-950 bg-Gray-50 overflow-hidden">
@@ -69,14 +37,16 @@ function Test() {
       <div className="relative z-10">
         <Navbar />
         <div className="desktop:px-[96px] tablet:px-6 px-4">
-          <button className="flex flex-row gap-[10px] items-center mt-[50px]" onClick={() => navigate('/articles')}>
+          <button className="flex flex-row gap-[10px] items-center mt-[50px]" onClick={() => navigate('/tests')}>
             <img src={right} alt="" />
             <span className="font-myVazirRegular text-Gray-600 text-[14px] tablet:text-[18px]">بازگشت به تست‌های روانشناسی</span>
           </button>
 
           <div className="my-[30px]">
-            <p className="font-myPeydaSemibold text-[28px] tablet:text-[32px] desktop:text-[36px]">{testInfo.title}</p>
-            <p className="font-myVazirRegular text-[14px] tablet:text-[16px]">{testInfo.description}</p>
+            <p className="font-myPeydaSemibold text-[28px] tablet:text-[32px] desktop:text-[36px]">
+              {testInfo.name}
+            </p>
+            <p className="font-myVazirRegular text-[14px] tablet:text-[16px]">توضیحات</p>
           </div>
 
           <div className="flex flex-row items-center gap-[6px] mb-[10px] font-myVazirFaNumRegular desktop:hidden tablet:hidden">
@@ -88,8 +58,14 @@ function Test() {
 
           <div className="flex flex-row justify-between items-center font-myVazirFaNumRegular mb-[14px]">
             <div className="flex flex-row gap-[10px] tablet:gap-[20px] desktop:gap-[20px]">
-              <p className="flex flex-row gap-[6px]"><Clock className="text-primary-700 w-6 h-6" /> <span className="text-Gray-500">{testInfo.time}</span></p>
-              <p className="flex flex-row gap-[6px]"><Calendar className="text-primary-700 w-6 h-6" /> <span className="text-Gray-500">{testInfo.questionsCount} سوال</span></p>
+              <p className="flex flex-row gap-[6px]">
+                <Clock className="text-primary-700 w-6 h-6" />
+                <span className="text-Gray-500">{testInfo.time}</span>
+              </p>
+              <p className="flex flex-row gap-[6px]">
+                <Calendar className="text-primary-700 w-6 h-6" />
+                <span className="text-Gray-500">{testInfo.questionsCount} سوال</span>
+              </p>
             </div>
 
             <div className="desktop:flex tablet:flex hidden flex-row items-center gap-[6px]">
@@ -100,19 +76,23 @@ function Test() {
             </div>
           </div>
 
-          <img src={testInfo.image} alt="articleImage" className="object-cover rounded-[20px] w-full h-[366px] tablet:h-[565px] desktop:h-[565px] mx-auto" />
+          <img
+            src={testCover}
+            alt="articleImage"
+            className="object-cover rounded-[20px] w-full h-[366px] tablet:h-[565px] desktop:h-[565px] mx-auto"
+          />
 
           <div className="flex flex-row justify-between mt-[10px]">
             <CustomButton
               text={"شروع آزمون"}
               className={"bg-primary-400 text-white w-24 h-10"}
-              handleOnClick={() => navigate(`/test/${testName}`)}
+              handleOnClick={() => navigate(`/test/${testName}/questions`)}
             />
 
             <div className="flex flex-row gap-[20px] items-center mt-[10px] justify-between desktop:justify-end tablet:justify-end">
               <div className="bg-background-BG rounded-[9px] flex flex-row justify-center gap-2 p-[6px]">
                 <Bookmark className="text-primary-700" />
-                <span className="hidden tablet:block desktop:block text-sm text-Gray-500">ذخیره کردن مقاله</span>
+                <span className="hidden tablet:block desktop:block text-sm text-Gray-500">ذخیره کردن تست</span>
               </div>
               <div className="bg-background-BG rounded-[9px] flex flex-row justify-center gap-2 p-[6px]">
                 <Heart className="text-primary-800" />

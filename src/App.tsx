@@ -59,7 +59,7 @@ function App() {
             <Route element={<ProtectedRoute />}>
               <Route path="/profile" element={<ProfilePage />} />
               <Route path="/tests" element={<TestsPage />} />
-              {/* <Route path="/test/:testName" element={<TestLanding />} /> */}
+              <Route path="/test/:testName/questions" element={<TestLanding />} />
               <Route path="/test/:testName/result" element={<TestResult />} />
               <Route path="/tests/:testName" element={<Test />} />
             </Route>

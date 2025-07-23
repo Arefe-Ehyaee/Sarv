@@ -12,7 +12,6 @@ import CustomButton from "../components/CustomeButton";
 import testCover from "../assets/images/GHQ.png";
 import { testData, TestKey } from "../utils/utils_tests";
 
-
 function Test() {
   const { testName } = useParams<{ testName: string }>();
   const navigate = useNavigate();

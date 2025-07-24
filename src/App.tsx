@@ -66,7 +66,7 @@ function App() {
           </Routes>
         </BrowserRouter>
       </div>
-      <ToastContainer />
+      <ToastContainer toastClassName="toast" />
     </QueryClientProvider>
   );
 }

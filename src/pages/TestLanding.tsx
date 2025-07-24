@@ -6,8 +6,6 @@ import useUserStore from "../store/UserStore";
 import { toast } from "react-toastify";
 import { STATIC_OPTIONS, StaticOption } from "../utils/utils_tests";
 
-
-// Types
 interface BDIOption {
   id: number;
   option_text: string;
@@ -19,9 +17,6 @@ interface Question {
   title: string;
   options?: BDIOption[]; // Only for BDI
 }
-
-
-
 
 const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
@@ -35,7 +30,6 @@ function TestLanding() {
   const [answers, setAnswers] = useState<Record<number, number>>({});
   const [loading, setLoading] = useState(true);
 
-  // Fetch test questions
   useEffect(() => {
     if (!token || !testName) return;
 
@@ -65,58 +59,59 @@ function TestLanding() {
   const currentQuestion = questions[currentIndex];
   const isLast = currentIndex === questions.length - 1;
 
-function handleSubmit() {
-  if (!token || !testName) return;
+  function handleSubmit() {
+    if (!token || !testName) return;
 
-  const answersArray = questions.map((q) => {
-    const answer = answers[q.id];
-    if (answer === undefined) {
-      toast.error("لطفاً به تمام سوالات پاسخ دهید.");
-      throw new Error("Incomplete answers");
-    }
-    return answer;
-  });
-
-  fetch(`${BASE_URL}/api/v1/tests/${testName}/submit`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify({ options: answersArray }),
-  })
-    .then((res) => {
-      if (res.status === 403) {
-        toast.error("لطفاً ابتدا لاگین کنید");
-        throw new Error("Forbidden");
+    const answersArray = questions.map((q) => {
+      const answer = answers[q.id];
+      if (answer === undefined) {
+        toast.error("لطفاً به تمام سوالات پاسخ دهید.");
+        throw new Error("Incomplete answers");
       }
-      if (res.status === 400) {
-        toast.error("فرمت پاسخ‌ها نامعتبر است");
-        throw new Error("Bad Request");
-      }
-      if (!res.ok) {
-        toast.error("خطا در ارسال پاسخ‌ها");
-        throw new Error("Failed to submit answers");
-      }
-      return res.json();
-    })
-    .then(() => {
-      toast.success("پاسخ‌ها با موفقیت ثبت شد!");
-      navigate("/tests");
-    })
-    .catch((err) => {
-      console.error("Submission error:", err);
+      return answer;
     });
-}
 
+    fetch(`${BASE_URL}/api/v1/tests/${testName}/submit`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ options: answersArray }),
+    })
+      .then((res) => {
+        if (res.status === 403) {
+          toast.error("لطفاً ابتدا لاگین کنید");
+          throw new Error("Forbidden");
+        }
+        if (res.status === 400) {
+          toast.error("فرمت پاسخ‌ها نامعتبر است");
+          throw new Error("Bad Request");
+        }
+        if (!res.ok) {
+          toast.error("خطا در ارسال پاسخ‌ها");
+          throw new Error("Failed to submit answers");
+        }
+        return res.json();
+      })
+      .then(() => {
+        toast.success("پاسخ‌ها با موفقیت ثبت شد!");
+        navigate("/tests");
+      })
+      .catch((err) => {
+        console.error("Submission error:", err);
+      });
+  }
 
   function getOptions(): StaticOption[] {
     if (testName === "bdi") {
-      return currentQuestion?.options?.map((opt) => ({
-        id: opt.id,
-        text: opt.option_text,
-        value: opt.option_value,
-      })) || [];
+      return (
+        currentQuestion?.options?.map((opt) => ({
+          id: opt.id,
+          text: opt.option_text,
+          value: opt.option_value,
+        })) || []
+      );
     } else {
       return STATIC_OPTIONS[testName!] || [];
     }
@@ -128,7 +123,7 @@ function handleSubmit() {
   if (!questions.length) return <div className="text-center p-8">سوالی یافت نشد.</div>;
 
   return (
-    <div className="relative min-h-screen bg-Gray-100 text-Gray-950 px-4 desktop:px-[96px] pb-16">
+    <div className="relative min-h-screen flex flex-col items-start w-full justify-center bg-Gray-100 text-Gray-950 px-4 desktop:px-[96px]">
       <img
         src={svgSmall}
         alt="Background Left"
@@ -136,61 +131,78 @@ function handleSubmit() {
       />
 
       <button
-        className="flex flex-row gap-[10px] items-center mb-[30px] pt-10"
+        className="flex flex-row gap-[10px] items-center mb-[30px]"
         onClick={() => navigate("/tests")}
       >
         <img src={right} alt="exit" />
-        <span className="font-myVazirRegular text-Gray-600 desktop:text-[18px]">
+        <span className="font-myVazirRegular text-Gray-600  desktop:text-lg tablet:text-lg mobile:text-base">
           خروج از آزمون
         </span>
       </button>
 
+      <h2 className="font-myVazirFaNumRegular bg-primary-200 desktop:text-lg tablet:text-lg mobile:text-base mb-[30px] border rounded-full px-[18px] py-[6px]">
+        سوال {currentIndex + 1} از {questions.length}
+      </h2>
+
       {/* ✅ Intro Page */}
       {currentIndex === -1 ? (
-        <div className="bg-white p-6 rounded-[20px] shadow-md max-w-2xl mx-auto text-center">
-          <h1 className="text-2xl font-bold mb-4">آزمون {testName?.toUpperCase()}</h1>
-          <p className="text-gray-700 mb-4">تعداد سوالات: {questions.length}</p>
-          <button
-            className="bg-primary-400 text-white px-6 py-2 rounded text-lg"
-            onClick={() => setCurrentIndex(0)}
-          >
-            شروع آزمون
-          </button>
+        <div className="w-full">
+          <div className="bg-white px-[22px] py-7 rounded-[20px] w-full mx-auto z-10 relative">
+            <h1 className="text-4xl font-myPeydaSemibold mb-4">
+              آزمون {testName?.toUpperCase()}
+            </h1>
+            <p className="text-gray-700 mb-4">تعداد سوالات: {questions.length}</p>
+          </div>
+          <div className="flex flex-row justify-end items-center mt-[30px] z-10 relative">
+            <button
+              onClick={() => setCurrentIndex(0)}
+              className="flex flex-row gap-[10px] items-center mb-[30px] disabled:opacity-50"
+            >
+              ادامه
+              <img src={right} alt="next" className="text-primary-600 rotate-180 border border-primary-300 rounded-[4px] bg-primary-200 p-[6px]" />
+            </button>
+          </div>
+
+
         </div>
       ) : (
         // ✅ Question Page
-        <div className="bg-white p-6 rounded-[20px] shadow-md max-w-2xl mx-auto">
-          <h2 className="font-bold text-xl mb-4">
-            سوال {currentIndex + 1} از {questions.length}
-          </h2>
-          <p className="mb-4">{currentQuestion.title}</p>
+        <div className="w-full">
+          <div className="bg-white px-[22px] py-7 rounded-[20px] mx-auto z-10 relative">
+            <p className="mb-4 font-myVazirMedium desktop:text-[32px] tablet:text-[32px] mobile:text-[22px]">
+              {currentQuestion.title}
+            </p>
 
-          <div className="flex flex-col gap-3">
-            {optionsToRender.map((opt) => (
-              <label key={opt.id} className="flex items-center gap-2 cursor-pointer">
-                <input
-                  type="radio"
-                  name={`q-${currentQuestion.id}`}
-                  value={opt.value}
-                  checked={answers[currentQuestion.id] === opt.value}
-                  onChange={() =>
-                    setAnswers({ ...answers, [currentQuestion.id]: opt.value })
-                  }
-                />
-                {opt.text}
-              </label>
-            ))}
+            <div className="flex flex-col gap-3 font-myVazirRegular desktop:text-lg">
+              {optionsToRender.map((opt) => (
+                <label key={opt.id} className="flex items-center gap-2 cursor-pointer">
+                  <input
+                    type="radio"
+                    name={`q-${currentQuestion.id}`}
+                    value={opt.value}
+                    checked={answers[currentQuestion.id] === opt.value}
+                    onChange={() =>
+                      setAnswers({ ...answers, [currentQuestion.id]: opt.value })
+                    }
+                  />
+                  {opt.text}
+                </label>
+              ))}
+            </div>
           </div>
 
-          <div className="flex justify-between items-center mt-8">
-            {currentIndex > 0 && (
-              <button
-                onClick={() => setCurrentIndex(currentIndex - 1)}
-                className="text-sm text-gray-500"
-              >
+          <div className="flex justify-between items-center mt-[30px] z-10 relative">
+            <button
+              onClick={() => setCurrentIndex(currentIndex - 1)}
+              disabled={currentIndex === 0}
+              className="flex flex-row gap-[6px] items-center mb-[30px] disabled:opacity-50"
+            >
+              <img src={right} alt="prev" className="text-Gray-600 border border-Gray-300 rounded-[4px] bg-Gray-200 p-[6px]"/>
+              <span className="font-myVazirRegular text-Gray-600 desktop:text-[18px] tablet:text-[18px] mobile:text-base">
                 سوال قبلی
-              </button>
-            )}
+              </span>
+            </button>
+
             <button
               disabled={answers[currentQuestion.id] === undefined}
               onClick={() => {
@@ -200,9 +212,10 @@ function handleSubmit() {
                   setCurrentIndex(currentIndex + 1);
                 }
               }}
-              className="bg-primary-400 text-white px-4 py-2 rounded disabled:opacity-50"
+              className="flex flex-row gap-[10px] items-center mb-[30px] disabled:opacity-50 z-10 relative font-myVazirRegular desktop:text-lg"
             >
               {isLast ? "ارسال پاسخ‌ها" : "سوال بعدی"}
+              <img src={right} alt="next" className="text-primary-600 rotate-180 border border-primary-300 rounded-[4px] bg-primary-200 p-[6px]" />
             </button>
           </div>
         </div>

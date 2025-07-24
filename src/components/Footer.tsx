@@ -9,9 +9,13 @@ import facebook from "../assets/icons/facebook.svg";
 import linkedin from "../assets/icons/linkedin.svg";
 import instagram from "../assets/icons/instagram.svg";
 import twitter from "../assets/icons/twitter.svg";
+import { useNavigate } from 'react-router-dom';
 
 
 function Footer() {
+
+    const navigate = useNavigate();
+
     return (
         <footer className="w-full bg-success-50 text-primary-700">
             {/* Mobile & Tablet Footer (Merged) */}
@@ -39,31 +43,37 @@ function Footer() {
                             </div>
                         </div>
 
-<div className='flex flex-row gap-3'>
-  <div className='bg-primary-300 rounded-full p-2 w-10 h-10 flex items-center justify-center'>
-    <img src={facebook} alt="facebook" className='w-5 h-5 object-contain' />
-  </div>
-  <div className='bg-primary-300 rounded-full p-2 w-10 h-10 flex items-center justify-center'>
-    <img src={instagram} alt="instagram" className='w-5 h-5 object-contain' />
-  </div>
-  <div className='bg-primary-300 rounded-full p-2 w-10 h-10 flex items-center justify-center'>
-    <img src={twitter} alt="twitter" className='w-5 h-5 object-contain' />
-  </div>
-  <div className='bg-primary-300 rounded-full p-2 w-10 h-10 flex items-center justify-center'>
-    <img src={linkedin} alt="linkedin" className='w-5 h-5 object-contain' />
-  </div>
-</div>
+                        <div className='flex flex-row gap-3'>
+                            <div className='bg-primary-300 rounded-full p-2 w-10 h-10 flex items-center justify-center'>
+                                <img src={facebook} alt="facebook" className='w-5 h-5 object-contain' />
+                            </div>
+                            <div className='bg-primary-300 rounded-full p-2 w-10 h-10 flex items-center justify-center'>
+                                <img src={instagram} alt="instagram" className='w-5 h-5 object-contain' />
+                            </div>
+                            <div className='bg-primary-300 rounded-full p-2 w-10 h-10 flex items-center justify-center'>
+                                <img src={twitter} alt="twitter" className='w-5 h-5 object-contain' />
+                            </div>
+                            <div className='bg-primary-300 rounded-full p-2 w-10 h-10 flex items-center justify-center'>
+                                <img src={linkedin} alt="linkedin" className='w-5 h-5 object-contain' />
+                            </div>
+                        </div>
 
                     </div>
 
                     {/* Right section: Grid of links */}
                     <div className="w-full tablet:w-1/2 grid grid-cols-2 gap-[30px] text-right  tablet:mt-[83px] ">
                         <div>
-                            <h3 className="text-base tablet:text-lg font-myPeydaMedium mb-3">مقالات و آزمون ها</h3>
+                            <h3 className="text-base tablet:text-lg font-myPeydaMedium mb-3">آزمون ها</h3>
                             <ul className="space-y-2 font-myVazirRegular text-base">
-                                <li>مقاله اول</li>
-                                <li>مقاله دوم</li>
-                                <li>تست MBTI</li>
+                                    <li>
+                                        <button onClick={() => navigate("/tests/bdi")}>آزمون BDI</button>
+                                    </li>
+                                    <li>
+                                        <button onClick={() => navigate("/tests/bai")}>آزمون BAI</button>
+                                    </li>
+                                    <li>
+                                        <button onClick={() => navigate("/tests/ghq")}>آزمون GHQ</button>
+                                    </li>
                             </ul>
                         </div>
                         <div>
@@ -106,20 +116,20 @@ function Footer() {
                                 <span className='font-myVazirRegular text-sm'>آدرس: تهران، خیابان تهران، کوچه تهران، پلاک اول </span>
                             </div>
 
-<div className='flex flex-row gap-3'>
-  <div className='bg-primary-300 rounded-full p-2 w-10 h-10 flex items-center justify-center'>
-    <img src={facebook} alt="facebook" className='w-5 h-5 object-contain' />
-  </div>
-  <div className='bg-primary-300 rounded-full p-2 w-10 h-10 flex items-center justify-center'>
-    <img src={instagram} alt="instagram" className='w-5 h-5 object-contain' />
-  </div>
-  <div className='bg-primary-300 rounded-full p-2 w-10 h-10 flex items-center justify-center'>
-    <img src={twitter} alt="twitter" className='w-5 h-5 object-contain' />
-  </div>
-  <div className='bg-primary-300 rounded-full p-2 w-10 h-10 flex items-center justify-center'>
-    <img src={linkedin} alt="linkedin" className='w-5 h-5 object-contain' />
-  </div>
-</div>
+                            <div className='flex flex-row gap-3'>
+                                <div className='bg-primary-300 rounded-full p-2 w-10 h-10 flex items-center justify-center'>
+                                    <img src={facebook} alt="facebook" className='w-5 h-5 object-contain' />
+                                </div>
+                                <div className='bg-primary-300 rounded-full p-2 w-10 h-10 flex items-center justify-center'>
+                                    <img src={instagram} alt="instagram" className='w-5 h-5 object-contain' />
+                                </div>
+                                <div className='bg-primary-300 rounded-full p-2 w-10 h-10 flex items-center justify-center'>
+                                    <img src={twitter} alt="twitter" className='w-5 h-5 object-contain' />
+                                </div>
+                                <div className='bg-primary-300 rounded-full p-2 w-10 h-10 flex items-center justify-center'>
+                                    <img src={linkedin} alt="linkedin" className='w-5 h-5 object-contain' />
+                                </div>
+                            </div>
 
 
                         </div>
@@ -127,11 +137,17 @@ function Footer() {
                         <div className="flex flex-row gap-[30px] pt-[103.5px]">
 
                             <div className=''>
-                                <h3 className="text-[20px] font-myPeydaMedium mb-4">مقالات و آزمون ها</h3>
+                                <h3 className="text-[20px] font-myPeydaMedium mb-4"> آزمون ها</h3>
                                 <ul className="space-y-3  font-myVazirRegular text-lg">
-                                    <li>آزمون BDI</li>
-                                    <li>آزمون BAI</li>
-                                    <li>مقاله اول</li>
+                                    <li>
+                                        <button onClick={() => navigate("/tests/bdi")}>آزمون BDI</button>
+                                    </li>
+                                    <li>
+                                        <button onClick={() => navigate("/tests/bai")}>آزمون BAI</button>
+                                    </li>
+                                    <li>
+                                        <button onClick={() => navigate("/tests/ghq")}>آزمون GHQ</button>
+                                    </li>
                                 </ul>
                             </div>
 

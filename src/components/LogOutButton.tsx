@@ -20,9 +20,9 @@ export default function LogoutButton({ collapsed = false }: Props) {
     <CustomButton
       text={collapsed ? "" : "خروج"}
       handleOnClick={handleLogout}
-      className={`bg-red-500 h-[44px] ${
+      className={`border rounded-full border-red-700 h-[44px] ${
         collapsed ? "w-[44px]" : "w-[94px]"
-      } text-background-BG text-base font-myVazirSemibold flex justify-center items-center`}
+      } text-red-700 text-base font-myVazirSemibold flex justify-center items-center`}
     />
   );
 }

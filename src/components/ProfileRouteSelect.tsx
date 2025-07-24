@@ -4,10 +4,13 @@ import { ReactComponent as Clipboard } from "../assets/icons/clipboard.svg";
 import { ReactComponent as Calendar } from "../assets/icons/calendar.svg";
 import { ReactComponent as Message } from "../assets/icons/message-circle.svg";
 import { ReactComponent as Home } from "../assets/icons/home.svg";
+import { ReactComponent as Article } from "../assets/icons/book-open.svg";
 import { NavLink, useNavigate } from "react-router-dom";
+import { ReactComponent as Bot } from "../assets/icons/temp_preferences_custom.svg";
 import sarv from "../assets/icons/tree.svg";
 import { ReactComponent as Right } from "../assets/icons/chevron-right.svg";
 import { ReactComponent as Left } from "../assets/icons/chevron-left.svg";
+
 
 type ProfileSideNavbarProps = {
   collapsed: boolean;
@@ -32,18 +35,22 @@ export default function ProfileRouteSelect({ collapsed, setCollapsed, closeSideb
             </button>
 
             <button onClick={closeSidebar} className=" text-primary-600 block desktop:hidden">
-              {collapsed ? <Right className="w-6 h-6"/> : ""}
+              {collapsed ? <Right className="w-6 h-6" /> : ""}
             </button>
           </span>
         </div>
       </div>
 
-      {/* Main sidebar content */}
       <div className="flex-1 pt-4 px-[30px] text-lg">
         <ul className="space-y-[20px] text-Gray-900">
           {[
-            { to: "/dashboard", icon: <Home />, label: "صفحه اصلی" },
-            { to: "/tests", icon: <Clipboard />, label: "تست ها" },
+            { to: "/", icon: <Home />, label: "صفحه اصلی" },
+            { to: "/sarvBot", icon: <Bot />, label: "سروبات" },
+            { to: "/profile", icon: <Clipboard />, label: "آزمون‌های انجام شده" },
+            // { to: "/tests", icon: <Article />, label: "مقالات من" },
+            // { to: "/tests", icon: <Calendar />, label: "جلسات من" },
+            // { to: "/tests", icon: <Clipboard />, label: "اطلاعات حساب کاربری" },
+            // { to: "/tests", icon: <Clipboard />, label: "تنظیمات" },
           ].map((item, idx) => (
             <li key={idx}>
               <NavLink

@@ -87,12 +87,12 @@ function Test() {
               handleOnClick={() => navigate(`/test/${testName}/questions`)}
             />
 
-            <div className="flex flex-row gap-[20px] items-center mt-[10px] justify-between desktop:justify-end tablet:justify-end">
-              <div className="bg-background-BG rounded-[9px] flex flex-row justify-center gap-2 p-[6px]">
+            <div className="flex flex-row gap-[20px] items-center mt-[10px] justify-between font-myVazirRegular desktop:justify-end tablet:justify-end">
+              <div className="bg-background-BG rounded-[9px] flex flex-row items-center justify-center gap-2 p-[6px]">
                 <Bookmark className="text-primary-700" />
                 <span className="hidden tablet:block desktop:block text-sm text-Gray-500">ذخیره کردن تست</span>
               </div>
-              <div className="bg-background-BG rounded-[9px] flex flex-row justify-center gap-2 p-[6px]">
+              <div className="bg-background-BG rounded-[9px] flex flex-row items-center justify-center gap-2 p-[6px]">
                 <Heart className="text-primary-800" />
                 <span className="hidden tablet:block desktop:block text-sm text-Gray-500">افزودن به علاقمندی‌ها</span>
               </div>

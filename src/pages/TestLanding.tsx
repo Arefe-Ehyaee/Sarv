@@ -4,7 +4,7 @@ import svgSmall from "../assets/icons/smalltreeBg.svg";
 import right from "../assets/icons/chevron-right.svg";
 import useUserStore from "../store/UserStore";
 import { toast } from "react-toastify";
-import { STATIC_OPTIONS, StaticOption } from "../utils/utils_tests";
+import { BDI_TITLES, STATIC_OPTIONS, StaticOption } from "../utils/utils_tests";
 
 interface BDIOption {
   id: number;
@@ -20,11 +20,24 @@ interface Question {
 
 const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
+function getTestDescription(name: string | undefined): string {
+  switch (name?.toLowerCase()) {
+    case "bai":
+      return "هر عبارت را به دقت بخوانید و مشخص کنید در خلال هفته گذشته تا امروز چقدر از آن علامت در رنج بوده‌اید.";
+    case "bdi":
+      return "در این پرسشنامه هر سوال بیان‌کننده حالتی در فرد است. گزینه‌ای را انتخاب کنید که بهتر از همه احساس کنونی شما را بیان می‌کند. یعنی آنچه درست در زمان اجرای این آزمون احساس می‌کنید.";
+    case "ghq":
+      return "به سوالات زیر پاسخ دهید.";
+    default:
+      return "";
+  }
+}
+
+
 function TestLanding() {
   const navigate = useNavigate();
   const { testName } = useParams<{ testName: string }>();
   const token = useUserStore((state) => state.token);
-
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentIndex, setCurrentIndex] = useState<number>(-1); // -1 shows intro page
   const [answers, setAnswers] = useState<Record<number, number>>({});
@@ -32,38 +45,43 @@ function TestLanding() {
   const [result, setResult] = useState<any>(null);
   const [submitted, setSubmitted] = useState(false);
 
-  useEffect(() => {
-    if (!token || !testName) return;
+useEffect(() => {
+  if (!token || !testName) return;
 
-    fetch(`${BASE_URL}/api/v1/tests/${testName}/questions`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((res) => {
-        if (res.status === 401) {
-          toast.error("باید لاگین کنید", {
-            className: 'toast',
-            progressClassName: 'fancy-progress-bar',
-          });
-          throw new Error("Unauthorized");
-        }
-        if (!res.ok) throw new Error("Failed to fetch test questions");
-        return res.json();
-      })
-      .then((data: Question[]) => {
-        toast.success("پاسخ‌ها با موفقیت ثبت شد!", {
+  fetch(`${BASE_URL}/api/v1/tests/${testName}/questions`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((res) => {
+      if (res.status === 401) {
+        toast.error("باید لاگین کنید", {
           className: 'toast',
           progressClassName: 'fancy-progress-bar',
         });
-        setResult(data); // assuming backend returns result in response
-        setSubmitted(true); // show result screen
-      })
-      .catch((err) => {
-        console.error("Fetch error:", err);
-        setLoading(false);
-      });
-  }, [testName, token]);
+        throw new Error("Unauthorized");
+      }
+      if (!res.ok) throw new Error("Failed to fetch test questions");
+      return res.json();
+    })
+    .then((data: Question[]) => {
+      if (testName.toLowerCase() === "bdi") {
+        const updated = data.map((q) => ({
+          ...q,
+          title: BDI_TITLES[q.id] || q.title,
+        }));
+        setQuestions(updated);
+      } else {
+        setQuestions(data);
+      }
+      setLoading(false);
+    })
+    .catch((err) => {
+      console.error("Fetch error:", err);
+      setLoading(false);
+    });
+}, [testName, token]);
+
 
   const currentQuestion = questions[currentIndex];
   const isLast = currentIndex === questions.length - 1;
@@ -211,7 +229,10 @@ function TestLanding() {
             <h1 className="text-4xl font-myPeydaSemibold mb-4">
               آزمون {testName?.toUpperCase()}
             </h1>
-            <p className="text-gray-700 mb-4">تعداد سوالات: {questions.length}</p>
+            <p className="text-gray-700 mb-4 font-myVazirFaNumMedium">تعداد سوالات: {questions.length}</p>
+            <p className="text-gray-600 mb-4 font-myVazirRegular desktop:text-lg tablet:text-lg mobile:text-base">
+              {getTestDescription(testName)}
+            </p>
           </div>
           <div className="flex flex-row justify-end items-center mt-[30px] z-10 relative">
             <button

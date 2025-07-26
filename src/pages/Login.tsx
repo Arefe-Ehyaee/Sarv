@@ -3,6 +3,7 @@ import backgroundImage from '../assets/icons/banersarv2-editebirds.svg';
 import sarv from "../assets/icons/Sarv.svg";
 import { useNavigate } from 'react-router-dom';
 import useUserStore from '../store/UserStore';
+import { toast } from 'react-toastify';
 
 const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
@@ -25,7 +26,7 @@ export default function Login() {
         headers: {
           'Content-Type': 'application/json',
         },
-        
+
         body: JSON.stringify({ email, password }),
       });
 
@@ -33,13 +34,20 @@ export default function Login() {
 
       if (response.status === 200) {
         setUser(result.data, result.token);
+        toast.success("با موفقیت وارد شدید.", {
+          className: 'toast',
+          progressClassName: 'fancy-progress-bar',
+        })
         navigate('/profile');
         console.log("Auth token:", token);
 
       } else if (response.status === 401) {
         setMessage(result.message || 'ایمیل یا رمز اشتباه است');
       } else {
-        setMessage('خطا در ورود، لطفاً دوباره تلاش کنید');
+        toast.error('خطا در ورود، لطفاً دوباره تلاش کنید', {
+          className: 'toast',
+          progressClassName: 'fancy-progress-bar',
+        });
       }
     } catch (error) {
       console.error('Login error:', error);

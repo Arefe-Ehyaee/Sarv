@@ -37,7 +37,7 @@ function App() {
   }, []);
 
   if (!hydrated) {
-    return <div className="text-center p-10">در حال آماده‌سازی برنامه...</div>;
+    return <div className="text-center p-10 font-myVazirSemibold">در حال آماده‌سازی برنامه...</div>;
   }
 
   return (
@@ -66,7 +66,7 @@ function App() {
           </Routes>
         </BrowserRouter>
       </div>
-      <ToastContainer toastClassName="toast" />
+      <ToastContainer/>
     </QueryClientProvider>
   );
 }

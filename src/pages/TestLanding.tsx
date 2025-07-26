@@ -29,6 +29,8 @@ function TestLanding() {
   const [currentIndex, setCurrentIndex] = useState<number>(-1); // -1 shows intro page
   const [answers, setAnswers] = useState<Record<number, number>>({});
   const [loading, setLoading] = useState(true);
+  const [result, setResult] = useState<any>(null);
+  const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
     if (!token || !testName) return;
@@ -40,15 +42,22 @@ function TestLanding() {
     })
       .then((res) => {
         if (res.status === 401) {
-          toast.error("باید لاگین کنید");
+          toast.error("باید لاگین کنید", {
+            className: 'toast',
+            progressClassName: 'fancy-progress-bar',
+          });
           throw new Error("Unauthorized");
         }
         if (!res.ok) throw new Error("Failed to fetch test questions");
         return res.json();
       })
       .then((data: Question[]) => {
-        setQuestions(data);
-        setLoading(false);
+        toast.success("پاسخ‌ها با موفقیت ثبت شد!", {
+          className: 'toast',
+          progressClassName: 'fancy-progress-bar',
+        });
+        setResult(data); // assuming backend returns result in response
+        setSubmitted(true); // show result screen
       })
       .catch((err) => {
         console.error("Fetch error:", err);
@@ -65,7 +74,10 @@ function TestLanding() {
     const answersArray = questions.map((q) => {
       const answer = answers[q.id];
       if (answer === undefined) {
-        toast.error("لطفاً به تمام سوالات پاسخ دهید.");
+        toast.error("لطفاً به تمام سوالات پاسخ دهید.", {
+          className: 'toast',
+          progressClassName: 'fancy-progress-bar',
+        });
         throw new Error("Incomplete answers");
       }
       return answer;
@@ -81,21 +93,33 @@ function TestLanding() {
     })
       .then((res) => {
         if (res.status === 403) {
-          toast.error("لطفاً ابتدا لاگین کنید");
+          toast.error("لطفاً ابتدا لاگین کنید", {
+            className: 'toast',
+            progressClassName: 'fancy-progress-bar',
+          });
           throw new Error("Forbidden");
         }
         if (res.status === 400) {
-          toast.error("فرمت پاسخ‌ها نامعتبر است");
+          toast.error("فرمت پاسخ‌ها نامعتبر است", {
+            className: 'toast',
+            progressClassName: 'fancy-progress-bar',
+          });
           throw new Error("Bad Request");
         }
         if (!res.ok) {
-          toast.error("خطا در ارسال پاسخ‌ها");
+          toast.error("خطا در ارسال پاسخ‌ها", {
+            className: 'toast',
+            progressClassName: 'fancy-progress-bar',
+          });
           throw new Error("Failed to submit answers");
         }
         return res.json();
       })
       .then(() => {
-        toast.success("پاسخ‌ها با موفقیت ثبت شد!");
+        toast.success("پاسخ‌ها با موفقیت ثبت شد!", {
+          className: 'toast',
+          progressClassName: 'fancy-progress-bar',
+        });
         navigate("/tests");
       })
       .catch((err) => {
@@ -121,6 +145,42 @@ function TestLanding() {
 
   if (loading) return <div className="text-center p-8">در حال بارگذاری...</div>;
   if (!questions.length) return <div className="text-center p-8">سوالی یافت نشد.</div>;
+
+  if (submitted && result) {
+    return (
+      <div className="relative min-h-screen flex flex-col items-start w-full justify-center bg-Gray-100 text-Gray-950 px-4 desktop:px-[96px]">
+        <img
+          src={svgSmall}
+          alt="Background Left"
+          className="absolute left-[4%] bottom-0 pointer-events-none h-[876px] z-0 hidden desktop:block"
+        />
+
+        <h2 className="font-myVazirFaNumRegular bg-primary-200 desktop:text-lg tablet:text-lg mobile:text-base mb-[30px] border rounded-full px-[18px] py-[6px]">
+          نتیجه آزمون شما آماده است
+        </h2>
+
+        <div className="bg-white px-[22px] py-7 rounded-[20px] mx-auto z-10 relative w-full">
+          <h1 className="text-3xl font-myPeydaSemibold mb-4">نتیجه</h1>
+          <p className="text-gray-700 mb-4">
+            {/* You can format the result here */}
+            امتیاز شما: <strong>{result.score}</strong>
+          </p>
+          {/* Add more result details if needed */}
+        </div>
+
+        <div className="flex flex-row justify-end items-center mt-[30px] z-10 relative">
+          <button
+            onClick={() => navigate("/tests")}
+            className="flex flex-row gap-[10px] items-center mb-[30px]"
+          >
+            بازگشت به لیست آزمون‌ها
+            <img src={right} alt="back" className="text-primary-600 rotate-180 border border-primary-300 rounded-[4px] bg-primary-200 p-[6px]" />
+          </button>
+        </div>
+      </div>
+    );
+  }
+
 
   return (
     <div className="relative min-h-screen flex flex-col items-start w-full justify-center bg-Gray-100 text-Gray-950 px-4 desktop:px-[96px]">
@@ -197,7 +257,7 @@ function TestLanding() {
               disabled={currentIndex === 0}
               className="flex flex-row gap-[6px] items-center mb-[30px] disabled:opacity-50"
             >
-              <img src={right} alt="prev" className="text-Gray-600 border border-Gray-300 rounded-[4px] bg-Gray-200 p-[6px]"/>
+              <img src={right} alt="prev" className="text-Gray-600 border border-Gray-300 rounded-[4px] bg-Gray-200 p-[6px]" />
               <span className="font-myVazirRegular text-Gray-600 desktop:text-[18px] tablet:text-[18px] mobile:text-base">
                 سوال قبلی
               </span>

@@ -89,8 +89,6 @@
   font-style: normal;
 }
 
-
-
 .toast {
   font-family: "myvazir-semibold";
 }
@@ -123,6 +121,3 @@ input::placeholder {
   display: none;  /* Chrome, Safari and Opera */
 }
 
-.toast {
-  font-family: "font-myVazirSemibold";
-}

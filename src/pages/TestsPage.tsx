@@ -10,6 +10,8 @@ import { ReactComponent as Arrow } from "../assets/icons/arrow-left-green.svg";
 import CustomButton from '../components/CustomeButton';
 import patternleft from "../assets/icons/treePattern.svg";
 import patternright from "../assets/icons/treePatternRight.svg";
+import right from "../assets/icons/chevron-right.svg";
+
 function TestsPage() {
 
     const navigate = useNavigate();
@@ -69,14 +71,19 @@ function TestsPage() {
 
 
                     <div className="absolute desktop:top-[134px] tablet:top-[131hpx] top-[136px] w-full flex justify-center gap-10 space-x-4 text-Gray-950 font-myVazirSemibold text-sm">
-                        <CustomButton
-                            text={"ورود به سرو"}
-                            className={"bg-primary-400 text-white w-24 h-10"}
+                                                <CustomButton
+                            text={"شروع تست رایگان"}
+                            handleOnClick={()=> ("/tests")}
+                            className={"w-[164px] h-[41px] text-primary-700 border-[0.6px] bg-white  hover:bg-primary-50 focus:bg-primary-500 focus:text-background-BG"}
                         />
-                        <CustomButton
-                            text={"تست روانشناسی رایگان"}
-                            className={"w-[164px] h-[41px] bg-white border-2 border-primary-600"}
-                        />
+                        <button
+                            onClick={() => navigate("/login")}
+                            className="  text-primary-300 text-sm px-4 py-2 rounded-xl font-myVazirRegular"
+                        >
+                            <span className="font-myVazirRegular text-primary-300 desktop:text-[18px] tablet:text-[18px] mobile:text-base">
+                                ورود به حساب کاربری
+                            </span>
+                        </button>
                     </div>
                 </div>
 

@@ -83,7 +83,7 @@ function Test() {
           <div className="flex flex-row justify-between mt-[10px]">
             <CustomButton
               text={"شروع آزمون"}
-              className={"bg-primary-400 text-white w-24 h-10"}
+              className={" bg-primary-700 hover:bg-primary-500 focus:bg-primary-900 text-white w-24 h-10"}
               handleOnClick={() => navigate(`/test/${testName}/questions`)}
             />
 

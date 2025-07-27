@@ -62,7 +62,7 @@ function TestCard({ testName, testTitle, description, image, testType, questionC
             {/* Start button */}
             <button
                 onClick={() => navigate(`/tests/${testName}`)}
-                className="w-full bg-primary-400 hover:bg-primary-300 text-white desktop:text-base tablet:text-base text-sm font-myVazirSemibold desktop:h-[44px] tablet:h-[44px] h-[41px] rounded-full transition-colors duration-200"
+                className="w-full bg-primary-700 hover:bg-primary-500 focus:bg-primary-900 text-white desktop:text-base tablet:text-base text-sm font-myVazirSemibold desktop:h-[44px] tablet:h-[44px] h-[41px] rounded-full transition-colors duration-200"
             >
                 شروع آزمون
             </button>

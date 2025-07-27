@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SignUpSchema, SignUpData } from "../schemas/SignUpSchema";
 import { toast } from 'react-toastify';
+import right from "../assets/icons/chevron-right.svg";
 
 const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
@@ -64,6 +65,15 @@ export default function SignUp() {
 
   return (
     <div className="min-h-screen flex items-center desktop:justify-start justify-center desktop:pr-40 p-4 relative overflow-hidden">
+      <button
+        onClick={() => navigate(-1)}
+        className="absolute flex flex-row gap-2 top-4 right-5 z-20 text-gray-800 text-sm px-4 py-2 rounded-xl font-myVazirRegular transition duration-200"
+      >
+        <img src={right} alt="prev" />
+        <span className="font-myVazirRegular text-Gray-600 desktop:text-[18px] tablet:text-[18px] mobile:text-base">
+          بازگشت به صفحه قبلی
+        </span>
+      </button>
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${backgroundImage})` }}
@@ -71,7 +81,7 @@ export default function SignUp() {
         <div className="absolute inset-0 bg-black/10"></div>
       </div>
 
-      <div className="relative z-10 bg-white rounded-3xl shadow-2xl px-5 py-[30px] desktop:w-[430px] tablet:w-[435px] w-[381px]">
+      <div className="relative z-10 bg-white rounded-3xl shadow-2xl px-5 py-[10px] desktop:w-[430px] tablet:w-[435px] w-[381px]">
         <div className="text-center mb-5">
           <div className="inline-flex items-center mb-4">
             <img src={sarv} alt="sarv" />
@@ -143,7 +153,7 @@ export default function SignUp() {
 
           <button
             type="submit"
-            className="w-full h-[42px] flex items-center justify-center font-myVazirRegular text-base text-primary-50 bg-primary-700 hover:bg-primary-500 rounded-xl transition-colors duration-200"
+            className="w-full h-[42px] flex items-center justify-center font-myVazirRegular text-base text-primary-50 bg-primary-700  hover:bg-primary-500 focus:bg-primary-900 rounded-xl transition-colors duration-200"
           >
             ادامه
           </button>

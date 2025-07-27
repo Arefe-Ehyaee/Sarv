@@ -16,7 +16,7 @@ function CTA() {
       <CustomButton
         handleOnClick={() => navigate('/login')}
         text={'ورود یا ثبت نام'}
-        className={'text-primary-50 bg-primary-700 h-[44px] px-[18px] py-[10px]'}
+        className={'text-primary-50 bg-primary-700 hover:bg-primary-500 focus:bg-primary-900 h-[44px] px-[18px] py-[10px]'}
       />
 
                 <CustomButton

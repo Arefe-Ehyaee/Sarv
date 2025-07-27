@@ -4,6 +4,7 @@ import sarv from "../assets/icons/Sarv.svg";
 import { useNavigate } from 'react-router-dom';
 import useUserStore from '../store/UserStore';
 import { toast } from 'react-toastify';
+import right from "../assets/icons/chevron-right.svg";
 
 const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
@@ -57,6 +58,15 @@ export default function Login() {
 
   return (
     <div className="min-h-screen flex relative items-center desktop:justify-start justify-center desktop:pr-40 p-4 overflow-hidden">
+      <button
+        onClick={() => navigate(-1)}
+        className="absolute flex flex-row gap-2 top-4 right-5 z-20 text-gray-800 text-sm px-4 py-2 rounded-xl font-myVazirRegular transition duration-200"
+      >
+        <img src={right} alt="prev" />
+        <span className="font-myVazirRegular text-Gray-600 desktop:text-[18px] tablet:text-[18px] mobile:text-base">
+          بازگشت به صفحه قبلی
+        </span>
+      </button>
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${backgroundImage})` }}
@@ -113,7 +123,7 @@ export default function Login() {
 
         <button
           onClick={handleContinue}
-          className="w-full h-[42px] flex items-center justify-center font-myVazirRegular text-base text-primary-50 bg-primary-700 hover:bg-primary-500 rounded-xl transition-colors duration-200"
+          className="w-full h-[42px] flex items-center justify-center font-myVazirRegular text-base text-primary-50 bg-primary-700  hover:bg-primary-500 focus:bg-primary-900 rounded-xl transition-colors duration-200"
         >
           ورود
         </button>

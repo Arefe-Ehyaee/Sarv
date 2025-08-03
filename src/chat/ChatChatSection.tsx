@@ -89,10 +89,10 @@ const ChatChatSection: React.FC<ChatChatSectionProps> = ({
                     <img src={tree} alt="sarv" className="w-[160px] h-[206px] mb-4" />
                     <div className="text-center px-4">
                         <h2 className="desktop:text-2xl tablet:text-[22px] text-lg font-myVazirMedium text-primary-600 leading-6">
-                            من سروبات هستم، دستیار تو در سلامت روان
+                             سروبات، دستیار تو در سلامت روان
                         </h2>
                         <p className="font-myVazirRegular desktop:text-lg tablet:text-lg text-base text-primary-600 leading-6 mt-3">
-                            برای پشتیبانی و همراهی در سلامت روان تو شبانه روز اینجا هستم .
+                            برای پشتیبانی و همراهی تو در شبانه روز   
                         </p>
                     </div>
                 </div>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import AITopBar from '../components/AITopBar';
 import AISideNavbar from '../components/AISideNavbar';
 import ChatSection from '../components/ChatSection';
+import ChatChatSection from './ChatChatSection';
 
 const Chat: React.FC = () => {
   const [bgColor, setBgColor] = useState('green');
@@ -67,7 +68,7 @@ const Chat: React.FC = () => {
           }`}
         >
           <div className="w-full max-w-4xl">
-            <ChatSection setBgColor={setBgColor} collapsed={collapsed} />
+            <ChatChatSection setBgColor={setBgColor} collapsed={collapsed} />
           </div>
         </div>
       </div>

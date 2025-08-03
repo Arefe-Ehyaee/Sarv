@@ -18,6 +18,9 @@ import { ToastContainer } from "react-toastify";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import ProtectedRoute from './components/ProtectedRoute';
 import useUserStore from './store/UserStore';
+import Chat from './chat/Chat';
+import ChatChatSection from './chat/ChatChatSection';
+import TestChatSection from './chat/TestChatSection';
 
 function App() {
   const queryClient = new QueryClient();
@@ -47,6 +50,11 @@ function App() {
           <Routes>
             <Route path="/" element={<MainPage />} />
             <Route path="/sarvBot" element={<AIChat />} />
+            {/* 🔁 Nested layout with <Outlet> */}
+            <Route path="/Bot" element={<Chat />}>
+              <Route index element={<ChatChatSection />} />
+              <Route path="ChatTests" element={<TestChatSection />} />
+            </Route>
             <Route path="/articles" element={<ArticlesPage />} />
             <Route path="/bdiTest" element={<TestTemplate />} />
             <Route path="/ghqTest" element={<GHQPage />} />

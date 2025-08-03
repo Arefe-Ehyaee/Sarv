@@ -72,9 +72,10 @@ const ProfilePage: React.FC = () => {
           <ProfileSideNavbar />
         </div>
 
-        {/* Scrollable Content */}
-        <div className="flex-1 h-[calc(100vh-112px)] overflow-y-auto scrollbar-hide desktop:pr-[300px] mobile:px-[40px]">
-          <div className="w-full flex flex-col items-center justify-center">
+        {/* Scrollable Content - Centered */}
+        <div className="flex-1 h-[calc(100vh-112px)] overflow-y-auto scrollbar-hide desktop:pr-[300px]">
+          {/* Centered Container */}
+          <div className="w-full mx-auto flex flex-col items-center justify-center px-[40px] tablet:px-[120px]">
             <div className="text-xl font-myPeydaMedium text-center w-full mb-5">
               آزمون‌های انجام شده
             </div>
@@ -84,14 +85,16 @@ const ProfilePage: React.FC = () => {
             ) : testes.length === 0 ? (
               <div className="text-center text-gray-500 font-myVazirSemibold">آزمونی یافت نشد.</div>
             ) : (
-              <div className="grid grid-cols-1 desktop:grid-cols-2 gap-[30px] place-items-center pb-3">
+              <div className="grid grid-cols-1 desktop:grid-cols-2 gap-[30px] w-full place-items-stretch pb-3">
                 {testes.map((test, index) => (
                   <ProfileTestCard
                     key={test.id}
                     testName={test.test_type.fa_name + " " + test.test_type.en_name}
                     description={`نمره شما: ${test.score}`}
                     image={''} 
-                    score={test.score} slug={''}                  />
+                    score={test.score} 
+                    slug={''}                  
+                  />
                 ))}
               </div>
             )}

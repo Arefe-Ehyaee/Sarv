@@ -15,7 +15,7 @@ function ProfileTestCard({ testName, description, image, score, slug }: ProfileT
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col justify-between desktop:w-[435px] h-[252px] mx-auto bg-background-BG rounded-[20px] border border-primary-100 py-[18px] px-5 relative overflow-hidden">
+    <div className="flex flex-col justify-between w-full h-[252px] mx-auto bg-background-BG rounded-[20px] border border-primary-100 py-[18px] px-5 relative overflow-hidden">
       
       {/* Tag */}
       <div className="font-myVazirRegular w-fit desktop:text-base tablet:text-base text-sm text-center rounded-full px-[10px] py-[4px] bg-primary-50 border border-primary-100 text-primary-600">
@@ -24,13 +24,6 @@ function ProfileTestCard({ testName, description, image, score, slug }: ProfileT
 
       {/* Test name */}
       <p className="font-myPeydaMedium desktop:text-[20px] tablet:text-lg text-base mt-[10px]">{testName}</p>
-
-      {/* Description */}
-      {/* <div className="text-right mt-1">
-        <p className="text-Gray-700 leading-relaxed font-myVazirRegular desktop:text-sm tablet:text-sm text-xs text-justify line-clamp-2">
-          {description}
-        </p>
-      </div> */}
 
       {/* Metadata */}
       <div className="flex flex-row gap-4 items-center mt-[10px] mb-[20px]">

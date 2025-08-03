@@ -9,17 +9,21 @@ type Message = {
     color?: string;
 };
 
-type ChatSectionProps = {
-    setBgColor: (color: string) => void;
-    collapsed: boolean;
+type ChatChatSectionProps = {
+    setBgColor?: (color: string) => void;
+    collapsed?: boolean;
 };
 
-const ChatSection: React.FC<ChatSectionProps> = ({ setBgColor }) => {
+const ChatChatSection: React.FC<ChatChatSectionProps> = ({ 
+    setBgColor = () => {}, // Default no-op function
+    collapsed = true 
+}) => {
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState<Message[]>([]);
     const messagesEndRef = useRef<HTMLDivElement | null>(null);
     const userId = '1234';
 
+    // Rest of your component code remains the same...
     const suggestedQuestions = [
         { id: 2, text: 'دچار بی انگیزگی شدم' },
         { id: 3, text: 'چرا احساس ناامیدی دارم' },
@@ -171,4 +175,4 @@ const ChatSection: React.FC<ChatSectionProps> = ({ setBgColor }) => {
     );
 };
 
-export default ChatSection;
+export default ChatChatSection;

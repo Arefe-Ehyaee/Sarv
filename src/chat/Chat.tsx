@@ -3,7 +3,7 @@ import AITopBar from '../components/AITopBar';
 import AISideNavbar from '../components/AISideNavbar';
 import ChatSection from '../components/ChatSection';
 
-const AIChat: React.FC = () => {
+const Chat: React.FC = () => {
   const [bgColor, setBgColor] = useState('green');
   const [collapsed, setCollapsed] = useState(true);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
@@ -75,4 +75,4 @@ const AIChat: React.FC = () => {
   );
 };
 
-export default AIChat;
+export default Chat;

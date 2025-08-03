@@ -4,15 +4,15 @@ import useUserStore from "../store/UserStore";
 import { User } from "lucide-react";
 import { ReactComponent as Down } from "../assets/icons/chevron-down.svg";
 import { useState } from "react";
-import CustomButton from "./CustomeButton";
-import LoginModal from "./LoginModal";
+import CustomButton from "../components/CustomeButton";
+import LoginModal from "../components/LoginModal";
 
-interface AITopBarProps {
+interface ChatTopBarProps {
   mobileNavOpen?: boolean;
   setMobileNavOpen?: (open: boolean) => void;
 }
 
-export default function AITopBar({ mobileNavOpen, setMobileNavOpen }: AITopBarProps) {
+export default function ChatTopBar({ mobileNavOpen, setMobileNavOpen }: ChatTopBarProps) {
   const user = useUserStore((state) => state.user);
   const navigate = useNavigate();
   const [profiledropdownOpen, setProfileDropdownOpen] = useState(false);

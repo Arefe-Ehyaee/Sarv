@@ -37,10 +37,10 @@ function TestsPage() {
                 <Navbar />
                 {/* Top Section */}
 
-                <div className='desktop:h-[374px] tablet:h-[358px] h-[348px] w-full bg-primary-100 desktop:px-[96px] px-[24px] desktop:py-[100px] tablet:py-[80px] py-[62px]'>
+                {/* <div className='desktop:h-[374px] tablet:h-[358px] h-[348px] w-full bg-primary-100 desktop:px-[96px] px-[24px] desktop:py-[100px] tablet:py-[80px] py-[62px]'>
                     <p className='font-myPeydaSemibold desktop:text-[56px] tablet:text-[40px] text-[36px] mb-[30px]' >خودت را بهتر بشناس</p>
                     <p className='font-myVazirRegular desktop:text-[20px] tablet:text-[18px] text-base mb-[16px]'>این گامی آرام به‌سوی شناخت عمیق‌تر خود است. مجموعه آزمون‌های روان‌شناسی ما به شما کمک می‌کند تا جنبه‌های مختلف ذهن و احساسات خود را بررسی کنید؛ از خلق‌وخو و اضطراب گرفته تا شخصیت، روابط، استرس و موارد دیگر. این ابزارها با هدف افزایش آگاهی، درک بهتر خود و حمایت از رشد فردی شما طراحی شده‌اند.</p>
-                </div>
+                </div> */}
 
                 <div className="desktop:px-[96px] tablet:px-6 px-4 pb-[150px]">
                     <div className='flex flex-row justify-between mt-[120px]'>

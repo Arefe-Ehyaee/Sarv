@@ -83,7 +83,7 @@ const ChatChatSection: React.FC<ChatChatSectionProps> = ({
     const userHasSentMessage = messages.some(msg => msg.sender === 'user');
 
     return (
-        <div className="flex flex-col h-screen w-full px-4">
+        <div className="flex flex-col h-screen w-full px-4 bg-[#ECFAE5]">
             <div className="overflow-y-auto pt-[150px] hide-scrollbar">
                 <div className="flex flex-col items-center justify-center mb-[20px]">
                     <img src={tree} alt="sarv" className="w-[160px] h-[206px] mb-4" />

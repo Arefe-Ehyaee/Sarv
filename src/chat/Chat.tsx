@@ -1,27 +1,18 @@
 import React, { useState } from 'react';
-import AITopBar from '../components/AITopBar';
-import AISideNavbar from '../components/AISideNavbar';
-import ChatSection from '../components/ChatSection';
 import ChatChatSection from './ChatChatSection';
+import ChatTopBar from './ChatTopBar';
+import ChatSideNavbar from './ChatSideNavbar';
 
 const Chat: React.FC = () => {
   const [bgColor, setBgColor] = useState('green');
   const [collapsed, setCollapsed] = useState(true);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
-  const bgColorMap: Record<string, string> = {
-    blue: 'bg-[#DBECEA]',
-    brown: 'bg-[#F2E6D3]',
-    red: 'bg-[#FCE4E4]',
-    yellow: 'bg-[#F8F4CD]',
-    purple: 'bg-[#F8E9FE]',
-    green: 'bg-[#E0ECDF]',
-  };
 
   return (
-    <div className={`min-h-screen flex flex-col overflow-hidden ${bgColorMap[bgColor] || 'bg-[#E0ECDF]'}`}>
+    <div className={`min-h-screen flex flex-col overflow-hidden bg-[#ECFAE5]`}>
       <div className="fixed top-0 left-0 right-0 z-10">
-        <AITopBar 
+        <ChatTopBar 
           mobileNavOpen={mobileNavOpen} 
           setMobileNavOpen={setMobileNavOpen} 
         />
@@ -30,7 +21,7 @@ const Chat: React.FC = () => {
       <div className="flex flex-1 pt-0">
         {/* Desktop sidebar - always visible on tablet+ */}
         <div className="hidden tablet:block">
-          <AISideNavbar 
+          <ChatSideNavbar 
             collapsed={collapsed} 
             setCollapsed={setCollapsed}
             mobileNavOpen={mobileNavOpen}
@@ -49,7 +40,7 @@ const Chat: React.FC = () => {
             
             {/* Mobile sidebar */}
             <div className="tablet:hidden fixed inset-y-0 left-0 z-40 w-[340px]">
-              <AISideNavbar 
+              <ChatSideNavbar 
                 collapsed={false} 
                 setCollapsed={() => {}}
                 mobileNavOpen={mobileNavOpen}

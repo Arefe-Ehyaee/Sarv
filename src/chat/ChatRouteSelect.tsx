@@ -15,7 +15,7 @@ export default function ChatRouteSelect({ collapsed }: { collapsed: boolean }) {
   ];
 
   return (
-    <div className="flex flex-col justify-between font-myVazirMedium text-lg bg-primary-200">
+    <div className="flex flex-col justify-between font-myVazirMedium text-lg bg-[#DDF6D2]">
       <ul className="space-y-[20px] text-primary-600">
         {routes.map((item, idx) => (
           <li key={idx}>
@@ -33,7 +33,7 @@ export default function ChatRouteSelect({ collapsed }: { collapsed: boolean }) {
                 className={({ isActive }) =>
                   `flex items-center gap-2 py-[9px] h-10 rounded-[4px] transition-colors duration-200
                   ${collapsed ? "justify-center w-[44px]" : "pr-[6px] w-[290px]"}
-                  ${isActive ? "border-primary-500 bg-primary-50" : "hover:bg-primary-50"}`
+                  ${isActive ? "border-primary-500 bg-[#CAE8BD]" : "hover:bg-[#CAE8BD]"}`
                 }
               >
                 {item.icon}

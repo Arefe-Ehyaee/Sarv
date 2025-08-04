@@ -8,6 +8,7 @@ import { ReactComponent as Right } from "../assets/icons/chevron-right.svg";
 import { ReactComponent as Left } from "../assets/icons/chevron-left.svg";
 import LogoutButton from "../components/LogOutButton";
 import useUserStore from "../store/UserStore";
+import ChatRouteSelect from "./ChatRouteSelect";
 
 type ChatSideNavbarProps = {
   collapsed: boolean;
@@ -45,7 +46,7 @@ export default function AISideNavbar({
 
   return (
     <div
-      className={`fixed top-0 right-0 z-10 bg-primary-200 ${collapsed ? "w-[80px]" : "w-[340px]"
+      className={`fixed top-0 right-0 z-10 bg-[#DDF6D2] ${collapsed ? "w-[80px]" : "w-[340px]"
         } min-h-screen flex flex-col justify-between px-[20px] py-[20px] border-l border-primary-300 transition-all duration-300`}
     >
       <div className="flex flex-col items-end">
@@ -61,7 +62,7 @@ export default function AISideNavbar({
         </button>
 
         <div className="mt-6 w-full">
-          <AIRouteSelect collapsed={collapsed} />
+          <ChatRouteSelect collapsed={collapsed} />
         </div>
       </div>
 

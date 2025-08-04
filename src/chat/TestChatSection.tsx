@@ -19,7 +19,9 @@ const TestChatSection: React.FC = () => {
           description={'یثسیبشثسیب'}
           score={0}
           slug={''}
-        />
+          test_en_name={''} image={''} onViewResult={function (): void {
+            throw new Error('Function not implemented.');
+          } }        />
       </div>
     </div>
   );

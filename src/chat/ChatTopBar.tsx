@@ -31,7 +31,7 @@ export default function ChatTopBar({ mobileNavOpen, setMobileNavOpen }: ChatTopB
   };
 
   return (
-    <div className="h-[72px] w-full flex items-center bg-primary-200 border-primary-300 border-b-[1px] px-4">
+    <div className="h-[72px] w-full flex items-center bg-[#ECFAE5] border-primary-300 border-b-[1px] px-4">
       <div className="flex w-full items-center justify-between">
         <div className="flex flex-row items-center">
           <button 

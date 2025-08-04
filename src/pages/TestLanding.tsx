@@ -5,6 +5,7 @@ import right from "../assets/icons/chevron-right.svg";
 import useUserStore from "../store/UserStore";
 import { toast } from "react-toastify";
 import { BDI_TITLES, STATIC_OPTIONS, StaticOption } from "../utils/utils_tests";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 interface BDIOption {
   id: number;
@@ -15,7 +16,7 @@ interface BDIOption {
 interface Question {
   id: number;
   title: string;
-  options?: BDIOption[]; // Only for BDI
+  options?: BDIOption[];
 }
 
 const BASE_URL = process.env.REACT_APP_API_BASE_URL;
@@ -25,7 +26,7 @@ function getTestDescription(name: string | undefined): string {
     case "bai":
       return "هر عبارت را به دقت بخوانید و مشخص کنید در خلال هفته گذشته تا امروز چقدر از آن علامت در رنج بوده‌اید.";
     case "bdi":
-      return "در این پرسشنامه هر سوال بیان‌کننده حالتی در فرد است. گزینه‌ای را انتخاب کنید که بهتر از همه احساس کنونی شما را بیان می‌کند. یعنی آنچه درست در زمان اجرای این آزمون احساس می‌کنید.";
+      return "در این پرسشنامه هر سوال بیان‌کننده حالتی در فرد است...";
     case "ghq":
       return "به سوالات زیر پاسخ دهید.";
     default:
@@ -33,117 +34,99 @@ function getTestDescription(name: string | undefined): string {
   }
 }
 
-
 function TestLanding() {
   const navigate = useNavigate();
   const { testName } = useParams<{ testName: string }>();
   const token = useUserStore((state) => state.token);
   const [questions, setQuestions] = useState<Question[]>([]);
-  const [currentIndex, setCurrentIndex] = useState<number>(-1); // -1 shows intro page
+  const [currentIndex, setCurrentIndex] = useState<number>(-1);
   const [answers, setAnswers] = useState<Record<number, number>>({});
   const [loading, setLoading] = useState(true);
   const [result, setResult] = useState<any>(null);
   const [submitted, setSubmitted] = useState(false);
 
-useEffect(() => {
-  if (!token || !testName) return;
+  const queryClient = useQueryClient();
 
-  fetch(`${BASE_URL}/api/v1/tests/${testName}/questions`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  })
-    .then((res) => {
-      if (res.status === 401) {
-        toast.error("باید لاگین کنید", {
-          className: 'toast',
-          progressClassName: 'fancy-progress-bar',
-        });
-        throw new Error("Unauthorized");
-      }
-      if (!res.ok) throw new Error("Failed to fetch test questions");
-      return res.json();
-    })
-    .then((data: Question[]) => {
-      if (testName.toLowerCase() === "bdi") {
-        const updated = data.map((q) => ({
-          ...q,
-          title: BDI_TITLES[q.id] || q.title,
-        }));
-        setQuestions(updated);
-      } else {
-        setQuestions(data);
-      }
-      setLoading(false);
-    })
-    .catch((err) => {
-      console.error("Fetch error:", err);
-      setLoading(false);
-    });
-}, [testName, token]);
-
-
-  const currentQuestion = questions[currentIndex];
-  const isLast = currentIndex === questions.length - 1;
-
-  function handleSubmit() {
+  // Fetch test questions
+  useEffect(() => {
     if (!token || !testName) return;
 
+    fetch(`${BASE_URL}/api/v1/tests/${testName}/questions`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((res) => {
+        if (res.status === 401) {
+          toast.error("باید لاگین کنید");
+          throw new Error("Unauthorized");
+        }
+        if (!res.ok) throw new Error("Failed to fetch test questions");
+        return res.json();
+      })
+      .then((data: Question[]) => {
+        if (testName.toLowerCase() === "bdi") {
+          const updated = data.map((q) => ({
+            ...q,
+            title: BDI_TITLES[q.id] || q.title,
+          }));
+          setQuestions(updated);
+        } else {
+          setQuestions(data);
+        }
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Fetch error:", err);
+        setLoading(false);
+      });
+  }, [testName, token]);
+
+  // Submit mutation
+  const {
+    mutate: submitTestMutation,
+    isPending: isSubmitting,
+  } = useMutation({
+    mutationFn: async (options: number[]) => {
+      const res = await fetch(`${BASE_URL}/api/v1/tests/${testName}/submit`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ options }),
+      });
+
+      if (!res.ok) throw new Error("خطا در ارسال پاسخ‌ها");
+      return res.json();
+    },
+    onSuccess: (data) => {
+      toast.success("پاسخ‌ها با موفقیت ثبت شد!");
+      setResult(data);
+      setSubmitted(true);
+      localStorage.setItem(`${testName}_result`, JSON.stringify(data));
+      navigate(`/test/${testName}/result`, { state: data });
+      queryClient.invalidateQueries({ queryKey: ["profile", token] });
+    },
+    onError: () => {
+      toast.error("خطا در ثبت پاسخ‌ها");
+    },
+  });
+
+  // Submit handler
+  function handleSubmit() {
     const answersArray = questions.map((q) => {
       const answer = answers[q.id];
       if (answer === undefined) {
-        toast.error("لطفاً به تمام سوالات پاسخ دهید.", {
-          className: 'toast',
-          progressClassName: 'fancy-progress-bar',
-        });
+        toast.error("لطفاً به تمام سوالات پاسخ دهید.");
         throw new Error("Incomplete answers");
       }
       return answer;
     });
 
-    fetch(`${BASE_URL}/api/v1/tests/${testName}/submit`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({ options: answersArray }),
-    })
-      .then((res) => {
-        if (res.status === 403) {
-          toast.error("لطفاً ابتدا لاگین کنید", {
-            className: 'toast',
-            progressClassName: 'fancy-progress-bar',
-          });
-          throw new Error("Forbidden");
-        }
-        if (res.status === 400) {
-          toast.error("فرمت پاسخ‌ها نامعتبر است", {
-            className: 'toast',
-            progressClassName: 'fancy-progress-bar',
-          });
-          throw new Error("Bad Request");
-        }
-        if (!res.ok) {
-          toast.error("خطا در ارسال پاسخ‌ها", {
-            className: 'toast',
-            progressClassName: 'fancy-progress-bar',
-          });
-          throw new Error("Failed to submit answers");
-        }
-        return res.json();
-      })
-      .then(() => {
-        toast.success("پاسخ‌ها با موفقیت ثبت شد!", {
-          className: 'toast',
-          progressClassName: 'fancy-progress-bar',
-        });
-        navigate("/tests");
-      })
-      .catch((err) => {
-        console.error("Submission error:", err);
-      });
+    submitTestMutation(answersArray);
   }
+
+  const currentQuestion = questions[currentIndex];
+  const isLast = currentIndex === questions.length - 1;
 
   function getOptions(): StaticOption[] {
     if (testName === "bdi") {
@@ -161,8 +144,11 @@ useEffect(() => {
 
   const optionsToRender = currentIndex >= 0 ? getOptions() : [];
 
-  if (loading) return <div className="text-center p-8">در حال بارگذاری...</div>;
-  if (!questions.length) return <div className="text-center p-8">سوالی یافت نشد.</div>;
+  if (loading || isSubmitting)
+    return <div className="text-center p-8">در حال بارگذاری...</div>;
+
+  if (!questions.length)
+    return <div className="text-center p-8">سوالی یافت نشد.</div>;
 
   if (submitted && result) {
     return (
@@ -173,17 +159,15 @@ useEffect(() => {
           className="absolute left-[4%] bottom-0 pointer-events-none h-[876px] z-0 hidden desktop:block"
         />
 
-        <h2 className="font-myVazirFaNumRegular bg-primary-200 desktop:text-lg tablet:text-lg mobile:text-base mb-[30px] border rounded-full px-[18px] py-[6px]">
+        <h2 className="font-myVazirFaNumRegular bg-primary-200 desktop:text-lg mb-[30px] border rounded-full px-[18px] py-[6px]">
           نتیجه آزمون شما آماده است
         </h2>
 
         <div className="bg-white px-[22px] py-7 rounded-[20px] mx-auto z-10 relative w-full">
           <h1 className="text-3xl font-myPeydaSemibold mb-4">نتیجه</h1>
           <p className="text-gray-700 mb-4">
-            {/* You can format the result here */}
             امتیاز شما: <strong>{result.score}</strong>
           </p>
-          {/* Add more result details if needed */}
         </div>
 
         <div className="flex flex-row justify-end items-center mt-[30px] z-10 relative">
@@ -192,13 +176,16 @@ useEffect(() => {
             className="flex flex-row gap-[10px] items-center mb-[30px]"
           >
             بازگشت به لیست آزمون‌ها
-            <img src={right} alt="back" className="text-primary-600 rotate-180 border border-primary-300 rounded-[4px] bg-primary-200 p-[6px]" />
+            <img
+              src={right}
+              alt="back"
+              className="rotate-180 border border-primary-300 rounded-[4px] bg-primary-200 p-[6px]"
+            />
           </button>
         </div>
       </div>
     );
   }
-
 
   return (
     <div className="relative min-h-screen flex flex-col items-start w-full justify-center bg-Gray-100 text-Gray-950 px-4 desktop:px-[96px]">
@@ -213,48 +200,44 @@ useEffect(() => {
         onClick={() => navigate("/tests")}
       >
         <img src={right} alt="exit" />
-        <span className="font-myVazirRegular text-Gray-600  desktop:text-lg tablet:text-lg mobile:text-base">
-          خروج از آزمون
-        </span>
+        <span className="text-Gray-600 desktop:text-lg">خروج از آزمون</span>
       </button>
 
-      <h2 className="font-myVazirFaNumRegular bg-primary-200 desktop:text-lg tablet:text-lg mobile:text-base mb-[30px] border rounded-full px-[18px] py-[6px]">
+      <h2 className="bg-primary-200 desktop:text-lg mb-[30px] border rounded-full px-[18px] py-[6px]">
         سوال {currentIndex + 1} از {questions.length}
       </h2>
 
-      {/* ✅ Intro Page */}
+      {/* Intro Page */}
       {currentIndex === -1 ? (
         <div className="w-full">
-          <div className="bg-white px-[22px] py-7 rounded-[20px] w-full mx-auto z-10 relative">
+          <div className="bg-white px-[22px] py-7 rounded-[20px] w-full mx-auto">
             <h1 className="text-4xl font-myPeydaSemibold mb-4">
               آزمون {testName?.toUpperCase()}
             </h1>
-            <p className="text-gray-700 mb-4 font-myVazirFaNumMedium">تعداد سوالات: {questions.length}</p>
-            <p className="text-gray-600 mb-4 font-myVazirRegular desktop:text-lg tablet:text-lg mobile:text-base">
-              {getTestDescription(testName)}
-            </p>
+            <p className="text-gray-700 mb-4">تعداد سوالات: {questions.length}</p>
+            <p className="text-gray-600 mb-4">{getTestDescription(testName)}</p>
           </div>
-          <div className="flex flex-row justify-end items-center mt-[30px] z-10 relative">
+          <div className="flex justify-end mt-[30px]">
             <button
               onClick={() => setCurrentIndex(0)}
-              className="flex flex-row gap-[10px] items-center mb-[30px] disabled:opacity-50"
+              className="flex gap-[10px] items-center mb-[30px]"
             >
               ادامه
-              <img src={right} alt="next" className="text-primary-600 rotate-180 border border-primary-300 rounded-[4px] bg-primary-200 p-[6px]" />
+              <img
+                src={right}
+                alt="next"
+                className="rotate-180 border border-primary-300 rounded-[4px] bg-primary-200 p-[6px]"
+              />
             </button>
           </div>
-
-
         </div>
       ) : (
-        // ✅ Question Page
+        // Question Page
         <div className="w-full">
-          <div className="bg-white px-[22px] py-7 rounded-[20px] mx-auto z-10 relative">
-            <p className="mb-4 font-myVazirMedium desktop:text-[32px] tablet:text-[32px] mobile:text-[22px]">
-              {currentQuestion.title}
-            </p>
+          <div className="bg-white px-[22px] py-7 rounded-[20px] mx-auto">
+            <p className="mb-4 text-[22px]">{currentQuestion.title}</p>
 
-            <div className="flex flex-col gap-3 font-myVazirRegular desktop:text-lg">
+            <div className="flex flex-col gap-3 text-lg">
               {optionsToRender.map((opt) => (
                 <label key={opt.id} className="flex items-center gap-2 cursor-pointer">
                   <input
@@ -272,16 +255,18 @@ useEffect(() => {
             </div>
           </div>
 
-          <div className="flex justify-between items-center mt-[30px] z-10 relative">
+          <div className="flex justify-between mt-[30px]">
             <button
               onClick={() => setCurrentIndex(currentIndex - 1)}
               disabled={currentIndex === 0}
-              className="flex flex-row gap-[6px] items-center mb-[30px] disabled:opacity-50"
+              className="flex gap-[6px] items-center mb-[30px] disabled:opacity-50"
             >
-              <img src={right} alt="prev" className="text-Gray-600 border border-Gray-300 rounded-[4px] bg-Gray-200 p-[6px]" />
-              <span className="font-myVazirRegular text-Gray-600 desktop:text-[18px] tablet:text-[18px] mobile:text-base">
-                سوال قبلی
-              </span>
+              <img
+                src={right}
+                alt="prev"
+                className="rotate-180 border border-gray-300 rounded-[4px] bg-gray-200 p-[6px]"
+              />
+              <span className="text-gray-600">سوال قبلی</span>
             </button>
 
             <button
@@ -293,10 +278,14 @@ useEffect(() => {
                   setCurrentIndex(currentIndex + 1);
                 }
               }}
-              className="flex flex-row gap-[10px] items-center mb-[30px] disabled:opacity-50 z-10 relative font-myVazirRegular desktop:text-lg"
+              className="flex gap-[10px] items-center mb-[30px] disabled:opacity-50"
             >
               {isLast ? "ارسال پاسخ‌ها" : "سوال بعدی"}
-              <img src={right} alt="next" className="text-primary-600 rotate-180 border border-primary-300 rounded-[4px] bg-primary-200 p-[6px]" />
+              <img
+                src={right}
+                alt="next"
+                className="rotate-180 border border-primary-300 rounded-[4px] bg-primary-200 p-[6px]"
+              />
             </button>
           </div>
         </div>

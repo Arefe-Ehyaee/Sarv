@@ -74,3 +74,29 @@ export const STATIC_OPTIONS: Record<string, StaticOption[]> = {
     { id: 4, text: "شدید", value: 3 }
   ]
 };
+
+export function getTestStatus(type: TestKey, score: number): string {
+  switch (type) {
+    case "bdi":
+      if (score <= 10) return "سالم (فاقد افسردگی)";
+      if (score <= 16) return "افسردگی خفیف";
+      if (score <= 20) return "نیازمند مشورت با روانپزشک";
+      if (score <= 30) return "نسبتا افسرده";
+      if (score <= 40) return "افسردگی بالینی (شدید)";
+      return "افسردگی بیش از حد";
+
+    case "bai":
+      if (score <= 7) return "اضطراب نرمال";
+      if (score <= 15) return "اضطراب خفیف";
+      if (score <= 25) return "اضطراب متوسط";
+      return "اضطراب شدید";
+
+    case "ghq":
+      if (score <= 22) return "سلامت روانی مطلوب";
+      if (score <= 40) return "احتمال وجود مشکلات روانی متوسط";
+      return "احتمال مشکلات روانی شدید";
+
+    default:
+      return "وضعیت نامشخص";
+  }
+}

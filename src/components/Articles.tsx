@@ -9,7 +9,7 @@ interface Category {
   id: number;
   slug: string;
   title: string;
-  createdAt: string;
+  createdAt: number;
   updatedAt: string;
 }
 
@@ -29,7 +29,7 @@ interface Article {
   slug: string;
   content: string;
   categories: Category[];
-  createdAt: string;
+  createdAt: number;
   updatedAt: string;
   user: User;
 }
@@ -100,7 +100,7 @@ function Articles() {
       <p className="text-red-500 mb-4">{error}</p>
       <button
         onClick={() => window.location.reload()}
-        className="bg-primary-400 text-white px-4 py-2 rounded-lg hover:bg-primary-500 transition-colors"
+        className="bg-primary-400 text-white px-4 py-2 rounded-lg font-myVazirMedium hover:bg-primary-500 transition-colors"
       >
         تلاش مجدد
       </button>
@@ -142,7 +142,8 @@ function Articles() {
       {!loading && !error && (
         <>
           {articles.length > 0 ? (
-            <div className="grid grid-cols-1 desktop:grid-cols-2 gap-[32px] place-items-center">
+<div className="grid grid-cols-1 desktop:grid-cols-3 gap-[32px] place-items-center">
+
               {articles.map((article) => (
                 <ArticleCard
                   key={article.id}

@@ -10,6 +10,8 @@ import { ReactComponent as Heart } from "../assets/icons/heart.svg";
 import { ReactComponent as Bookmark } from "../assets/icons/bookmark.svg";
 import { ReactComponent as Arrow } from "../assets/icons/arrow-left-green.svg";
 import svg1 from "../assets/images/backTree_big.svg";
+import ReactMarkdown from "react-markdown";
+import moment from "jalali-moment";
 
 const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
@@ -36,7 +38,7 @@ interface Article {
   reading_time: number;
   slug: string;
   content: string;
-  createdAt: string;
+  createdAt: number;
   updatedAt: string;
   categories: Category[];
   user: User;
@@ -116,14 +118,28 @@ function Article() {
     };
   }, [slug]);
 
-  const formatDate = (dateString: string) => {
-    try {
-      const date = new Date(dateString);
-      return date.toLocaleDateString("fa-IR");
-    } catch {
-      return dateString;
+  const formattedDate = (() => {
+    if (!article?.createdAt) return "";
+
+    let dateValue: number | string = article.createdAt;
+
+    // Convert string to number if it's numeric
+    if (typeof dateValue === "string" && !isNaN(Number(dateValue))) {
+      dateValue = Number(dateValue);
     }
-  };
+
+    // If it's a number, determine if it's seconds or milliseconds
+    if (typeof dateValue === "number") {
+      if (dateValue < 1e12) {
+        dateValue = dateValue * 1000; // seconds → ms
+      }
+    }
+
+    // Convert to moment, ensure valid
+    const m = moment(new Date(dateValue));
+    return m.isValid() ? m.locale("fa").format("D MMMM YYYY") : "";
+  })();
+
 
   const formatReadingTime = (minutes: number) => `${minutes} دقیقه مطالعه`;
 
@@ -138,13 +154,13 @@ function Article() {
       <p className="text-red-500 mb-4">{error}</p>
       <button
         onClick={() => slug && abortControllerRef.current?.abort()}
-        className="bg-primary-400 text-white px-4 py-2 rounded-lg hover:bg-primary-500 transition-colors mb-4"
+        className="bg-primary-400 text-white px-4 py-2 rounded-lg font-myVazirMedium hover:bg-primary-500 transition-colors mb-4"
       >
         تلاش مجدد
       </button>
       <button
         onClick={() => navigate("/articles")}
-        className="text-primary-600 hover:text-primary-700 transition-colors"
+        className="text-primary-600 font-myVazirRegular hover:text-primary-700 transition-colors"
       >
         بازگشت به مقالات
       </button>
@@ -221,7 +237,7 @@ function Article() {
               </p>
               <p className="flex flex-row gap-[6px]">
                 <Calendar className="text-primary-700 w-6 h-6" />
-                <span className="text-Gray-500">{formatDate(article.createdAt)}</span>
+                <p className="text-Gray-500">{formattedDate}</p>
               </p>
             </div>
 
@@ -254,11 +270,14 @@ function Article() {
             </div>
           </div>
 
+
           <div className="mb-[100px] mt-[30px] text-justify font-myVazirRegular desktop:text-[18px] tablet:text-[18px] text-[16px]">
-            <div
-              dangerouslySetInnerHTML={{ __html: article.content }}
-              className="prose prose-lg max-w-none"
-            />
+            <div className="prose prose-lg max-w-none">
+              <ReactMarkdown>
+                {article.content}
+              </ReactMarkdown>
+            </div>
+
           </div>
         </div>
 

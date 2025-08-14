@@ -35,7 +35,7 @@ interface Article {
   reading_time: number;
   slug: string;
   content: string;
-  createdAt: string;
+  createdAt: number;
   updatedAt: string;
   categories: Category[];
   user: User;
@@ -60,24 +60,24 @@ function ArticlesPage() {
     try {
       setLoading(true);
       setError(null);
-      
+
       const res = await fetch(`${BASE_URL}/api/v1/blogs?limit=10&page=${page}`);
-      
+
       if (!res.ok) {
         throw new Error(`HTTP error! status: ${res.status}`);
       }
-      
+
       const data = await res.json();
-      
+
       // Debug logging
       console.log("API Response:", data);
       console.log("Articles data:", data?.data);
       console.log("Is data an array?", Array.isArray(data));
       console.log("Is data.data an array?", Array.isArray(data?.data));
-      
+
       // Handle different response structures
       let articlesData: Article[] = [];
-      
+
       if (Array.isArray(data)) {
         // If the response is directly an array
         articlesData = data;
@@ -88,10 +88,10 @@ function ArticlesPage() {
         // If it's an object, try to find the array
         articlesData = Object.values(data).find(val => Array.isArray(val)) as Article[] || [];
       }
-      
+
       console.log("Final articles data:", articlesData);
       console.log("Articles count:", articlesData.length);
-      
+
       setArticles(articlesData);
       setTotalPages(Math.ceil((data.total || articlesData.length) / 10));
       setCurrentPage(page);
@@ -140,21 +140,20 @@ function ArticlesPage() {
       >
         قبلی
       </button>
-      
+
       {[...Array(totalPages)].map((_, index) => (
         <button
           key={index + 1}
           onClick={() => handlePageChange(index + 1)}
-          className={`px-4 py-2 border rounded-lg transition-colors ${
-            currentPage === index + 1
+          className={`px-4 py-2 border rounded-lg transition-colors ${currentPage === index + 1
               ? 'bg-primary-400 text-white border-primary-400'
               : 'hover:bg-gray-100'
-          }`}
+            }`}
         >
           {index + 1}
         </button>
       ))}
-      
+
       <button
         onClick={() => handlePageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
@@ -179,7 +178,7 @@ function ArticlesPage() {
         <Navbar />
 
         <div className="desktop:px-[96px] tablet:px-6 px-4 pb-[120px]">
-          <div className="flex flex-row justify-between mt-[120px]">
+          <div className="flex flex-row justify-between mt-[80px]">
             <div>
               <h4 className="font-myPeydaSemibold text-4xl text-Gray-950 mb-1">
                 مقالات سرو
@@ -195,10 +194,11 @@ function ArticlesPage() {
 
           {loading && <LoadingSpinner />}
           {error && <ErrorMessage />}
-          
+
           {!loading && !error && (
             <>
-              <div className="grid grid-cols-1 desktop:grid-cols-2 gap-[32px] place-items-center mt-[100px]">
+              <div className="grid grid-cols-1 desktop:grid-cols-3 gap-[32px] place-items-center mt-[60px]">
+
                 {articles.map((article) => (
                   <ArticleCard
                     key={article.id}

@@ -24,6 +24,7 @@ import TestChatSection from './chat/TestChatSection';
 import HomeAddiction from './addiction/HomeAddiction';
 
 
+
 function App() {
   const queryClient = new QueryClient();
   const [hydrated, setHydrated] = useState(false);

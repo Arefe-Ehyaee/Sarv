@@ -1,23 +1,20 @@
-import sarv from "../assets/icons/Sarv.svg";
+
 import menu from "../assets/icons/menu.svg";
-import { ReactComponent as Right } from "../assets/icons/chevron-right.svg";
-import { ReactComponent as Down } from "../assets/icons/chevron-down.svg";
+// import { ReactComponent as Right } from "../assets/icons/chevron-right.svg";
+// import { ReactComponent as UserIcon } from "../assets/icons/user.svg";
+// import { ReactComponent as SettingsIcon } from "../assets/icons/settings.svg";
+// import { ReactComponent as InfoIcon } from "../assets/icons/info.svg";
+// import { ReactComponent as HelpIcon } from "../assets/icons/help-circle.svg";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import useUserStore from "../store/UserStore";
 import CustomButton from "../components/CustomeButton";
-import joy from "./joy-wave.svg";
-import joyModern from "./joy-modern.svg"
+import joyModern from "./joy-modern.svg";
 
-function Navbar() {
+function NavbarAddiction() {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [minidropdownOpen, setMiniDropdownOpen] = useState(false);
-  const [profiledropdownOpen, setProfileDropdownOpen] = useState(false);
-  const toggleDropdown = () => setDropdownOpen((prev) => !prev);
-  const toggleMiniDropdown = () => setMiniDropdownOpen((prev) => !prev);
-  const toggleProfileDropdown = () => setProfileDropdownOpen((prev) => !prev);
+  const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
   const user = useUserStore((state) => state.user);
 
   const logout = () => {
@@ -26,181 +23,169 @@ function Navbar() {
   };
 
   return (
-    <nav className="relative w-full h-[79px] flex items-center justify-between border-b border-gray-200 bg-white px-4 md:px-12 shadow-md py-4 z-50">
-      {/* Logo + Mobile menu button */}
+    <nav className="relative w-full h-[50px] flex items-center justify-between shadow-sm  border-gray-200 px-4 md:px-12 z-50">
+      {/* Left side (Logo + Hamburger) */}
       <div className="flex items-center gap-3">
-        <button
-          className="block md:hidden"
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
+        <button className="block md:hidden" onClick={() => setMenuOpen(true)}>
           <img src={menu} alt="menu" className="w-6 h-6" />
         </button>
         <button onClick={() => navigate("/")}>
-          <img src={joyModern} alt="" className="w-8 h-8" />
+          <img src={joyModern} alt="logo" className="w-8 h-8" />
         </button>
       </div>
 
-      {/* Desktop Menu */}
-      <ul className="hidden md:flex items-center gap-8 text-lg font-myVazirRegular text-gray-800">
-        <li>
-          <button onClick={() => navigate("/")}>خانه</button>
-        </li>
-        <li>
-          <button onClick={() => navigate("/sarvBot")}>سروبات</button>
-        </li>
-        <li>
-          <button onClick={() => navigate("/Bot")}>نمونه</button>
-        </li>
-        <li>
-          <button onClick={() => navigate("/therapists")}>کوچ اعتیاد</button>
-        </li>
-        <li className="relative">
-          <button
-            onClick={toggleDropdown}
-            className="flex items-center gap-1"
-          >
-            تست‌ها
-            <Down
-              className={`w-5 h-5 transition-transform ${dropdownOpen ? "rotate-180" : ""
-                }`}
-            />
-          </button>
-          {dropdownOpen && (
-            <ul className="absolute top-full mt-3 bg-white border border-gray-200 rounded-lg shadow-lg py-2 w-max z-50">
-              <li
-                className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                onClick={() => {
-                  setDropdownOpen(false);
-                  navigate("/tests/ghq");
-                }}
-              >
-                تست سلامت عمومی (GHQ)
-              </li>
-              <li
-                className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                onClick={() => {
-                  setDropdownOpen(false);
-                  navigate("/tests/bdi");
-                }}
-              >
-                تست افسردگی بک (BDI)
-              </li>
-              <li
-                className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                onClick={() => {
-                  setDropdownOpen(false);
-                  navigate("/tests/bai");
-                }}
-              >
-                تست اضطراب بک (BAI)
-              </li>
-              <hr className="mx-4" />
-              <li
-                className="px-4 py-2 text-teal-600 hover:bg-gray-100 cursor-pointer"
-                onClick={() => {
-                  setDropdownOpen(false);
-                  navigate("/tests");
-                }}
-              >
-                همه تست‌ها
-              </li>
-            </ul>
-          )}
-        </li>
-        <li>
-          <button onClick={() => navigate("/articles")}>مقالات</button>
-        </li>
-      </ul>
+      {/* Right side (Desktop only) */}
+      <div className="hidden md:flex items-center gap-4">
+        {user ? (
+          <div className="relative">
+            <button
+              onClick={() => setProfileDropdownOpen((prev) => !prev)}
+              className="text-teal-700 border border-teal-700 px-2 py-1 text-sm rounded-full hover:bg-teal-50"
+            >
+              {user.username}
+            </button>
+            {profileDropdownOpen && (
+              <ul className="absolute top-full left-0 mt-2 font-myYekanRegular bg-white border border-gray-200 rounded-lg shadow-lg py-2 w-max z-50">
+                <li
+                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                  onClick={() => {
+                    setProfileDropdownOpen(false);
+                    navigate("/profile");
+                  }}
+                >
+                  حساب کاربری
+                </li>
+                <hr className="mx-4" />
+                <li
+                  className="px-4 py-2 text-red-500 hover:bg-gray-100 cursor-pointer"
+                  onClick={() => {
+                    setProfileDropdownOpen(false);
+                    logout();
+                  }}
+                >
+                  خروج از حساب
+                </li>
+              </ul>
+            )}
+          </div>
+        ) : (
+          <CustomButton
+            handleOnClick={() => navigate("/login")}
+            text="ورود یا ثبت نام"
+            className="bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700"
+          />
+        )}
+      </div>
 
-      {/* Right side */}
-      {user ? (
-        <div className="relative">
-          <button
-            onClick={toggleProfileDropdown}
-            className="text-teal-700 border border-teal-700 px-4 py-2 rounded-full hover:bg-teal-50"
-          >
-            {user.username}
-          </button>
-          {profiledropdownOpen && (
-            <ul className="absolute top-full mt-2 bg-white border border-gray-200 rounded-lg shadow-lg py-2 w-max z-50">
-              <li
-                className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                onClick={() => {
-                  setProfileDropdownOpen(false);
-                  navigate("/profile");
-                }}
-              >
-                حساب کاربری
-              </li>
-              <hr className="mx-4" />
-              <li
-                className="px-4 py-2 text-red-500 hover:bg-gray-100 cursor-pointer"
-                onClick={() => {
-                  setProfileDropdownOpen(false);
-                  logout();
-                }}
-              >
-                خروج از حساب
-              </li>
-            </ul>
-          )}
-        </div>
-      ) : (
-        <CustomButton
-          handleOnClick={() => navigate("/login")}
-          text={"ورود یا ثبت نام"}
-          className={
-            "bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700"
-          }
-        />
-      )}
-
-      {/* Mobile Menu */}
+      {/* Mobile Menu Overlay */}
       <div
-        className={`absolute top-0 right-0 w-full font-myVazirRegular text-base bg-white shadow-md px-6 py-6 z-50 tablet:hidden
-    transition-all duration-300 ease-in-out transform ${menuOpen ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
+        className={`fixed inset-0 bg-black/40 backdrop-blur-sm z-40 transition-opacity ${menuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
           }`}
+        onClick={() => setMenuOpen(false)}
+      />
+
+      {/* Mobile Menu Drawer */}
+      <div
+        className={`fixed top-0 right-0 h-full w-72 bg-white shadow-xl z-50 transform transition-transform duration-300 ${menuOpen ? "translate-x-0" : "translate-x-full"
+          } flex flex-col`}
       >
         {/* Header */}
-        <div className="flex justify-between items-center mb-8">
-          <img src={sarv} alt="sarv" className="h-8" />
+        <div className="flex justify-between items-center px-6 py-4 border-b">
+          <img src={joyModern} alt="sarv" className="h-8" />
           <button onClick={() => setMenuOpen(false)}>
-            <Right className="w-6 h-6 text-gray-700" />
+            {/* <Right className="w-6 h-6 text-gray-700" /> */}
           </button>
         </div>
 
-        {/* Menu Items */}
-        <ul className="flex flex-col gap-5">
-          <li><button onClick={() => { navigate("/"); setMenuOpen(false); }}>خانه</button></li>
-          <li><button onClick={() => { navigate("/sarvBot"); setMenuOpen(false); }}>سروبات</button></li>
-          <li><button onClick={() => { navigate("/Bot"); setMenuOpen(false); }}>نمونه</button></li>
-          <li><button onClick={() => { navigate("/therapists"); setMenuOpen(false); }}>کوج اعتیاد</button></li>
-          <li><button onClick={() => { navigate("/tests"); setMenuOpen(false); }}>تست‌ها</button></li>
-          <li><button onClick={() => { navigate("/articles"); setMenuOpen(false); }}>مقالات</button></li>
-        </ul>
+        {/* User Info */}
+        {user && (
+          <div className="px-6 py-4 border-b flex items-center gap-3">
+            <div className="w-12 h-12 rounded-full bg-teal-100 flex items-center justify-center text-teal-600 font-bold text-lg">
+              {user.username.charAt(0).toUpperCase()}
+            </div>
+            <div>
+              <p className="font-semibold text-gray-900">{user.username}</p>
+              {/* <p className="text-sm text-gray-500">{user.email || "کاربر"}</p> */}
+            </div>
+          </div>
+        )}
 
-        {/* CTA */}
-        <div className="mt-8">
+        {/* Menu items */}
+        <div className="flex-1 px-4 py-6 space-y-4 font-myPeydaMedium">
+          <button
+            disabled={true}
+            onClick={() => {
+              navigate("/profile");
+              setMenuOpen(false);
+            }}
+            className="flex items-center gap-3 text-gray-700 hover:bg-gray-100 w-full p-3 rounded-lg transition"
+          >
+            {/* <UserIcon className="w-5 h-5 text-teal-600" /> */}
+            <span>حساب کاربری</span>
+          </button>
+          <button
+            disabled={true}
+            onClick={() => {
+              navigate("/settings");
+              setMenuOpen(false);
+            }}
+            className="flex items-center gap-3 text-gray-700 hover:bg-gray-100 w-full p-3 rounded-lg transition"
+          >
+            {/* <SettingsIcon className="w-5 h-5 text-teal-600" /> */}
+            <span>تنظیمات</span>
+          </button>
+          <button
+            disabled={true}
+            onClick={() => {
+              navigate("/about");
+              setMenuOpen(false);
+            }}
+            className="flex items-center gap-3 text-gray-700 hover:bg-gray-100 w-full p-3 rounded-lg transition"
+          >
+            {/* <InfoIcon className="w-5 h-5 text-teal-600" /> */}
+            <span>درباره ما</span>
+          </button>
+          <button
+            disabled={true}
+
+            onClick={() => {
+              navigate("/support");
+              setMenuOpen(false);
+            }}
+            className="flex items-center gap-3 text-gray-700 hover:bg-gray-100 w-full p-3 rounded-lg transition"
+          >
+            {/* <HelpIcon className="w-5 h-5 text-teal-600" /> */}
+            <span>پشتیبانی</span>
+          </button>
+        </div>
+
+        {/* Footer */}
+        <div className="px-6 py-4 border-t font-myYekanMedium">
           {user ? (
             <button
-              onClick={() => { logout(); setMenuOpen(false); }}
+              disabled={true}
+              onClick={() => {
+                logout();
+                setMenuOpen(false);
+              }}
               className="w-full bg-red-500 text-white py-3 rounded-lg hover:bg-red-600 transition"
             >
               خروج از حساب
             </button>
           ) : (
             <CustomButton
-              handleOnClick={() => { navigate("/login"); setMenuOpen(false); }}
-              text={"ورود یا ثبت نام"}
+              handleOnClick={() => {
+                navigate("/login");
+                setMenuOpen(false);
+              }}
+              text="ورود یا ثبت نام"
               className="w-full bg-teal-600 text-white py-3 rounded-lg hover:bg-teal-700 transition"
             />
           )}
         </div>
       </div>
-
-
     </nav>
   );
 }
 
-export default Navbar;
+export default NavbarAddiction;

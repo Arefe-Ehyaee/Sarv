@@ -98,7 +98,7 @@ function Footer() {
                             <img src={sarv} alt="Sarv Logo" className="h-12 mb-[30px]" />
                             <p className="desktop:text-lg font-myVazirRegular mb-[30px]">زیستن نیک  را با مشاور هوشمند برای همه ی ایرانیان سرتاسر جهان فراهم کرده ایم.</p>
 
-                            <div className="flex items-start gap-3 mb-3">
+                            <div className="flex items-start gap-3 mb-3" onClick={() => navigate("/addiction")}>
                                 <img src={phone} alt="phone" />
                                 <span className='font-myVazirRegular text-sm'>۰۲۱-۱۲۳۴۵۶۷۸</span>
                             </div>

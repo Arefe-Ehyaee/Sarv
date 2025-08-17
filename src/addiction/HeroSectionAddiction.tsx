@@ -1,23 +1,53 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Send, Bot, Loader2, Heart, MapPin } from "lucide-react";
+import { Send, Bot, Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
-// import { InvokeLLM } from "@/integrations/Core";
-// import { ChatMessage } from "@/entities/ChatMessage";
-import joyModern from "./joy-modern.svg"
+import joyModern from "./joy-modern.svg";
+import ModalTemplate from "./ModalTemplate";
+import PracticeModal from "./PracticeModal";
+import EducationModal from "./EducationModal";
+import practice from "../assets/icons/Clipboard2.svg";
+import reading from "../assets/icons/reading.svg";
+import bell from "../assets/icons/Bell.svg";
+import routing from "../assets/icons/Routing 2.svg";
+import wavePattern from "../assets/icons/Ornament 17.svg";
+import Card from "./HeroCardAddction";
+import umbrella from "../assets/icons/Umbrella.svg";
+import love from "../assets/icons/Hearts.svg";
+import starShine from "../assets/icons/Star Shine.svg";
+import test from "../assets/icons/Document Add.svg";
+import box from "../assets/icons/Box Minimalistic.svg";
+import CureRoutingModal from "./CureRoutingModal";
+import ToolsModal from "./ToolsModal";
 
-// Initial message from the chatbot
+// Initial chatbot welcome message
 const welcomeMessage = {
   role: "assistant",
-  content:
-    "Hi there. I'm here to support you on your recovery journey. What's on your mind today?",
+  content: "سلام، چطور میتونم کمکتون کنم؟",
   timestamp: Date.now(),
 };
+
+// Card data arrays
+const Maincards = [
+  { icon: practice, title: "تمرین‌های من", iconBgColor: "#B5EBEA", bgColor: "#FFFFFF" },
+  { icon: bell, title: "اعلان‌های من", iconBgColor: "#B5EBEA", bgColor: "#FFFFFF" },
+  { icon: routing, title: "مسیر درمان", iconBgColor: "#B5EBEA", bgColor: "#FFFFFF" },
+];
+
+const cards = [
+  { icon: test, title: "ارزیابی‌ها", iconBgColor: "#FFDAB9", bgColor: "#FFFFFF" },
+  { icon: box, title: "جعبه ابزار فوری", iconBgColor: "#FFDAB9", bgColor: "#FFFFFF" },
+  { icon: reading, title: "محتوای آموزشی", iconBgColor: "#FFDAB9", bgColor: "#FFFFFF" },
+  { icon: love, title: "همراهان مراجع", iconBgColor: "#E0BBE4", bgColor: "#FFFFFF" },
+  { icon: starShine, title: "یادآور انگیزشی", iconBgColor: "#E0BBE4", bgColor: "#FFFFFF" },
+  { icon: umbrella, title: "گروه‌های خودیاری", iconBgColor: "#E0BBE4", bgColor: "#FFFFFF" },
+];
 
 export default function HeroSection() {
   const [messages, setMessages] = useState([welcomeMessage]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [sessionId] = useState(() => Math.random().toString(36).substr(2, 9));
+  const [activeModal, setActiveModal] = useState<string | null>(null); // 🔑 state for modals
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   const scrollToBottom = () => {
@@ -42,60 +72,80 @@ export default function HeroSection() {
     };
     setMessages((prev) => [...prev, newUserMessage]);
 
-    // try {
-    //   const response = await InvokeLLM({
-    //     prompt: `You are a compassionate AI assistant specializing in addiction recovery support. You provide emotional support, practical guidance, and resources for people struggling with addiction. 
-
-    //     IMPORTANT GUIDELINES:
-    //     - Always be empathetic, non-judgmental, and supportive
-    //     - If someone expresses suicidal thoughts or immediate danger, strongly encourage them to call 988 (Crisis Line) or 911
-    //     - Provide practical, evidence-based advice when appropriate
-    //     - Encourage professional treatment and support groups
-    //     - Never provide medical advice or diagnose conditions
-    //     - Keep responses concise but caring (2-3 sentences max)
-    //     - Always validate their feelings and acknowledge their courage in seeking help
-
-    //     User message: "${userMessage}"
-
-    //     Respond with compassion and provide helpful guidance.`,
-    //   });
-
-    //   const aiResponse =
-    //     typeof response === "string"
-    //       ? response
-    //       : response.content ||
-    //         "I'm here to support you. Could you tell me more about what you're going through?";
-    //   const newAiMessage = {
-    //     role: "assistant",
-    //     content: aiResponse,
-    //     timestamp: Date.now(),
-    //   };
-    //   setMessages((prev) => [...prev, newAiMessage]);
-
-    //   await ChatMessage.create({
-    //     message: userMessage,
-    //     response: aiResponse,
-    //     session_id: sessionId,
-    //     is_anonymous: true,
-    //   });
-    // } catch (error) {
-    //   console.error("Error getting AI response:", error);
-    //   const errorMessage = {
-    //     role: "assistant",
-    //     content:
-    //       "I'm sorry, I'm having trouble connecting right now. Please try again, or consider calling 988 for immediate support.",
-    //     timestamp: Date.now(),
-    //   };
-    //   setMessages((prev) => [...prev, errorMessage]);
-    // }
-
-    setIsLoading(false);
+    // Simulated AI response
+    setTimeout(() => {
+      const aiResponse = {
+        role: "assistant",
+        content: "ممنون که به اشتراک گذاشتید. می‌خواید تمرین‌هایی برای شما ارائه کنم؟",
+        timestamp: Date.now(),
+      };
+      setMessages((prev) => [...prev, aiResponse]);
+      setIsLoading(false);
+    }, 1000);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       handleSendMessage();
+    }
+  };
+
+  // 🔑 Centralized modal rendering function
+  const renderModal = () => {
+    switch (activeModal) {
+      case "تمرین‌های من":
+        return (
+          <ModalTemplate
+            showModal={true}
+            onClose={() => setActiveModal(null)}
+            mainComponent={
+              <PracticeModal
+                onClick={() => setActiveModal(null)}
+              />
+            }
+          />
+        );
+      case "محتوای آموزشی":
+        return (
+          <ModalTemplate
+            showModal={true}
+            onClose={() => setActiveModal(null)}
+            mainComponent={
+              <EducationModal
+                onClick={() => setActiveModal(null)}
+              />
+            }
+          />
+        );
+      case "مسیر درمان":
+        return (
+          <ModalTemplate
+            showModal={true}
+            onClose={() => setActiveModal(null)}
+            mainComponent={
+              <CureRoutingModal
+                onClick={() => setActiveModal(null)} completedSessions={[1, 2]} />
+            }
+          />
+        );
+
+      case "جعبه ابزار فوری":
+        return (
+          <ModalTemplate
+            showModal={true}
+            onClose={() => setActiveModal(null)}
+            mainComponent={
+              <ToolsModal
+                onClick={() => setActiveModal(null)} />
+            }
+          />
+        );
+
+
+      // 👉 Add more cases for other cards if needed
+      default:
+        return null;
     }
   };
 
@@ -109,50 +159,16 @@ export default function HeroSection() {
 
       <div className="relative max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Side: Hero Content */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center lg:text-right"
-          >
-            <div className=" justify-center lg:justify-start mb-6">
-              {/* <div className="w-20 h-20 bg-gradient-to-r from-blue-600 to-green-500 rounded-2xl flex items-center justify-center shadow-lg">
-                <Heart className="w-10 h-10 text-white" />
-              </div> */}
-              <img src={joyModern} alt="" className="w-20 h-20" />
-            </div>
-            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 font-myPeydaSemibold">
-              جوی
-              <br />
-              <span className="bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent font-myPeydaSemibold">
-                جریان تازه‌ی زندگی
-              </span>
-            </h1>
-            <p className="text-xl text-gray-600 mb-8 max-w-lg mx-auto lg:mx-0 leading-relaxed font-myVazirRegular">
-با گفت‌وگوی حمایتی، آزمون‌های کوتاه و برنامهٔ شخصی، قدم‌به‌قدم تا زندگیِ تازه همراهتانیم.
-            </p>
-
-            <button
-              type="button"
-              className="inline-flex items-center px-8 py-4 text-lg rounded-xl border-2 border-gray-200 hover:border-blue-300 hover:bg-blue-50 transition-all duration-200"
-            >
-              <MapPin className="w-5 h-5 mr-2" />
-              Find Treatment Centers
-            </button>
-          </motion.div>
-
-          {/* Right Side: Chatbot */}
+          {/* Chat Section */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="w-full max-w-md mx-auto lg:max-w-none lg:mx-0 h-[600px]"
+            className="order-1 lg:order-2 w-full max-w-md mx-auto lg:max-w-none lg:mx-0 h-[600px]"
           >
             <div className="h-full flex flex-col shadow-2xl border border-gray-300 bg-white rounded-2xl">
-              <div className="flex items-center p-4 border-b bg-gradient-to-r from-blue-600 to-green-500 text-white rounded-t-2xl">
-                <Bot className="w-5 h-5 mr-2" />
-                <span className="font-medium">Anonymous Recovery Support</span>
+              <div className="flex items-center p-4 border-b bg-gradient-to-l from-[#0ea5a2] to-[#def6ec] text-white rounded-t-2xl">
+                <Bot className="w-6 h-6 mr-2" />
               </div>
 
               <div className="flex-1 overflow-y-auto p-4 space-y-4">
@@ -189,13 +205,13 @@ export default function HeroSection() {
               </div>
 
               <div className="p-4 border-t">
-                <div className="flex space-x-2">
+                <div className="flex gap-2">
                   <textarea
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     onKeyDown={handleKeyPress}
-                    placeholder="Type your message..."
-                    className="flex-1 rounded-md border border-gray-300 px-4 py-2 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="پیام خود را اینجا بنویسید..."
+                    className="flex-1 rounded-md border border-gray-300 px-4 py-2 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 font-myYekanRegular"
                     rows={1}
                     disabled={isLoading}
                   />
@@ -218,8 +234,67 @@ export default function HeroSection() {
               </div>
             </div>
           </motion.div>
+
+          {/* Cards Section */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="order-2 lg:order-1 text-center lg:text-right"
+          >
+            <div className="flex flex-row gap-4 justify-center lg:justify-start mb-6">
+              <img src={joyModern} alt="" className="w-20 h-20" />
+              <h1 className="text-right text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-myYekanMedium">
+                جوی
+                <br />
+                <span className="bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent font-myPeydaSemibold text-lg ld:text-2xl">
+                  جریان تازه‌ی زندگی
+                </span>
+              </h1>
+            </div>
+            <p className="text-xl text-gray-600 mb-8 max-w-lg mx-auto lg:mx-0 leading-relaxed font-myYekanRegular">
+              با گفت‌وگوی حمایتی، آزمون‌های کوتاه و برنامهٔ شخصی، قدم‌به‌قدم تا زندگیِ تازه همراهتانیم.
+            </p>
+
+            {/* Main Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-4 px-6 md:px-2">
+              {Maincards.map((card, index) => (
+                <Card
+                  key={index}
+                  icon={card.icon}
+                  title={card.title}
+                  iconBgColor={card.iconBgColor}
+                  bgColor={card.bgColor}
+                  width="w-full"
+                  height="h-20"
+                  wavePattern={wavePattern}
+                  onClick={() => setActiveModal(card.title)} // 🔑
+                />
+              ))}
+            </div>
+
+            {/* Additional Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-4 mt-4 px-6 md:px-2">
+              {cards.map((card, index) => (
+                <Card
+                  key={index}
+                  icon={card.icon}
+                  title={card.title}
+                  iconBgColor={card.iconBgColor}
+                  bgColor={card.bgColor}
+                  width="w-full"
+                  height="h-20"
+                  wavePattern={wavePattern}
+                  onClick={() => setActiveModal(card.title)} // 🔑
+                />
+              ))}
+            </div>
+          </motion.div>
         </div>
       </div>
+
+      {/* Render modal */}
+      {renderModal()}
     </section>
   );
 }

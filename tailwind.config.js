@@ -21,7 +21,14 @@ module.exports = {
         myPeydaSemibold: ["mypeyda-semibold", "sans-serif"],
         myPeydaFaNumRegular: ["mypeydaFaNum-regular", "sans-serif"],
         myPeydaFaNumMedium: ["mypeydaFaNum-medium", "sans-serif"],
-        myPeydaFaNumSemibold: ["mypeydaFaNum-semibold", "sans-serif"]
+        myPeydaFaNumSemibold: ["mypeydaFaNum-semibold", "sans-serif"],
+
+        myYekanRegular: ["myYekan-regular", "sans-serif"],
+        myYekanMedium: ["myYekan-medium", "sans-serif"],
+        myYekanDemibold: ["myYekan-demibold", "sans-serif"],
+        myYekanFaNumRegular : ["myYekanFaNum-regular", "sans-serif"],
+        myYekanFaNumMedium : ["myYekanFaNum-medium", "sans-serif"],
+        myYekanFaNumDemiBold : ["myYekanFaNum-demiBold", "sans-serif"]
       },
       colors: {
         primary: {

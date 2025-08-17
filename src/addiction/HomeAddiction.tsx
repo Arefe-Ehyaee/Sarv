@@ -8,7 +8,7 @@ export default function Home() {
     <div className="min-h-screen">
       <NavbarAddiction />
       <HeroSection />
-      <FooterAddiction />
+      {/* <FooterAddiction /> */}
     </div>
   );
 }

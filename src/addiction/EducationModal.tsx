@@ -1,5 +1,5 @@
 import { useState } from "react";
-import whiteClose from "../assets/icons/x-circle.svg";
+import { ReactComponent as XIcon } from "../assets/icons/x-circle.svg";
 import reading from "../assets/icons/reading.svg";
 import back from "../assets/icons/chevron-left.svg";
 
@@ -65,7 +65,7 @@ export default function EducationModal({
           <p>محتوای آموزشی</p>
         </div>
         <button onClick={onClick}>
-          <img src={whiteClose} alt="Close" className="w-[27px] h-[27px]" />
+          <XIcon className="w-6 h-6 text-white" />
         </button>
       </div>
 

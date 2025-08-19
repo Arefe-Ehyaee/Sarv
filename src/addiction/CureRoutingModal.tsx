@@ -1,4 +1,4 @@
-import whiteClose from "../assets/icons/x-circle.svg";
+import { ReactComponent as XIcon } from "../assets/icons/x-circle.svg"; 
 import reading from "../assets/icons/reading.svg";
 
 interface CureRoutingModalProps {
@@ -27,7 +27,7 @@ export default function CureRoutingModal({
           <p>مسیر درمان</p>
         </div>
         <button onClick={onClick}>
-          <img src={whiteClose} alt="Close" className="w-[27px] h-[27px]" />
+          <XIcon className="text-white"></XIcon>
         </button>
       </div>
 

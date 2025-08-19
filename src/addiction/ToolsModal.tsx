@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Wind, Zap, Moon, Coffee } from "lucide-react";
 import ToolCard from "./ToolCard";
 import Breathing478Exercise from "./Breathing478";
-import whiteClose from "../assets/icons/x-circle.svg";
+import { ReactComponent as XIcon } from "../assets/icons/x-circle.svg"; 
 import box from "../assets/icons/Box Minimalistic.svg";
 import { ReactComponent as Pen } from "../assets/icons/edit 1.svg";
 import { ReactComponent as HeartList } from "../assets/icons/Clipboard Heart.svg";
@@ -67,7 +67,7 @@ export default function ToolsModal({ onClick }: ToolsModalProps) {
           <p>جعبه ابزار فوری</p>
         </div>
         <button onClick={onClick}>
-          <img src={whiteClose} alt="Close" className="w-[27px] h-[27px]" />
+          <XIcon className="text-white"></XIcon>
         </button>
       </div>
 

@@ -1,4 +1,4 @@
-import whiteClose from "../assets/icons/x-circle.svg";
+import { ReactComponent as XIcon } from "../assets/icons/x-circle.svg"; 
 import practice from "../assets/icons/Clipboard2.svg";
 
 interface PracticeModalProps {
@@ -27,7 +27,7 @@ export default function PracticeModal({
           </p>
         </div>
         <button onClick={onClick}>
-          <img src={whiteClose} alt="Close" className="w-[27px] h-[27px]" />
+          <XIcon className="text-white"></XIcon>
         </button>
       </div>
 

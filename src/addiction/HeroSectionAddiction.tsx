@@ -171,7 +171,7 @@ export default function HeroSection() {
                 <Bot className="w-6 h-6 mr-2" />
               </div>
 
-              <div className="flex-1 overflow-y-auto p-4 space-y-4">
+              <div className="flex-1 overflow-y-auto p-4 space-y-4 font-myYekanFaNumRegular">
                 {messages.map((message, index) => (
                   <motion.div
                     key={index}
@@ -181,11 +181,11 @@ export default function HeroSection() {
                       }`}
                   >
                     {message.role === "assistant" && (
-                      <Bot className="w-6 h-6 p-1 rounded-full bg-gray-200 text-blue-600 flex-shrink-0" />
+                      <Bot className="w-6 h-6 p-1 ml-1 rounded-full bg-gray-200 text-[#0ea5a2] flex-shrink-0" />
                     )}
                     <div
                       className={`max-w-[80%] p-3 rounded-lg ${message.role === "user"
-                          ? "bg-blue-600 text-white"
+                          ? "bg-[#0ea5a2] text-white"
                           : "bg-gray-100 text-gray-800"
                         }`}
                     >
@@ -195,8 +195,8 @@ export default function HeroSection() {
                 ))}
                 {isLoading && (
                   <div className="flex justify-start">
-                    <div className="bg-gray-100 p-3 rounded-lg mr-2 flex items-center space-x-2">
-                      <Bot className="w-4 h-4 text-blue-600" />
+                    <div className="bg-gray-100 p-3 rounded-lg mr-2 flex items-center gap-2">
+                      <Bot className="w-4 h-4 text-[#0ea5a2]" />
                       <Loader2 className="w-4 h-4 animate-spin text-blue-600" />
                     </div>
                   </div>
@@ -211,14 +211,14 @@ export default function HeroSection() {
                     onChange={(e) => setInput(e.target.value)}
                     onKeyDown={handleKeyPress}
                     placeholder="پیام خود را اینجا بنویسید..."
-                    className="flex-1 rounded-md border border-gray-300 px-4 py-2 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 font-myYekanRegular"
+                    className="flex-1 rounded-md border border-gray-300 px-4 py-2 resize-none focus:outline-none focus:ring-2 focus:ring-[#0ea5a2] font-myYekanRegular"
                     rows={1}
                     disabled={isLoading}
                   />
                   <button
                     onClick={handleSendMessage}
                     disabled={!input.trim() || isLoading}
-                    className="bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-md px-4 py-2 flex items-center justify-center"
+                    className="bg-[#0ea5a2] hover:bg-[#0ea5a2] disabled:opacity-50 disabled:cursor-not-allowed rounded-md px-4 py-2 flex items-center justify-center"
                     type="button"
                   >
                     {isLoading ? (
@@ -242,9 +242,9 @@ export default function HeroSection() {
             transition={{ duration: 0.8 }}
             className="order-2 lg:order-1 text-center lg:text-right"
           >
-            <div className="flex flex-row gap-4 justify-center lg:justify-start mb-6">
+            <div className="flex flex-row gap-4 justify-center lg:justify-start mb-2">
               <img src={joyModern} alt="" className="w-20 h-20" />
-              <h1 className="text-right text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-myYekanMedium">
+              <h1 className="text-right text-3xl md:text-4xl font-bold text-gray-900 mb-2 font-myYekanMedium">
                 جوی
                 <br />
                 <span className="bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent font-myPeydaSemibold text-lg ld:text-2xl">
@@ -253,7 +253,7 @@ export default function HeroSection() {
               </h1>
             </div>
             <p className="text-xl text-gray-600 mb-8 max-w-lg mx-auto lg:mx-0 leading-relaxed font-myYekanRegular">
-              با گفت‌وگوی حمایتی، آزمون‌های کوتاه و برنامهٔ شخصی، قدم‌به‌قدم تا زندگیِ تازه همراهتانیم.
+              با گفت‌وگوی حمایتی، آزمون‌های کوتاه و برنامه شخصی، قدم‌به‌قدم تا زندگیِ تازه همراهتانیم.
             </p>
 
             {/* Main Cards */}

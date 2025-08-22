@@ -3,12 +3,13 @@ import ChatChatSection from './ChatChatSection';
 import ChatTopBar from './ChatTopBar';
 import ChatSideNavbar from './ChatSideNavbar';
 
+
 const Chat: React.FC = () => {
   const [bgColor, setBgColor] = useState('green');
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
   return (
-    <div className={`min-h-screen flex flex-col overflow-hidden bg-[#ECFAE5]`}>
+    <div className={`min-h-screen flex flex-col overflow-hidden bg-white`}>
       <div className="fixed top-0 left-0 right-0 z-10">
         <ChatTopBar 
           mobileNavOpen={mobileNavOpen} 

@@ -2,6 +2,9 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Send } from 'lucide-react';
 import tree from "../assets/icons/tree.svg";
 import { ReactComponent as User } from "../assets/icons/user.svg";
+import useUserStore from "../store/UserStore";
+
+const Ai_api = "http://193.36.84.51:80";
 
 type Message = {
     sender: 'user' | 'ai';
@@ -14,16 +17,17 @@ type ChatChatSectionProps = {
     collapsed?: boolean;
 };
 
-const ChatChatSection: React.FC<ChatChatSectionProps> = ({ 
-    setBgColor = () => {}, // Default no-op function
-    collapsed = true 
+const ChatChatSection: React.FC<ChatChatSectionProps> = ({
+    setBgColor = () => { },
+    collapsed = true
 }) => {
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState<Message[]>([]);
     const messagesEndRef = useRef<HTMLDivElement | null>(null);
-    const userId = '1234';
 
-    // Rest of your component code remains the same...
+    const user = useUserStore((state) => state.user);
+    const userId = user?.username || 'guest';
+
     const suggestedQuestions = [
         { id: 2, text: 'دچار بی انگیزگی شدم' },
         { id: 3, text: 'چرا احساس ناامیدی دارم' },
@@ -41,29 +45,30 @@ const ChatChatSection: React.FC<ChatChatSectionProps> = ({
         green: 'bg-green-100 border-green-200',
     };
 
+    // Send message to new Chat API
     const handleSend = async (text: string) => {
         if (!text.trim()) return;
 
+        // Add user's message
         const newUserMessage: Message = { sender: 'user', text };
         setMessages(prev => [...prev, newUserMessage]);
         setMessage('');
 
         try {
-            const response = await fetch('http://192.168.253.238:3010/message', {
+            const response = await fetch(`${Ai_api}/api/session/chat`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ user_id: userId, text }),
+                body: JSON.stringify({ user_id: userId, message: text }),
             });
 
-            if (!response.ok) throw new Error('Server error');
+            if (!response.ok) {
+                console.warn('Chat API response not OK');
+                return; // Don't show AI message
+            }
 
             const data = await response.json();
-            let aiReply = data.response || 'پاسخی دریافت نشد';
-            const aiColor = data.color || 'green';
-
-            if (aiReply.trim().startsWith("پاسخ:")) {
-                aiReply = aiReply.trim().substring(6).trim();
-            }
+            const aiReply = data.response || 'پاسخی دریافت نشد';
+            const aiColor = 'green'; // Default color for AI messages
 
             setBgColor(aiColor);
             setMessages(prev => [...prev, { sender: 'ai', text: aiReply, color: aiColor }]);
@@ -71,10 +76,36 @@ const ChatChatSection: React.FC<ChatChatSectionProps> = ({
             console.error('Error sending message:', error);
             setMessages(prev => [
                 ...prev,
-                { sender: 'ai', text: 'خطا در ارتباط با سرور. لطفاً دوباره تلاش کنید.' },
+                { sender: 'ai', text: 'خطا در ارتباط با سرور. لطفاً دوباره تلاش کنید.', color: 'red' },
             ]);
         }
     };
+
+    // Start session when component mounts
+    useEffect(() => {
+        const startSession = async () => {
+            if (!userId) return;
+            try {
+                const res = await fetch(`${Ai_api}/api/session/start`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ user_id: userId }),
+                });
+                if (!res.ok) throw new Error('Failed to start session');
+                const data = await res.json();
+
+                // Add initial AI message
+                if (data?.initial_message) {
+                    setMessages([{ sender: 'ai', text: data.initial_message, color: 'green' }]);
+                }
+            } catch (error) {
+                console.error('Error starting session:', error);
+                setMessages([{ sender: 'ai', text: 'خطا در اتصال به سرور، لطفا دوباره تلاش کنید.', color: 'red' }]);
+            }
+        };
+
+        startSession();
+    }, [userId]);
 
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -83,25 +114,25 @@ const ChatChatSection: React.FC<ChatChatSectionProps> = ({
     const userHasSentMessage = messages.some(msg => msg.sender === 'user');
 
     return (
-        <div className="flex flex-col h-screen w-full px-4 bg-[#ECFAE5]">
+        <div className="flex flex-col h-screen w-full px-4 bg-white">
             <div className="overflow-y-auto pt-[150px] hide-scrollbar">
                 <div className="flex flex-col items-center justify-center mb-[20px]">
                     <img src={tree} alt="sarv" className="w-[160px] h-[206px] mb-4" />
                     <div className="text-center px-4">
                         <h2 className="desktop:text-2xl tablet:text-[22px] text-lg font-myVazirMedium text-primary-600 leading-6">
-                             سروبات، دستیار تو در سلامت روان
+                            سروبات، دستیار تو در سلامت روان
                         </h2>
                         <p className="font-myVazirRegular desktop:text-lg tablet:text-lg text-base text-primary-600 leading-6 mt-3">
-                            برای پشتیبانی و همراهی تو در شبانه روز   
+                            برای پشتیبانی و همراهی تو در شبانه روز
                         </p>
                     </div>
                 </div>
 
-                <div className="flex flex-col gap-4 px-2">
+                <div className="flex flex-col gap-4 px-2 font-myYekanFaNumRegular">
                     {messages.map((msg, index) => (
                         <div
                             key={index}
-                            className={`flex items-start ${msg.sender === 'user' ? 'justify-start' : 'justify-end'}`}
+                            className={`flex items-start text-justify ${msg.sender === 'user' ? 'justify-start' : 'justify-end'}`}
                         >
                             {msg.sender === 'user' && (
                                 <User className="w-6 h-6 rounded-full ml-2 text-primary-400" />
@@ -127,20 +158,34 @@ const ChatChatSection: React.FC<ChatChatSectionProps> = ({
 
             <div className="bottom-0 pt-2 pb-4">
                 <div className="relative mb-5">
-                    <div className="flex items-center rounded-full border bg-white h-[47px] border-primary-400 pl-4 pr-1">
-                        <input
-                            type="text"
+                    <div
+                        className={`flex items-center border border-primary-400 bg-white px-4 py-2 ${message.split('\n').length > 1 || message.length > 50
+                                ? 'rounded-2xl'
+                                : 'rounded-full'
+                            }`}
+                    >
+                        <textarea
                             value={message}
                             onChange={(e) => setMessage(e.target.value)}
                             placeholder="خب شروع کن..."
-                            className="flex-1 text-right px-3 py-2 rounded-full outline-none"
+                            className="flex-1 text-right font-myYekanFaNumRegular text-Gray-950 bg-white outline-none resize-none placeholder-gray-400 overflow-hidden"
                             dir="rtl"
+                            rows={1}
+                            style={{ maxHeight: '150px' }}
+                            onInput={(e) => {
+                                const target = e.target as HTMLTextAreaElement;
+                                target.style.height = 'auto';
+                                target.style.height = target.scrollHeight + 'px';
+                            }}
                             onKeyDown={(e) => {
-                                if (e.key === 'Enter') handleSend(message);
+                                if (e.key === 'Enter' && !e.shiftKey) {
+                                    e.preventDefault();
+                                    handleSend(message);
+                                }
                             }}
                         />
                         <button
-                            className="ml-1 text-slate-400 hover:text-slate-600 p-2 rounded-full"
+                            className="ml-2 text-slate-400 hover:text-slate-600 p-2 rounded-full flex-shrink-0"
                             onClick={() => handleSend(message)}
                         >
                             <Send size={20} />
@@ -171,6 +216,8 @@ const ChatChatSection: React.FC<ChatChatSectionProps> = ({
                     سروبات جایگزین تراپیست نیست. در شرایط حاد با تراپیست صحبت کنید.
                 </div>
             </div>
+
+
         </div>
     );
 };

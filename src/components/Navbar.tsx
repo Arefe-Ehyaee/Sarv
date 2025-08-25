@@ -46,8 +46,8 @@ function Navbar() {
       {/* Desktop Navigation */}
       <ul className="hidden tablet:flex items-center desktop:gap-10 gap-5 text-lg font-myVazirRegular text-background-Black relative">
         <li className="cursor-pointer"><button onClick={() => navigate('/')}>خانه</button></li>
-        <li className="cursor-pointer"><button onClick={() => navigate('/sarvBot')}>سروبات</button></li>
-        <li className="cursor-pointer"><button onClick={() => navigate('/Bot')}>تست</button></li>
+        {/* <li className="cursor-pointer"><button onClick={() => navigate('/sarvBot')}>سروبات</button></li> */}
+        <li className="cursor-pointer"><button onClick={() => navigate('/Bot')}>سروبات</button></li>
         <li className="cursor-pointer"><button onClick={() => navigate('/therapists')}>درمانگران</button></li>
         <li className="relative cursor-pointer">
           <button onClick={toggleDropdown} className='flex flex-row items-center'>

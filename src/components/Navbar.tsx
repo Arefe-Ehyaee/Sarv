@@ -35,7 +35,6 @@ function Navbar() {
           >
             <img src={menu} alt="menu" className="w-6 h-6" />
           </button>
-
           <button className="flex flex-row items-center gap-1" onClick={() => navigate('/')}>
             <img src={tree} alt="sarv" className="w-[30%] h-[30%]"/>
             <span className="font-myYekanMedium text-3xl text-green-900">سرو</span>

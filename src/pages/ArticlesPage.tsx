@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import tree from "../assets/icons/treeArticles.svg";
-import { ReactComponent as Arrow } from "../assets/icons/arrow-left-green.svg";
 import svg1 from "../assets/images/backTree_big.svg";
 
 import Navbar from "../components/Navbar";

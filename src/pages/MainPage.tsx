@@ -25,12 +25,12 @@ function MainPage() {
             <div className="relative w-full">
                 <div className="desktop:absolute tablet:absolute desktop:top-[10px] tablet:mb-[50px] mb-[40px] text-right">
                     <div className="desktop:h-24 tablet:h-[72px] h-[160px] desktop:mt-[56px] tablet:mt-[56px] mt-[41px] flex flex-col items-start">
-                        <h1 className="desktop:text-[56px] tablet:text-[40px] text-[36px] font-myPeydaSemibold desktop:px-24 tablet:px-6 px-3 tracking-tight190">
+                        <h1 className="desktop:text-[56px] tablet:text-[40px] text-[36px] font-myYekanDemibold desktop:px-24 tablet:px-6 px-3 tracking-tight190">
                             سرو، ارائه دهنده <br />
                             خدمات تراپی هوشمند
                         </h1>
 
-                        <p className="desktop:text-[24px] tablet:text-[22px] text-[18px] font-myVazirMedium leading-10 desktop:px-24 tablet:px-6 px-3 tracking-tight190 py-[6px]">
+                        <p className="desktop:text-[24px] tablet:text-[22px] text-[18px] font-myYekanMedium leading-10 desktop:px-24 tablet:px-6 px-3 tracking-tight190 py-[6px]">
                             سرو، همراه هوشمند که همیشه آماده‌ی گوش دادن <br />
                             به حرفات، کمک و حمایت <br className="hidden tablet:block desktop:hidden" />
                             کردن هست.

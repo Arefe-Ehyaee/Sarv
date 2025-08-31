@@ -36,16 +36,15 @@ function Navbar() {
             <img src={menu} alt="menu" className="w-6 h-6" />
           </button>
           <button className="flex flex-row items-center gap-1" onClick={() => navigate('/')}>
-            <img src={tree} alt="sarv" className="w-[30%] h-[30%]"/>
+            <img src={tree} alt="sarv" className="w-[30%] h-[30%]" />
             <span className="font-myYekanMedium text-3xl text-green-900">سرو</span>
           </button>
         </div>
       </div>
 
       {/* Desktop Navigation */}
-      <ul className="hidden tablet:flex items-center desktop:gap-10 gap-5 text-lg font-myVazirRegular text-background-Black relative">
+      <ul className="hidden tablet:flex items-center desktop:gap-10 gap-5 text-lg font-myYekanRegular text-background-Black relative">
         <li className="cursor-pointer"><button onClick={() => navigate('/')}>خانه</button></li>
-        {/* <li className="cursor-pointer"><button onClick={() => navigate('/sarvBot')}>سروبات</button></li> */}
         <li className="cursor-pointer"><button onClick={() => navigate('/Bot')}>سروبات</button></li>
         <li className="cursor-pointer"><button onClick={() => navigate('/therapists')}>درمانگران</button></li>
         <li className="relative cursor-pointer">
@@ -77,7 +76,7 @@ function Navbar() {
             {user.username}
           </button>
           {profiledropdownOpen && (
-            <ul className="absolute top-full text-center  transform translate-x-[34%] mt-2 text-lg font-myVazirRegular bg-white border border-gray-200 rounded-lg shadow-lg py-2 w-max z-50">
+            <ul className="absolute top-full text-center  transform translate-x-[34%] mt-2 text-lg font-myYekanRegular bg-white border border-gray-200 rounded-lg shadow-lg py-2 w-max z-50">
               <li className="px-4 py-2 whitespace-nowrap hover:bg-gray-100 cursor-pointer" onClick={() => { setProfileDropdownOpen(false); navigate('/profile'); }}>
                 حساب کاربری            </li>
               <hr className='mx-[27px] text-Gray-400'></hr>
@@ -93,7 +92,6 @@ function Navbar() {
 
             </ul>
           )}
-
         </div>
 
 
@@ -101,7 +99,7 @@ function Navbar() {
         <CustomButton
           handleOnClick={() => navigate('/login')}
           text={'ورود یا ثبت نام'}
-          className={'text-primary-50 bg-primary-700  hover:bg-primary-500 focus:bg-primary-900 h-[44px] px-[18px] py-[10px]'}
+          className={'text-primary-50 bg-primary-700 font-myYekanMedium  hover:bg-primary-500 focus:bg-primary-900 h-[44px] px-[18px] py-[10px]'}
         />
       )}
 

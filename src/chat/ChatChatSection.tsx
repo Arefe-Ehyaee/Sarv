@@ -4,7 +4,7 @@ import tree from "../assets/icons/tree.svg";
 import { ReactComponent as User } from "../assets/icons/user.svg";
 import useUserStore from "../store/UserStore";
 
-const Ai_api = "http://193.36.84.51:80";
+const Ai_api = "http://193.36.84.51:8080";
 
 type Message = {
     sender: 'user' | 'ai';
@@ -117,7 +117,7 @@ const ChatChatSection: React.FC<ChatChatSectionProps> = ({
         <div className="flex flex-col h-screen w-full px-4 bg-white">
             <div className="overflow-y-auto pt-[150px] hide-scrollbar">
                 <div className="flex flex-col items-center justify-center mb-[20px]">
-                    <img src={tree} alt="sarv" className="w-[160px] h-[206px] mb-4" />
+                    <img src={tree} alt="sarv" className="w-[100px] h-[146px] mb-4" />
                     <div className="text-center px-4">
                         <h2 className="desktop:text-2xl tablet:text-[22px] text-lg font-myVazirMedium text-primary-600 leading-6">
                             سروبات، دستیار تو در سلامت روان

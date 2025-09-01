@@ -111,6 +111,14 @@
   font-style: normal;
 }
 
+
+@font-face {
+  font-family: "myYekan-bold";
+  src: url("./assets/fonts/woff2/IRANYekanX-Bold.woff2") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
 @font-face {
   font-family: "myYekanFaNum-regular";
   src: url("./assets/fonts/fNum/Woff2/IRANYekanXFaNum-Regular.woff2")

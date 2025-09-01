@@ -26,6 +26,7 @@ module.exports = {
         myYekanRegular: ["myYekan-regular", "sans-serif"],
         myYekanMedium: ["myYekan-medium", "sans-serif"],
         myYekanDemibold: ["myYekan-demibold", "sans-serif"],
+        myYekanBold: ["myYekan-bold", "sans-serif"],
         myYekanFaNumRegular : ["myYekanFaNum-regular", "sans-serif"],
         myYekanFaNumMedium : ["myYekanFaNum-medium", "sans-serif"],
         myYekanFaNumDemiBold : ["myYekanFaNum-demiBold", "sans-serif"]

@@ -22,6 +22,8 @@ import Chat from './chat/Chat';
 import ChatChatSection from './chat/ChatChatSection';
 import TestChatSection from './chat/TestChatSection';
 import HomeAddiction from './addiction/HomeAddiction';
+import LoginJooy from './addiction/LoginJooy';
+import SignUpJooy from './addiction/SignUpJooy';
 
 
 function App() {
@@ -59,6 +61,8 @@ function App() {
             </Route>
             <Route path="/articles" element={<ArticlesPage />} />
             <Route path="/addiction" element={<HomeAddiction />} />
+            <Route path="/login-jooy" element={<LoginJooy />} />
+            <Route path="/signUp-jooy" element={<SignUpJooy />} />
             <Route path="/bdiTest" element={<TestTemplate />} />
             <Route path="/ghqTest" element={<GHQPage />} />
             <Route path="/therapists" element={<TherapistsPage />} />

@@ -43,10 +43,10 @@ function Navbar() {
       </div>
 
       {/* Desktop Navigation */}
-      <ul className="hidden tablet:flex items-center desktop:gap-10 gap-5 text-lg font-myYekanRegular text-background-Black relative">
+      <ul className="hidden tablet:flex items-center desktop:gap-10 gap-5 text-base font-myYekanMedium text-background-Black relative">
         <li className="cursor-pointer"><button onClick={() => navigate('/')}>خانه</button></li>
         <li className="cursor-pointer"><button onClick={() => navigate('/Bot')}>سروبات</button></li>
-        <li className="cursor-pointer"><button onClick={() => navigate('/therapists')}>درمانگران</button></li>
+        {/* <li className="cursor-pointer"><button onClick={() => navigate('/therapists')}>درمانگران</button></li> */}
         <li className="relative cursor-pointer">
           <button onClick={toggleDropdown} className='flex flex-row items-center'>
             تست روانشناسی
@@ -121,7 +121,7 @@ function Navbar() {
         </div>
         <ul className="flex flex-col gap-4">
           <li><button onClick={() => { setMenuOpen(false); navigate('/'); }}>خانه</button></li>
-          <li><button onClick={() => { setMenuOpen(false); navigate('/therapists'); }}>درمانگران</button></li>
+          {/* <li><button onClick={() => { setMenuOpen(false); navigate('/therapists'); }}>درمانگران</button></li> */}
           <li className="relative">
             <div className="flex items-center justify-between">
               <button onClick={toggleMiniDropdown}>تست روانشناسی</button>

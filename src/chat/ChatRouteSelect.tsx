@@ -30,7 +30,7 @@ export default function ChatRouteSelect() {
               <NavLink
                 to={item.to}
                 className={({ isActive }) =>
-                  `flex items-center gap-2 py-[9px] h-10 rounded-[4px] transition-colors duration-200 pr-[6px] w-[290px]
+                  `flex items-center gap-2 py-[9px] h-10 rounded-[4px] transition-colors duration-200 pr-[6px] w-[280px]
                   ${isActive ? "border-primary-500 bg-[#CAE8BD]" : "hover:bg-[#CAE8BD]"}`
                 }
               >

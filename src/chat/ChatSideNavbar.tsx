@@ -28,7 +28,7 @@ export default function AISideNavbar({
 
   return (
     <div
-      className="fixed top-0 right-0 z-10 bg-[#FFFFFF] w-[340px] min-h-screen flex flex-col justify-between px-[20px] py-[20px] border-l border-primary-200 transition-all duration-300"
+      className="fixed top-0 right-0 z-10 bg-[#FFFFFF] w-[320px] min-h-screen flex flex-col justify-between px-[20px] py-[20px] border-l border-primary-200 transition-all duration-300"
     >
       <div className="flex flex-col">
         {/* Header: Logo + Close button */}
@@ -59,7 +59,7 @@ export default function AISideNavbar({
       </div>
 
       {/* Bottom buttons */}
-      {user ? (
+      {/* {user ? (
         <LogoutButton />
       ) : (
         <CustomButton
@@ -68,7 +68,7 @@ export default function AISideNavbar({
           handleOnClick={() => handleNavigation("/login")}
           className="bg-primary-400 h-[44px] w-[94px] text-background-BG text-base font-myVazirSemibold flex justify-center items-center"
         />
-      )} 
+      )}  */}
     </div>
   );
 }

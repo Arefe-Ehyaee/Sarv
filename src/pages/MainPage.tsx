@@ -76,7 +76,7 @@ function MainPage() {
 
                     {/* CTA Button */}
                     <CustomButton
-                        handleOnClick={() => navigate('/sarvBot')}
+                        handleOnClick={() => navigate('/Bot')}
                         iconsrc={left}
                         text={'شروع مکالمه'}
                         className={

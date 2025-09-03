@@ -9,7 +9,7 @@ const Chat: React.FC = () => {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
   return (
-    <div className={`min-h-screen flex flex-col overflow-hidden bg-white`}>
+    <div className={`min-h-screen flex flex-col overflow-hidden bg-[#F8F8F8]`}>
       <div className="fixed top-0 left-0 right-0 z-10">
         <ChatTopBar 
           mobileNavOpen={mobileNavOpen} 

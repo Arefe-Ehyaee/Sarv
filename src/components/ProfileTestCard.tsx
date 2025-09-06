@@ -26,42 +26,42 @@ function ProfileTestCard({ testName, test_en_name, onViewResult, description, im
   const maxScore = maxScores[test_en_name?.toLowerCase()] || 100;
 
   return (
-    <div className="flex flex-col justify-between w-full h-[252px] mx-auto bg-background-BG rounded-[20px] border border-primary-100 py-[18px] px-5 relative overflow-hidden">
+    <div className="flex flex-col justify-between w-full max-w-[480px] h-[300px] mx-auto bg-background-BG rounded-[20px] border border-primary-100 py-[18px] px-5 relative overflow-hidden">
 
       {/* Tag */}
-      <div className="font-myVazirRegular w-fit desktop:text-base tablet:text-base text-sm text-center rounded-full px-[10px] py-[4px] bg-primary-50 border border-primary-100 text-primary-600">
+      <div className="font-myVazirRegular w-fit desktop:text-sm tablet:text-sm text-xs text-center rounded-full px-[10px] py-[4px] bg-primary-50 border border-primary-100 text-primary-600">
         اضطراب و افسردگی
       </div>
 
       {/* Test name */}
-      <p className="font-myPeydaMedium desktop:text-[20px] tablet:text-lg text-base mt-[10px]">{testName}</p>
+      <p className="font-myYekanBold text-gray-800 desktop:text-[20px] tablet:text-lg text-base mt-[10px]">{testName}</p>
 
       {/* Metadata */}
-      <div className="flex flex-row gap-4 items-center mt-[10px] mb-[20px]">
+      <div className="flex flex-col desktop:flex desktop:flex-row gap-4 desktop:items-center items-start mt-[8px] mb-[16px]">
         <p className="flex flex-row gap-[3px]">
           {/* <Clock className="text-Gray-400 w-6 h-6" /> */}
           <Award className="text-success-700 w-6 h-6" />
-          <span className="text-success-700 desktop:text-base font-myVazirFaNumRegular">{getTestStatus(test_en_name.toLowerCase() as TestKey, score)} </span>
+          <span className="text-success-700 text-sm desktop:text-base font-myYekanRegular">{getTestStatus(test_en_name.toLowerCase() as TestKey, score)} </span>
         </p>
         <p className="flex flex-row gap-[2px]">
           <Award className="text-success-700 w-6 h-6" />
-          <span className="text-success-700 desktop:text-base font-myVazirFaNumRegular">
+          <span className="text-success-700 text-sm desktop:text-base font-myYekanFaNumRegular">
            نتیجه آزمون: {score} از {maxScore} 
           </span>
         </p>
       </div>
 
       {/* Buttons */}
-      <div className="flex flex-row gap-4">
+      <div className="flex flex-col gap-4">
         <button
           onClick={() => navigate(`/test/${slug}/start`)}
-          className="w-2/3 bg-Gray-700 hover:bg-primary-300 text-white desktop:text-base tablet:text-sm text-xs font-myVazirRegular desktop:h-[44px] tablet:h-[44px] h-[41px] rounded-full transition-colors duration-200"
+          className="w-full bg-white hover:bg-primary-300 text-[#2C5031] border-[0.6px] border-[#2C5031] desktop:text-base tablet:text-sm text-xs font-myVazirRegular desktop:h-[44px] tablet:h-[44px] h-[41px] rounded-full transition-colors duration-200"
         >
           تکرار آزمون
         </button>
         <button
           onClick={onViewResult}
-          className="w-1/3 bg-white hover:bg-primary-300 text-[#2C5031] border-[0.6px] border-[#2C5031] desktop:text-base tablet:text-sm text-xs font-myVazirRegular desktop:h-[44px] tablet:h-[44px] h-[41px] rounded-full transition-colors duration-200"
+          className="w-full bg-white hover:bg-primary-300 text-[#2C5031] border-[0.6px] border-[#2C5031] desktop:text-base tablet:text-sm text-xs font-myVazirRegular desktop:h-[44px] tablet:h-[44px] h-[41px] rounded-full transition-colors duration-200"
         >
           مشاهده نتیجه
         </button>

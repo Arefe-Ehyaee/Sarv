@@ -6,13 +6,14 @@ import { ReactComponent as Message } from "../assets/icons/message-circle.svg";
 import { NavLink } from "react-router-dom";
 
 export default function ChatRouteSelect() {
-  const routes = [
-    { to: "/Bot", icon: <Message />, label: "چت", disabled: false },
-    { to: "/Bot/ChatTests", icon: <Clipboard />, label: "تست روانشناسی", disabled: false },
-    { to: "/searchEngine", icon: <Calendar />, label: "جلسه با تراپیست", disabled: true },
-    { to: "/searchEngine", icon: <Music />, label: "موسیقی", disabled: true },
-    { to: "/searchEngine", icon: <Hexa />, label: "کارت انگیزه", disabled: true }
-  ];
+const routes = [
+  { to: "/dashboard/chatbot", icon: <Message />, label: "چت", disabled: false },
+  { to: "/dashboard/ChatTests", icon: <Clipboard />, label: "تست‌های من", disabled: false },
+  { to: "/searchEngine", icon: <Calendar />, label: "جلسه با تراپیست", disabled: true },
+  { to: "/searchEngine", icon: <Music />, label: "موسیقی", disabled: true },
+  { to: "/searchEngine", icon: <Hexa />, label: "کارت انگیزه", disabled: true }
+];
+
 
   return (
     <div className="flex flex-col justify-between font-myVazirMedium text-lg bg-[#FFFFFF]">

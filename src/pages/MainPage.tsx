@@ -84,7 +84,6 @@ function MainPage() {
                         }
                     />
 
-
                     {/* Hero Image زیر متن */}
                     <img
                         src={heroBanner}

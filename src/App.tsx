@@ -24,6 +24,7 @@ import TestChatSection from './chat/TestChatSection';
 import HomeAddiction from './addiction/HomeAddiction';
 import LoginJooy from './addiction/LoginJooy';
 import SignUpJooy from './addiction/SignUpJooy';
+import DashboardLayout from './components/DashboardLayout';
 
 
 function App() {
@@ -56,13 +57,15 @@ function App() {
             <Route path="/sarvBot" element={<AIChat />} />
             {/* 🔁 Nested layout with <Outlet> */}
             <Route path="/Bot" element={<Chat />}>
-              <Route index element={<ChatChatSection />} />
               <Route path="ChatTests" element={<TestChatSection />} />
             </Route>
+
+            <Route path="/dashboard" element={<DashboardLayout />}>
+              <Route path="chatbot" element={<ChatChatSection />} />
+              <Route path="ChatTests" element={<TestChatSection />} />
+            </Route>
+
             <Route path="/articles" element={<ArticlesPage />} />
-            <Route path="/addiction" element={<HomeAddiction />} />
-            <Route path="/login-jooy" element={<LoginJooy />} />
-            <Route path="/signUp-jooy" element={<SignUpJooy />} />
             <Route path="/bdiTest" element={<TestTemplate />} />
             <Route path="/ghqTest" element={<GHQPage />} />
             <Route path="/therapists" element={<TherapistsPage />} />
@@ -72,15 +75,15 @@ function App() {
             <Route path="/tests" element={<TestsPage />} />
             <Route path="/tests/:testName" element={<Test />} />
             {/* ✅ Protected Routes */}
-            <Route element={<ProtectedRoute />}>
-              <Route path="/profile" element={<ProfilePage />} />
-              <Route path="/test/:testName/questions" element={<TestLanding />} />
-              <Route path="/test/:testName/result" element={<TestResult />} />
-            </Route>
+            {/* <Route element={<ProtectedRoute />}> */}
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/test/:testName/questions" element={<TestLanding />} />
+            <Route path="/test/:testName/result" element={<TestResult />} />
+            {/* </Route> */}
           </Routes>
         </BrowserRouter>
       </div>
-      <ToastContainer/>
+      <ToastContainer />
     </QueryClientProvider>
   );
 }

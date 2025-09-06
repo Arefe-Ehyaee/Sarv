@@ -90,7 +90,7 @@ const ProfilePage: React.FC = () => {
             ) : testes.length === 0 ? (
               <div className="text-center text-gray-500 font-myVazirSemibold">آزمونی یافت نشد.</div>
             ) : (
-              <div className="grid grid-cols-1 desktop:grid-cols-2 gap-[30px] w-full place-items-stretch pb-3">
+              <div className="grid grid-cols-1 gap-[30px] w-full place-items-stretch pb-3">
                 {testes.map((test: any) => {
                   const testResult = {
                     score: test.score,

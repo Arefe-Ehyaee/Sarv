@@ -45,24 +45,24 @@ function Articles() {
       try {
         setLoading(true);
         setError(null);
-        
+
         const res = await fetch(`${BASE_URL}/api/v1/blogs?limit=4&page=1`);
-        
+
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
         }
-        
+
         const data = await res.json();
-        
+
         // Debug logging
         console.log("Articles API Response:", data);
         console.log("Articles data:", data?.data);
         console.log("Is data an array?", Array.isArray(data));
         console.log("Is data.data an array?", Array.isArray(data?.data));
-        
+
         // Handle different response structures
         let articlesData: Article[] = [];
-        
+
         if (Array.isArray(data)) {
           // If the response is directly an array
           articlesData = data.slice(0, 4); // Limit to 4 items
@@ -73,10 +73,10 @@ function Articles() {
           // If it's an object, try to find the array
           articlesData = Object.values(data).find(val => Array.isArray(val)) as Article[] || [];
         }
-        
+
         console.log("Final articles data:", articlesData);
         console.log("Articles count:", articlesData.length);
-        
+
         setArticles(articlesData);
       } catch (error) {
         console.error("Error fetching articles:", error);
@@ -85,7 +85,7 @@ function Articles() {
         setLoading(false);
       }
     };
-    
+
     fetchArticles();
   }, []);
 
@@ -138,11 +138,11 @@ function Articles() {
 
       {loading && <LoadingSpinner />}
       {error && <ErrorMessage />}
-      
+
       {!loading && !error && (
         <>
           {articles.length > 0 ? (
-<div className="grid grid-cols-1 desktop:grid-cols-3 gap-[32px] place-items-center">
+            <div className="grid grid-cols-1 desktop:grid-cols-3 gap-[32px] place-items-center">
 
               {articles.map((article) => (
                 <ArticleCard

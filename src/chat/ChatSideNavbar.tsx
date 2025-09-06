@@ -35,7 +35,7 @@ export default function AISideNavbar({
         <div className="flex items-center justify-between mb-4">
           <button 
             onClick={() => handleNavigation('/')} 
-            className="flex flex-row items-center text-primary-600 font-myPeydaRegular text-[30px]"
+            className="flex flex-row items-center text-primary-600 font-myYekanBold text-[30px]"
           >
             <img src={sarv} alt="sarv" className="w-[35px] h-[46px]" />
             <span className="ml-2">سرو بات</span>

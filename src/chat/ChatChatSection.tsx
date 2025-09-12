@@ -4,7 +4,8 @@ import tree from "../assets/icons/tree.svg";
 import { ReactComponent as User } from "../assets/icons/user.svg";
 import useUserStore from "../store/UserStore";
 
-const Ai_api = "http://193.36.84.51:8080";
+// const Ai_api = "http://193.36.84.51:8080";
+const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 type Message = {
     sender: 'user' | 'ai';
@@ -25,7 +26,7 @@ const ChatChatSection: React.FC<ChatChatSectionProps> = ({
     const [messages, setMessages] = useState<Message[]>([]);
     const messagesEndRef = useRef<HTMLDivElement | null>(null);
     const textareaRef = useRef<HTMLTextAreaElement>(null);
-
+    const token = useUserStore((state) => state.token);
     const user = useUserStore((state) => state.user);
     const userId = user?.username || 'guest';
 
@@ -59,15 +60,35 @@ const ChatChatSection: React.FC<ChatChatSectionProps> = ({
         if (textareaRef.current) textareaRef.current.style.height = 'auto';
 
         try {
-            const response = await fetch(`${Ai_api}/api/session/chat`, {
+            const response = await fetch(`${BASE_URL}/api/v1/chat/messages`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ user_id: userId, message: text }),
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ message: text }),
             });
 
-            if (!response.ok) return;
-
             const data = await response.json();
+
+            if (!response.ok) {
+
+                let errorMsg = 'پاسخی از هوش مصنوعی دریافت نشد. لطفاً دوباره تلاش کنید.';
+
+                if (data.statusCode === 400) {
+                    errorMsg = 'پاسخی از هوش مصنوعی دریافت نشد. لطفاً دوباره تلاش کنید.';
+                } else if (data.statusCode === 500) {
+                    errorMsg = 'مشکلی در سرور پیش آمد. لطفاً کمی بعد دوباره امتحان کن.';
+                }
+
+                setMessages(prev => [
+                    ...prev,
+                    { sender: 'ai', text: errorMsg, color: 'red' },
+                ]);
+                return;
+            }
+
+
             const aiReply = data.response || 'پاسخی دریافت نشد';
             const aiColor = 'gray';
 
@@ -79,15 +100,16 @@ const ChatChatSection: React.FC<ChatChatSectionProps> = ({
                 { sender: 'ai', text: 'خطا در ارتباط با سرور. لطفاً دوباره تلاش کنید.', color: 'red' },
             ]);
         }
+
     };
 
     useEffect(() => {
         const startSession = async () => {
             if (!userId) return;
             try {
-                const res = await fetch(`${Ai_api}/api/session/start`, {
+                const res = await fetch(`${BASE_URL}/api/v1/chat`, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: { Authorization: `Bearer ${token}` },
                     body: JSON.stringify({ user_id: userId }),
                 });
                 if (!res.ok) throw new Error('Failed to start session');

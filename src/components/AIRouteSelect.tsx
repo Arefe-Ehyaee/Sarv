@@ -7,7 +7,7 @@ import { NavLink } from "react-router-dom";
 
 export default function AIRouteSelect({ collapsed }: { collapsed: boolean }) {
   const routes = [
-    { to: "/sarvBot", icon: <Message />, label: "چت جدید", disabled: false },
+    { to: "/Bot", icon: <Message />, label: "چت جدید", disabled: false },
     { to: "/tests", icon: <Clipboard />, label: "تست روانشناسی", disabled: false },
     { to: "/searchEngine", icon: <Calendar />, label: "جلسه با تراپیست", disabled: true },
     { to: "/searchEngine", icon: <Music />, label: "موسیقی", disabled: true },

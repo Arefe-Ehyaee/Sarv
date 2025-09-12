@@ -1,4 +1,3 @@
-import sarv from "../assets/icons/Sarv.svg";
 import tree from "../assets/icons/treeArticles.svg";
 import menu from "../assets/icons/menu.svg";
 import { useNavigate } from 'react-router-dom';

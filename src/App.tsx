@@ -54,14 +54,14 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<MainPage />} />
-            <Route path="/sarvBot" element={<AIChat />} />
+            {/* <Route path="/sarvBot" element={<AIChat />} /> */}
             {/* 🔁 Nested layout with <Outlet> */}
             <Route path="/Bot" element={<Chat />}>
               <Route path="ChatTests" element={<TestChatSection />} />
             </Route>
 
             <Route path="/dashboard" element={<DashboardLayout />}>
-              <Route path="chatbot" element={<ChatChatSection />} />
+              <Route path="Bot" element={<Chat />} />
               <Route path="ChatTests" element={<TestChatSection />} />
             </Route>
 

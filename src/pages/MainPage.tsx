@@ -51,7 +51,7 @@ function MainPage() {
                 />
 
                 <CustomButton
-                    handleOnClick={() => navigate('/sarvBot')}
+                    handleOnClick={() => navigate('/Bot')}
                     iconsrc={left}
                     text={'امروز سفر خود را آغاز کنید'}
                     className={

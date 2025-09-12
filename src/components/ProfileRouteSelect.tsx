@@ -45,7 +45,7 @@ export default function ProfileRouteSelect({ collapsed, setCollapsed, closeSideb
         <ul className="space-y-[20px] text-Gray-900">
           {[
             { to: "/", icon: <Home />, label: "صفحه اصلی" },
-            { to: "/sarvBot", icon: <Bot />, label: "سروبات" },
+            { to: "/Bot", icon: <Bot />, label: "سروبات" },
             { to: "/profile", icon: <Clipboard />, label: "آزمون‌های انجام شده" },
             // { to: "/tests", icon: <Article />, label: "مقالات من" },
             // { to: "/tests", icon: <Calendar />, label: "جلسات من" },

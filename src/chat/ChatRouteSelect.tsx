@@ -7,7 +7,7 @@ import { NavLink } from "react-router-dom";
 
 export default function ChatRouteSelect() {
 const routes = [
-  { to: "/dashboard/chatbot", icon: <Message />, label: "چت", disabled: false },
+  { to: "/dashboard/Bot", icon: <Message />, label: "چت", disabled: false },
   { to: "/dashboard/ChatTests", icon: <Clipboard />, label: "تست‌های من", disabled: false },
   { to: "/searchEngine", icon: <Calendar />, label: "جلسه با تراپیست", disabled: true },
   { to: "/searchEngine", icon: <Music />, label: "موسیقی", disabled: true },

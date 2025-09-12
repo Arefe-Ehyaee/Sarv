@@ -69,9 +69,9 @@ function MainPage() {
                     </h1>
 
                     <p className="desktop:text-base tablet:text-[22px] text-[18px] font-myYekanMedium leading-10 tracking-tight190">
-                        سرو، همراه هوشمند که همیشه آماده‌ی گوش دادن <br />
-                        به حرفات، کمک و حمایت <br className="hidden tablet:block desktop:hidden" />
-                        کردن هست.
+                        کمک و حمایت هوشمند برای سلامت روان شما، <br />
+                        <br className="hidden tablet:block desktop:hidden" />
+                        از گفتگوهای روزمره تا مسیرهای درمانی عمیق.
                     </p>
 
                     {/* CTA Button */}

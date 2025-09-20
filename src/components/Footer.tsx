@@ -100,7 +100,7 @@ function Footer() {
 
                             <div className="flex items-start gap-3 mb-3" onClick={() => navigate("/addiction")}>
                                 <img src={phone} alt="phone" />
-                                <span className='font-myVazirRegular text-sm'>۰۲۱-۱۲۳۴۵۶۷۸</span>
+                                <span className='font-myVazirFaNumRegular text-sm'>09388485156</span>
                             </div>
 
 

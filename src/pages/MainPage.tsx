@@ -95,12 +95,12 @@ function MainPage() {
             </div>
 
             {/* Main content */}
-            <WhyUs />
+            {/* <WhyUs />
             <Services />
-            <HowBotWorks />
+            <HowBotWorks /> */}
             <Comments />
             <Articles />
-            <FAQSection />
+            {/* <FAQSection /> */}
             <CTA />
             <Footer />
         </div>

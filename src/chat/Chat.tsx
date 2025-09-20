@@ -43,7 +43,7 @@ const Chat: React.FC = () => {
         )}
 
         {/* Main content */}
-        <div className="flex-1 flex justify-center transition-all duration-300 tablet:mr-[340px]">
+        <div className="flex-1 flex justify-center transition-all duration-300">
           <div className="w-full max-w-4xl">
             <ChatChatSection setBgColor={setBgColor} />
           </div>

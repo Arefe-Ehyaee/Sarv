@@ -44,15 +44,15 @@ export default function ChatTopBar({ mobileNavOpen, setMobileNavOpen }: ChatTopB
 
         {user ? (
           <div>
-            <button onClick={toggleProfileDropdown} className="text-primary-700 border-[0.6px] hover:bg-primary-50 focus:bg-primary-800 focus:text-white border-primary-700 h-[44px] px-[18px] py-[10px] rounded-full">
+            <button onClick={toggleProfileDropdown} className="text-primary-700 border border-primary-700 py-2 px-4 rounded-full text-sm">
               {user.username}
             </button>
             {profiledropdownOpen && (
-              <ul className="absolute top-full text-center transform translate-x-[34%] mt-2 text-lg font-myVazirRegular bg-white border border-gray-200 rounded-lg shadow-lg py-2 w-max z-50">
+              <ul className="absolute top-full text-center transform translate-x-[34%] mt-1 font-myVazirRegular bg-white border border-gray-200 rounded-lg shadow-lg py-2 w-max z-50">
                 <li className="px-4 py-2 whitespace-nowrap hover:bg-gray-100 cursor-pointer" onClick={() => { setProfileDropdownOpen(false); navigate('/profile'); }}>
                   حساب کاربری
                 </li>
-                <hr className='mx-[27px] text-Gray-400'></hr>
+                {/* <hr className='mx-[27px] text-Gray-400'></hr> */}
                 <li
                   className="px-4 py-2 text-error-500 whitespace-nowrap hover:bg-gray-100 cursor-pointer"
                   onClick={() => {

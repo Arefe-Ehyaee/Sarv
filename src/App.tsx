@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Route, Routes, BrowserRouter } from 'react-router-dom';
+import { Route, Routes, BrowserRouter, Navigate } from 'react-router-dom';
 import MainPage from './pages/MainPage';
 import AIChat from './pages/AIChat';
 import ArticlesPage from './pages/ArticlesPage';
@@ -25,6 +25,7 @@ import HomeAddiction from './addiction/HomeAddiction';
 import LoginJooy from './addiction/LoginJooy';
 import SignUpJooy from './addiction/SignUpJooy';
 import DashboardLayout from './components/DashboardLayout';
+import ScrollToTop from './components/ScrollToTop';
 
 
 function App() {
@@ -52,13 +53,13 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <div dir="rtl">
         <BrowserRouter>
+
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<MainPage />} />
             {/* <Route path="/sarvBot" element={<AIChat />} /> */}
             {/* 🔁 Nested layout with <Outlet> */}
-            <Route path="/Bot" element={<Chat />}>
-              <Route path="ChatTests" element={<TestChatSection />} />
-            </Route>
+            <Route path="/Bot" element={<Navigate to="/dashboard/Bot" replace />} />
 
             <Route path="/dashboard" element={<DashboardLayout />}>
               <Route path="Bot" element={<Chat />} />

@@ -103,26 +103,45 @@ const ChatChatSection: React.FC<ChatChatSectionProps> = ({
 
     };
 
-    useEffect(() => {
-        const startSession = async () => {
-            if (!userId) return;
-            try {
-                const res = await fetch(`${BASE_URL}/api/v1/chat`, {
-                    method: 'POST',
-                    headers: { Authorization: `Bearer ${token}` },
-                    body: JSON.stringify({ user_id: userId }),
-                });
-                if (!res.ok) throw new Error('Failed to start session');
-                const data = await res.json();
-                if (data?.initial_message) {
-                    setMessages([{ sender: 'ai', text: data.initial_message, color: 'gray' }]);
-                }
-            } catch (error) {
-                setMessages([{ sender: 'ai', text: 'خطا در اتصال به سرور، لطفا دوباره تلاش کنید.', color: 'red' }]);
-            }
-        };
-        startSession();
-    }, [userId]);
+useEffect(() => {
+    const loadMessages = async () => {
+        try {
+            // فقط گرفتن همه پیام‌های قبلی
+            const res = await fetch(`${BASE_URL}/api/v1/chat/messages`, {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+
+            if (!res.ok) throw new Error("خطا در دریافت پیام‌ها");
+
+            const data = await res.json();
+
+            const historyMessages: Message[] = (data?.messages || []).map((m: any) => ({
+                sender: m.messageType === "user" ? "user" : "ai",
+                text: m.content,
+                color: m.messageType === "ai" ? "gray" : undefined,
+            }));
+
+            setMessages(historyMessages);
+        } catch (error) {
+            setMessages([
+                {
+                    sender: "ai",
+                    text: "خطا در اتصال به سرور، لطفا دوباره تلاش کنید.",
+                    color: "red",
+                },
+            ]);
+        }
+    };
+
+    if (userId) {
+        loadMessages();
+    }
+}, [userId]);
+
+
 
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });

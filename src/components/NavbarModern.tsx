@@ -69,14 +69,14 @@ function NavbarMobbinStyle() {
                 {user.username}
               </button>
               {profileOpen && (
-                <ul className="absolute right-0 mt-2 bg-white border border-gray-200 rounded-md shadow-md py-2 w-48 text-right z-50">
+                <ul className="absolute right-0 mt-2 bg-white font-myYekanRegular border border-gray-200 rounded-md shadow-md py-2 text-right z-50 w-max">
                   <li
                     className="px-4 py-2 hover:bg-gray-100"
-                    onClick={() => { setProfileOpen(false); navigate('/profile'); }}
+                    onClick={() => { setProfileOpen(false); navigate('/Bot'); }}
                   >
                     حساب کاربری
                   </li>
-                  <li className="border-t border-gray-200 mt-1"></li>
+                  {/* <li className="border-t border-gray-200 mt-1"></li> */}
                   <li
                     className="px-4 py-2 text-error-500 hover:bg-gray-100"
                     onClick={() => { setProfileOpen(false); logout(); }}

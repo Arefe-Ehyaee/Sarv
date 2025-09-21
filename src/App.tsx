@@ -16,14 +16,9 @@ import Test from './pages/Test';
 import TestResult from './pages/TestResult';
 import { ToastContainer } from "react-toastify";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import ProtectedRoute from './components/ProtectedRoute';
 import useUserStore from './store/UserStore';
 import Chat from './chat/Chat';
-import ChatChatSection from './chat/ChatChatSection';
 import TestChatSection from './chat/TestChatSection';
-import HomeAddiction from './addiction/HomeAddiction';
-import LoginJooy from './addiction/LoginJooy';
-import SignUpJooy from './addiction/SignUpJooy';
 import DashboardLayout from './components/DashboardLayout';
 import ScrollToTop from './components/ScrollToTop';
 

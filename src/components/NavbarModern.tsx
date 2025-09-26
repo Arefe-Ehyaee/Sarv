@@ -99,7 +99,7 @@ function NavbarMobbinStyle() {
 
       {/* Mobile menu links */}
       {mobileMenuOpen && (
-        <ul className="lg:hidden flex flex-col bg-[#f3f2f2] border-t border-gray-200 w-full text-right px-6 py-4 gap-3 z-40">
+        <ul className="lg:hidden flex flex-col bg-[#f5f5f5] border-t text-base font-myYekanMedium text-gray-800 border-gray-200 w-full text-right px-6 py-4 gap-3 z-40">
           {navLinks.map((link) => (
             <li key={link.label}>
               <button

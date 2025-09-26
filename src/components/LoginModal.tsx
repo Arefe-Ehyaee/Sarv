@@ -1,35 +1,36 @@
-import React, { useState } from 'react';
-import backgroundImage from '../assets/icons/banersarv2-editebirds.svg';
+import React, { useState } from "react";
+import ReactDOM from "react-dom";
 import sarv from "../assets/icons/Sarv.svg";
-import useUserStore from '../store/UserStore';
-import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import useUserStore from "../store/UserStore";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 type LoginModalProps = {
   isOpen: boolean;
   onClose: () => void;
 };
 
 export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [message, setMessage] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
   const navigate = useNavigate();
   const setUser = useUserStore((state) => state.setUser);
 
   if (!isOpen) return null;
 
   const handleContinue = async () => {
-    if (email.trim() === '' || password.trim() === '') {
-      setMessage('لطفاً ایمیل و رمز عبور را وارد کنید');
+    if (email.trim() === "" || password.trim() === "") {
+      setMessage("لطفاً ایمیل و رمز عبور را وارد کنید");
       return;
     }
 
     try {
       const response = await fetch(`${BASE_URL}/api/v1/auth/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       });
 
@@ -38,25 +39,22 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
       if (response.status === 200) {
         setUser(result.data, result.token);
         toast.success("با موفقیت وارد شدید.");
-        onClose(); // close modal
-        navigate('/profile');
+        onClose();
+        navigate("/profile");
       } else if (response.status === 401) {
-        setMessage(result.message || 'ایمیل یا رمز اشتباه است');
+        setMessage(result.message || "ایمیل یا رمز اشتباه است");
       } else {
-        toast.error('خطا در ورود، لطفاً دوباره تلاش کنید');
+        toast.error("خطا در ورود، لطفاً دوباره تلاش کنید");
       }
     } catch (error) {
-      console.error('Login error:', error);
-      setMessage('اتصال به سرور برقرار نشد');
+      console.error("Login error:", error);
+      setMessage("اتصال به سرور برقرار نشد");
     }
   };
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
-      <div
-        className="relative bg-white rounded-3xl shadow-2xl px-5 py-6 desktop:w-[430px] tablet:w-[435px] w-[380px]"
-        
-      >
+  return ReactDOM.createPortal(
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 backdrop-blur-sm">
+      <div className="relative bg-white rounded-3xl shadow-2xl px-5 py-6 desktop:w-[430px] tablet:w-[435px] w-[380px]">
         {/* Close button */}
         <button
           onClick={onClose}
@@ -65,6 +63,7 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
           ✕
         </button>
 
+        {/* Header */}
         <div className="text-center mb-5 relative z-10">
           <div className="inline-flex items-center mb-4">
             <img src={sarv} alt="sarv" />
@@ -77,8 +76,12 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
           </p>
         </div>
 
+        {/* Email input */}
         <div className="mb-4 text-right">
-          <label className="block text-sm text-gray-700 font-myVazirRegular mb-1" htmlFor="email">
+          <label
+            className="block text-sm text-gray-700 font-myVazirRegular mb-1"
+            htmlFor="email"
+          >
             ایمیل
           </label>
           <input
@@ -91,8 +94,12 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
           />
         </div>
 
+        {/* Password input */}
         <div className="mb-6 text-right">
-          <label className="block text-sm text-gray-700 font-myVazirRegular mb-1" htmlFor="password">
+          <label
+            className="block text-sm text-gray-700 font-myVazirRegular mb-1"
+            htmlFor="password"
+          >
             رمز عبور
           </label>
           <input
@@ -105,12 +112,14 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
           />
         </div>
 
+        {/* Error message */}
         {message && (
           <div className="text-red-600 text-sm mb-4 text-center font-myVazirRegular">
             {message}
           </div>
         )}
 
+        {/* Submit button */}
         <button
           onClick={handleContinue}
           className="w-full h-[42px] flex items-center justify-center font-myVazirRegular text-base text-white bg-green-600 hover:bg-green-500 rounded-xl transition-colors duration-200"
@@ -118,6 +127,7 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
           ورود
         </button>
 
+        {/* Signup link */}
         <div className="flex justify-center gap-2 text-sm mt-4 font-myVazirFaNumRegular">
           <span>حساب ندارید؟</span>
           <button
@@ -125,13 +135,14 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
             className="text-green-600"
             onClick={() => {
               onClose();
-              navigate('/signup');
+              navigate("/signup");
             }}
           >
             ثبت نام
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
